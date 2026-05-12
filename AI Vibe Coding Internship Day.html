@@ -1,0 +1,2055 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI & Vibe Coding — Internship Day</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow+Condensed:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --red: #c8211a;
+        --black: #111111;
+        --richblack: #0d0d0d;
+        --cream: #ede9e3;
+        --surface: #f5f2ee;
+        --border: #d5d0c9;
+        --muted: #8a8580;
+        --serif: "Playfair Display", Georgia, serif;
+        --cond: "Barlow Condensed", sans-serif;
+        --sans: "Inter", sans-serif;
+        --mono: "Space Mono", monospace;
+        --t-display: clamp(3rem, 9vw, 10rem);
+        --t-h2: clamp(2.2rem, 6vw, 7rem);
+        --t-h3: clamp(1.5rem, 3.5vw, 3rem);
+        --t-label: clamp(0.75rem, 1.2vw, 1rem);
+        --t-body: clamp(1rem, 1.7vw, 1.3rem);
+        --t-mono: clamp(0.65rem, 0.9vw, 0.8rem);
+        --t-step: clamp(5rem, 14vw, 16rem);
+        --pad: clamp(1.5rem, 4vw, 5rem);
+        --gap: clamp(0.75rem, 2vw, 2rem);
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        --dur: 1s;
+      }
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { height: 100%; overflow-x: hidden; }
+      html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+      body { background: var(--cream); font-family: var(--sans); }
+
+      .slide {
+        width: 100vw; height: 100vh; height: 100dvh;
+        overflow: hidden; scroll-snap-align: start;
+        display: flex; flex-direction: column;
+        position: relative; background: var(--cream); color: var(--black);
+      }
+      .slide::before {
+        content: ""; position: absolute; top: 0; left: 0; right: 0;
+        height: 5px; background: var(--red); z-index: 20;
+      }
+      .slide::after {
+        content: ""; position: absolute; top: 5px; left: 0; bottom: 0;
+        width: 3px; background: var(--red); z-index: 20;
+      }
+      .sg {
+        position: absolute; inset: 0; pointer-events: none; z-index: 1;
+        background-image: linear-gradient(to right, rgba(0,0,0,0.028) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.028) 1px, transparent 1px);
+        background-size: clamp(32px,4.5vw,64px) clamp(32px,4.5vw,64px);
+      }
+      .slide-dark .sg {
+        background-image: linear-gradient(to right, rgba(0,0,0,0.028) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.028) 1px, transparent 1px);
+      }
+      .gn {
+        position: absolute; top: -4px; left: clamp(4px,0.8vw,12px);
+        font-family: var(--serif); font-weight: 900;
+        font-size: clamp(90px,18vw,210px); color: var(--red);
+        opacity: 0.08; line-height: 1; pointer-events: none; z-index: 2; user-select: none;
+        will-change: transform; transition: transform 0.9s var(--ease);
+      }
+      .slide.visible .gn { transform: translate(var(--ghx,0), var(--ghy,0)); }
+      .slide-dark .gn { color: var(--red); opacity: 0.08; }
+      .sl {
+        position: absolute; top: clamp(12px,1.8vh,20px); right: clamp(14px,3vw,48px);
+        font-family: var(--mono); font-size: var(--t-mono);
+        letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); z-index: 20;
+      }
+      .pl {
+        position: absolute; bottom: clamp(18px,3.5vh,52px); left: clamp(14px,2.5vw,28px);
+        font-family: var(--mono); font-size: var(--t-mono);
+        letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+        writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); z-index: 20;
+      }
+      .slide-dark .pl { color: var(--muted); }
+      .sc {
+        position: absolute; bottom: clamp(12px,2vh,20px); right: clamp(14px,3vw,48px);
+        font-family: var(--mono); font-size: var(--t-mono);
+        letter-spacing: 0.12em; color: var(--muted); z-index: 20;
+      }
+      .slide-dark .sc { color: var(--muted); }
+      .si {
+        position: relative; z-index: 5; flex: 1; display: flex;
+        flex-direction: column; justify-content: center; align-items: center;
+        overflow: hidden;
+        padding: clamp(2rem,5vh,4.5rem) clamp(3rem,7vw,8rem);
+        padding-top: clamp(3rem,8vh,6rem);
+      }
+      .si.bottom { justify-content: flex-end; align-items: center; padding-bottom: clamp(3rem,7vh,6rem); }
+      .si.row { flex-direction: row; align-items: center; justify-content: center; }
+      .si.left { justify-content: center; align-items: center; }
+
+      .r { opacity: 0; transform: translateY(22px); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease); }
+      .rl { opacity: 0; transform: translateX(-28px); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease); }
+      .rs { opacity: 0; transform: scale(0.94); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease); }
+      .slide.visible .r, .slide.visible .rl, .slide.visible .rs { opacity: 1; transform: none; }
+      .d1 { transition-delay: 0.04s; } .d2 { transition-delay: 0.1s; }
+      .d3 { transition-delay: 0.16s; } .d4 { transition-delay: 0.22s; }
+      .d5 { transition-delay: 0.28s; } .d6 { transition-delay: 0.34s; }
+
+      .eyebrow {
+        font-family: var(--cond); font-size: clamp(0.75rem,1.3vw,1.05rem);
+        font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase;
+        color: var(--red); margin-bottom: clamp(0.5rem,1vh,0.9rem);
+      }
+      .display {
+        font-family: var(--serif); font-weight: 900; font-size: var(--t-display);
+        line-height: 0.95; letter-spacing: -0.02em; color: var(--black);
+      }
+      .display .ac { color: var(--red); }
+      .headline {
+        font-family: var(--serif); font-weight: 900; font-size: var(--t-h2);
+        line-height: 1; letter-spacing: -0.02em; color: var(--black);
+      }
+      .headline .ac { color: var(--red); }
+      .body { font-family: var(--sans); font-size: var(--t-body); line-height: 1.6; color: var(--muted); max-width: 72ch; }
+      .mono { font-family: var(--mono); font-size: var(--t-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+      .slide-dark { background: var(--cream); color: var(--black); }
+      .slide-dark .headline, .slide-dark .display { color: var(--black); }
+      .slide-dark .body { color: var(--muted); }
+      .slide-dark .eyebrow { color: var(--red); }
+
+      .rule { width: clamp(36px,5vw,72px); height: 3px; background: var(--red); margin-bottom: clamp(0.6rem,1.5vh,1.2rem); }
+
+      .defs { display: flex; flex-direction: column; width: min(90vw,1000px); }
+      .def {
+        display: grid; grid-template-columns: clamp(48px,5.5vw,80px) 1fr;
+        gap: clamp(1rem,2.2vw,2.25rem); align-items: start;
+        padding: clamp(0.75rem,1.6vh,1.35rem) 0; border-bottom: 1px solid var(--border);
+      }
+      .def:first-child { border-top: 1px solid var(--border); }
+      .def-abbr { font-family: var(--mono); font-size: var(--t-mono); letter-spacing: 0.14em; color: var(--red); text-transform: uppercase; padding-top: 3px; }
+      .def-main { font-family: var(--sans); font-size: clamp(1rem,1.8vw,1.4rem); font-weight: 600; line-height: 1.3; color: var(--black); }
+      .def-sub { font-family: var(--sans); font-size: clamp(0.85rem,1.35vw,1.05rem); color: var(--muted); margin-top: 4px; line-height: 1.4; }
+      .def-box {
+        border: 2px solid var(--black); padding: clamp(1.4rem,2.6vh,2.2rem) clamp(1.6rem,2.8vw,2.4rem);
+        position: relative; background: transparent; box-shadow: 14px 14px 0 -2px var(--red);
+      }
+      .def-box::before { content: ""; position: absolute; top: -2px; left: -2px; width: 96px; height: 2px; background: var(--red); }
+      .def-box .def { border-top: 0 !important; border-bottom: 0 !important; padding: 0; }
+
+      .c-outer { border: 1.5px solid var(--border); padding: clamp(0.8rem,1.8vw,1.6rem); background: var(--cream); }
+      .c-tag { font-family: var(--mono); font-size: clamp(0.55rem,1vw,0.8rem); letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: clamp(0.25rem,0.5vh,0.45rem); }
+      .c-name { font-family: var(--cond); font-size: clamp(0.9rem,1.9vw,1.5rem); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); }
+      .c-mid { border: 1.5px solid var(--border); padding: clamp(0.65rem,1.5vw,1.3rem); background: var(--surface); margin-top: clamp(0.4rem,0.9vh,0.7rem); }
+      .c-inner { border: 1.5px solid var(--border); padding: clamp(0.55rem,1.2vw,1.1rem); background: var(--cream); margin-top: clamp(0.35rem,0.7vh,0.55rem); }
+      .c-core { background: var(--richblack); padding: clamp(0.65rem,1.5vw,1.3rem) clamp(0.9rem,1.8vw,1.6rem); margin-top: clamp(0.35rem,0.7vh,0.55rem); }
+      .c-core .c-tag { color: var(--red); } .c-core .c-name { color: #fff; }
+      .c-dot { display: inline-block; width: 4px; height: 4px; background: #fff; border-radius: 50%; margin: 0 5px; vertical-align: middle; }
+
+      .step-n { font-family: var(--serif); font-weight: 900; font-size: var(--t-step); color: var(--red); line-height: 1; letter-spacing: -0.03em; margin-bottom: clamp(0.3rem,0.6vh,0.6rem); transition: color 0.25s var(--ease); }
+      .step-a { font-family: var(--cond); font-weight: 700; font-size: clamp(1.8rem,4.5vw,4.5rem); letter-spacing: 0.05em; text-transform: uppercase; color: var(--black); line-height: 1.05; margin-bottom: clamp(0.5rem,1vh,0.9rem); }
+      .step-s { font-family: var(--mono); font-size: clamp(0.7rem,1.05vw,0.88rem); letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); line-height: 1.55; max-width: 72ch; }
+      .slide-dark .step-a { color: var(--black); }
+      .slide-dark .step-s { color: var(--muted); }
+
+      .tiles-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(0.75rem,1.8vw,2rem); width: min(92vw,1200px); }
+      .tile { border: 1px solid var(--border); padding: clamp(1rem,2.5vw,2.5rem); background: var(--surface); position: relative; transition: transform 0.35s var(--ease), border-color 0.3s var(--ease); cursor: default; }
+      .tile::before { content: ""; position: absolute; top: -1px; left: 0; height: 2px; width: 0; background: var(--red); transition: width 0.55s var(--ease); }
+      .tile:hover { transform: translateY(-6px); }
+      .tile:hover::before { width: 100%; }
+      .tile-tag { font-family: var(--mono); font-size: var(--t-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: clamp(0.4rem,0.9vh,0.75rem); }
+      .tile-name { font-family: var(--cond); font-size: clamp(1.3rem,3vw,2.6rem); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--black); margin-bottom: clamp(0.35rem,0.7vh,0.6rem); }
+      .tile-desc { font-family: var(--sans); font-size: clamp(0.85rem,1.35vw,1.05rem); color: var(--muted); line-height: 1.5; }
+      .tile.hi { border-color: var(--red); }
+      .tile.hi .tile-name { color: var(--red); }
+      .tile.dark { background: var(--richblack); border-color: #2a2a2a; }
+      .tile.dark .tile-name { color: #fff; }
+      .tile.dark .tile-desc { color: #555; }
+
+      .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.25rem,3vw,3rem); width: min(92vw,1100px); }
+      .cc { border: 1px solid var(--border); padding: clamp(1rem,2.5vw,2.5rem); transition: transform 0.35s var(--ease), border-color 0.3s var(--ease); }
+      .cc:hover { transform: translateY(-6px); border-color: var(--red); }
+      .cc-tag { font-family: var(--mono); font-size: var(--t-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: clamp(0.4rem,0.8vh,0.7rem); }
+      .cc-title { font-family: var(--cond); font-size: clamp(1.2rem,2.6vw,2.2rem); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: clamp(0.4rem,0.8vh,0.7rem); }
+      .cc-body { font-family: var(--sans); font-size: clamp(0.9rem,1.4vw,1.1rem); color: var(--muted); line-height: 1.55; }
+      .cc.hi { border-color: var(--red); }
+      .cc.hi .cc-tag { color: var(--red); }
+      .cc.hi .cc-title { color: var(--red); }
+
+      .sdlc-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 0; width: min(95vw,1400px); border-top: 2px solid var(--black); border-bottom: 2px solid var(--black); margin-top: clamp(1rem,2.5vh,2rem); }
+      .sdlc-cell { padding: clamp(1.2rem,2.4vh,2rem) clamp(1.1rem,1.8vw,1.7rem); border-right: 2px solid var(--black); position: relative; background: transparent; transition: background 0.35s var(--ease), color 0.35s var(--ease); cursor: default; }
+      .sdlc-cell:last-child { border-right: 0; }
+      .sdlc-phase-num { font-family: var(--mono); font-size: clamp(0.7rem,1vw,0.78rem); letter-spacing: 0.22em; font-weight: 700; color: var(--red); text-transform: uppercase; }
+      .sdlc-phase-name { font-family: var(--cond); font-weight: 700; font-size: clamp(1.6rem,3vw,2.6rem); letter-spacing: 0.04em; line-height: 0.95; text-transform: uppercase; margin-top: clamp(0.5rem,0.9vh,0.7rem); color: var(--black); }
+      .sdlc-phase-desc { font-family: var(--sans); font-size: clamp(0.85rem,1.15vw,1rem); color: #3a3631; margin-top: clamp(0.45rem,0.9vh,0.7rem); line-height: 1.45; }
+      .sdlc-cell.is-featured { background: var(--black); color: var(--cream); }
+      .sdlc-cell.is-featured .sdlc-phase-name { color: #fff; }
+      .sdlc-cell.is-featured .sdlc-phase-desc { color: #cfc8b8; }
+      .sdlc-cell:hover { background: var(--red); color: #fff; }
+      .sdlc-cell:hover .sdlc-phase-num { color: #1a1410; }
+      .sdlc-cell:hover .sdlc-phase-name, .sdlc-cell:hover .sdlc-phase-desc { color: #fff; }
+      .slide.visible .sdlc-cell { animation: cellRise 0.7s var(--ease) both; }
+      .slide.visible .sdlc-cell:nth-child(1) { animation-delay: 0.2s; }
+      .slide.visible .sdlc-cell:nth-child(2) { animation-delay: 0.3s; }
+      .slide.visible .sdlc-cell:nth-child(3) { animation-delay: 0.4s; }
+      .slide.visible .sdlc-cell:nth-child(4) { animation-delay: 0.5s; }
+      .slide.visible .sdlc-cell:nth-child(5) { animation-delay: 0.6s; }
+      @keyframes cellRise { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+
+      .files { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(0.9rem,1.6vw,1.5rem); width: min(94vw,1500px); margin-top: clamp(0.8rem,1.8vh,1.4rem); }
+      .file { background: #0e0e0e; color: #ede7da; padding: clamp(1.1rem,2vh,1.7rem) clamp(1.2rem,2vw,1.75rem) clamp(1.2rem,2.2vh,1.75rem); font-family: var(--mono); font-size: clamp(0.78rem,1vw,0.92rem); line-height: 1.7; min-height: clamp(280px,38vh,380px); display: flex; flex-direction: column; gap: 10px; border: 2px solid #0e0e0e; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); }
+      .file .head { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(237,231,218,0.2); padding-bottom: 12px; margin-bottom: 8px; }
+      .file .head .n { font-family: var(--cond); font-weight: 700; font-size: clamp(1.8rem,3.4vw,2.6rem); color: #fff; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1; transition: color 0.3s var(--ease); }
+      .file .head .t { font-family: var(--mono); font-size: clamp(0.65rem,0.85vw,0.75rem); letter-spacing: 0.22em; color: var(--red); text-transform: uppercase; font-weight: 700; }
+      .file .role { font-family: var(--sans); font-weight: 600; font-size: clamp(0.9rem,1.25vw,1.1rem); color: #fff; margin-top: 4px; }
+      .file .desc { font-family: var(--sans); font-weight: 400; font-size: clamp(0.82rem,1.1vw,0.96rem); line-height: 1.5; color: #cfc8b8; }
+      .file .snip { margin-top: auto; background: rgba(237,231,218,0.06); padding: clamp(0.7rem,1.2vh,1rem) clamp(0.8rem,1.2vw,1rem); font-size: clamp(0.72rem,0.92vw,0.82rem); color: #cfc8b8; font-family: var(--mono); line-height: 1.6; }
+      .file .snip .acc { color: var(--red); }
+      .file .snip .cmt { color: #7c8784; }
+      .file:hover { transform: translateY(-8px) rotate(-0.3deg); box-shadow: 18px 22px 0 -2px rgba(200,33,26,0.85); }
+      .file:hover .head .n { color: var(--red); }
+
+      .hs { border-left: 5px solid var(--red); padding: clamp(1rem,2.5vw,2.25rem) clamp(1.25rem,2.8vw,2.5rem); background: var(--surface); width: min(92vw,1000px); }
+      .hs-text { font-family: var(--serif); font-size: clamp(1.2rem,2.8vw,2.4rem); font-weight: 700; line-height: 1.3; color: var(--black); }
+      .hs-sub { font-family: var(--mono); font-size: var(--t-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); display: block; margin-top: clamp(0.4rem,0.8vh,0.75rem); }
+      .slide-dark .hs { background: var(--surface); }
+      .slide-dark .hs-text { color: var(--black); }
+
+      .practices { display: flex; flex-direction: column; width: min(90vw,1000px); }
+      .prac { display: flex; gap: clamp(1rem,2.2vw,2rem); align-items: start; padding: clamp(0.75rem,1.6vh,1.35rem) 0; border-bottom: 1px solid var(--border); transition: padding-left 0.3s var(--ease), background 0.3s var(--ease); }
+      .prac:last-child { border-bottom: none; }
+      .prac:hover { background: rgba(200,33,26,0.05); padding-left: 14px; }
+      .prac-n { font-family: var(--mono); font-size: var(--t-mono); letter-spacing: 0.12em; color: var(--red); text-transform: uppercase; flex-shrink: 0; padding-top: 4px; transition: color 0.25s; }
+      .prac:hover .prac-n { color: var(--red); }
+      .prac-r { font-family: var(--cond); font-size: clamp(1.1rem,2.5vw,2rem); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--black); line-height: 1.1; }
+      .prac-d { font-family: var(--sans); font-size: clamp(0.82rem,1.2vw,1rem); color: var(--muted); line-height: 1.45; margin-top: 4px; }
+
+      .checklist { display: flex; flex-direction: column; width: min(90vw,900px); margin-top: clamp(0.6rem,1.3vh,1rem); }
+      .check { display: flex; gap: clamp(0.75rem,1.6vw,1.4rem); align-items: center; padding: clamp(0.55rem,1.2vh,1rem) 0; border-bottom: 1px solid var(--border); transition: padding-left 0.3s var(--ease), background 0.3s var(--ease); }
+      .check:first-child { border-top: 1px solid var(--border); }
+      .check:hover { padding-left: 14px; background: rgba(200,33,26,0.05); }
+      .check-mark { font-family: var(--mono); font-size: clamp(0.75rem,1.1vw,0.95rem); color: var(--red); flex-shrink: 0; transition: color 0.3s, transform 0.3s; display: inline-block; }
+      .check:hover .check-mark { transform: scale(1.15); }
+      .check-text { font-family: var(--sans); font-size: clamp(1rem,1.6vw,1.25rem); font-weight: 500; line-height: 1.3; }
+      .check.no .check-mark { color: #888; }
+
+      .phases-row { display: flex; align-items: stretch; gap: clamp(0.3rem,0.6vw,0.6rem); width: min(95vw,1400px); }
+      .phase-box { border: 1.5px solid var(--border); padding: clamp(0.55rem,1.2vh,0.95rem) clamp(0.5rem,1vw,0.85rem); background: var(--surface); text-align: center; font-family: var(--cond); font-weight: 700; font-size: clamp(0.75rem,1.35vw,1.15rem); letter-spacing: 0.05em; text-transform: uppercase; color: var(--black); flex: 1; line-height: 1.25; display: flex; align-items: center; justify-content: center; }
+      .phase-box.hi { border-color: var(--red); color: var(--red); background: rgba(200,33,26,0.04); }
+      .phase-box.dark { background: var(--richblack); color: #fff; border-color: #222; }
+      .phase-arrow { font-family: var(--mono); font-size: clamp(0.75rem,1.2vw,1rem); color: var(--muted); align-self: center; flex-shrink: 0; }
+
+      /* Code block */
+      .code-block { background: var(--richblack); color: #ede7da; font-family: var(--mono); font-size: clamp(0.72rem,1vw,0.88rem); line-height: 1.7; padding: clamp(1rem,2.2vw,1.8rem); width: min(92vw,1100px); margin-top: clamp(0.75rem,1.5vh,1.2rem); }
+      .code-block .acc { color: var(--red); }
+      .code-block .cmt { color: #6a7070; }
+      .code-block .kw { color: #c8a960; }
+
+      /* Quiz card */
+      .quiz-grid { display: flex; flex-direction: column; gap: clamp(0.5rem,1.2vh,1rem); width: min(90vw,900px); margin-top: clamp(0.75rem,1.5vh,1.2rem); }
+      .quiz-item { display: grid; grid-template-columns: 1fr auto; gap: clamp(1rem,2vw,2rem); align-items: center; padding: clamp(0.75rem,1.5vh,1.2rem) clamp(1rem,2vw,1.8rem); border: 1.5px solid var(--border); background: var(--surface); }
+      .quiz-q { font-family: var(--sans); font-size: clamp(0.9rem,1.5vw,1.15rem); font-weight: 500; line-height: 1.4; }
+      .quiz-a { font-family: var(--mono); font-size: var(--t-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); font-weight: 700; white-space: nowrap; }
+
+      /* Image placeholder */
+      .img-placeholder { border: 2px dashed var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--surface); gap: 8px; }
+      .img-placeholder-label { font-family: var(--mono); font-size: var(--t-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-align: center; padding: 0 16px; }
+      .img-placeholder-kw { font-family: var(--sans); font-size: clamp(0.78rem,1vw,0.9rem); color: var(--border); font-style: italic; text-align: center; padding: 0 16px; }
+
+      /* Role cards (4-up grid) */
+      .roles-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: clamp(0.75rem,1.5vw,1.5rem); width: min(95vw,1400px); margin-top: clamp(0.75rem,1.5vh,1.2rem); }
+      .role-card { border: 1px solid var(--border); padding: clamp(1rem,2vw,1.8rem); background: var(--surface); position: relative; }
+      .role-card.hi { border-color: var(--red); }
+      .role-icon { font-size: clamp(1.5rem,3vw,2.5rem); margin-bottom: 8px; }
+      .role-title { font-family: var(--cond); font-size: clamp(1.1rem,2.2vw,1.8rem); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--black); margin-bottom: 6px; }
+      .role-card.hi .role-title { color: var(--red); }
+      .role-items { font-family: var(--sans); font-size: clamp(0.78rem,1.1vw,0.95rem); color: var(--muted); line-height: 1.55; }
+
+      /* Stats big number */
+      .stat-pair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem,3vw,4rem); width: min(92vw,1100px); }
+      .stat-card { border: 1px solid var(--border); padding: clamp(1.5rem,3vw,3rem); background: var(--surface); }
+      .stat-num { font-family: var(--serif); font-weight: 900; font-size: clamp(3rem,8vw,7rem); line-height: 1; color: var(--red); letter-spacing: -0.02em; }
+      .stat-label { font-family: var(--cond); font-size: clamp(1rem,2vw,1.6rem); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); margin-top: 4px; }
+      .stat-sub { font-family: var(--sans); font-size: clamp(0.82rem,1.2vw,1rem); color: var(--muted); margin-top: 8px; line-height: 1.45; }
+
+      /* Cycle diagram */
+      .cycle { display: grid; grid-template-columns: 1fr auto 1fr; grid-template-rows: 1fr auto 1fr; gap: clamp(0.75rem,1.5vw,1.5rem); width: min(80vw,800px); align-items: center; justify-items: center; margin-top: clamp(0.75rem,1.5vh,1.2rem); }
+      .cycle-node { border: 2px solid var(--border); padding: clamp(0.8rem,1.8vw,1.6rem); background: var(--surface); text-align: center; width: 100%; }
+      .cycle-node.hi { border-color: var(--red); }
+      .cycle-node-num { font-family: var(--mono); font-size: var(--t-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
+      .cycle-node-name { font-family: var(--cond); font-size: clamp(1rem,2.2vw,1.8rem); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+      .cycle-arrow { font-family: var(--mono); font-size: clamp(1rem,2vw,1.8rem); color: var(--red); }
+
+      /* Role matrix table */
+      .matrix { width: min(95vw,1300px); border-collapse: collapse; margin-top: clamp(0.75rem,1.5vh,1.2rem); }
+      .matrix th { font-family: var(--mono); font-size: clamp(0.6rem,0.9vw,0.78rem); letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); padding: clamp(0.5rem,1vh,0.85rem) clamp(0.6rem,1.2vw,1rem); text-align: left; border-bottom: 2px solid var(--black); }
+      .matrix td { font-family: var(--sans); font-size: clamp(0.78rem,1.1vw,0.95rem); color: var(--muted); padding: clamp(0.5rem,1vh,0.85rem) clamp(0.6rem,1.2vw,1rem); border-bottom: 1px solid var(--border); line-height: 1.4; }
+      .matrix td:first-child { font-family: var(--cond); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--black); }
+      .matrix td.active { color: var(--black); font-weight: 600; }
+      .matrix tr:hover td { background: rgba(200,33,26,0.04); }
+
+      /* Section divider slide */
+      .section-num { font-family: var(--serif); font-weight: 900; font-size: clamp(4rem,12vw,12rem); color: var(--red); line-height: 0.9; opacity: 0.15; position: absolute; bottom: 15%; right: clamp(2rem,5vw,6rem); pointer-events: none; }
+
+      /* Progress bar */
+      #pb { position: fixed; top: 5px; left: 3px; right: 0; height: 2px; background: rgba(200,33,26,0.15); z-index: 100; pointer-events: none; }
+      #pf { height: 100%; background: var(--red); transition: width 0.35s ease; width: 0; }
+
+      /* Countdown / alert slide */
+      .alert-num { font-family: var(--serif); font-weight: 900; font-size: clamp(5rem,16vw,14rem); color: var(--red); line-height: 1; letter-spacing: -0.04em; }
+
+      @media (max-width:640px) {
+        .tiles-3, .two-col, .roles-grid, .stat-pair { grid-template-columns: 1fr !important; }
+        .phases-row { flex-wrap: wrap; }
+        .files { grid-template-columns: 1fr !important; }
+      }
+      @media (max-height:700px) {
+        :root { --pad: clamp(0.75rem,3vw,2.5rem); --t-display: clamp(2rem,6vw,5rem); --t-h2: clamp(1.6rem,4vw,3.5rem); --t-step: clamp(3rem,9vw,8rem); --t-body: clamp(0.9rem,1.5vw,1.15rem); }
+      }
+      @media (prefers-reduced-motion:reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; } }
+    </style>
+  </head>
+  <body>
+    <div id="pb"><div id="pf"></div></div>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 01 · TITLE / OPENING
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide slide-dark" id="s1" aria-label="Title slide">
+      <div class="sg"></div>
+      <div class="gn">VC</div>
+      <div class="sl">AI & Vibe Coding</div>
+      <div class="pl">Internship Day · 2026</div>
+      <div class="sc">01 / 54</div>
+      <div class="si" style="text-align:center;">
+        <div class="eyebrow r d1" style="font-size:clamp(0.95rem,1.6vw,1.4rem); letter-spacing:0.16em;">Internship Day · Session 1 — Theory &amp; Session 2 — Practice</div>
+        <div class="display r d2" style="font-size:clamp(4.5rem,12vw,11rem); text-align:center; margin-top:clamp(0.8rem,1.8vh,1.4rem);">AI &amp; Vibe<br />Coding<span class="ac">.</span></div>
+        <div class="r d3" style="margin-top:clamp(1rem,2vh,1.6rem); font-family:var(--cond); font-size:clamp(1.5rem,3vw,2.5rem); letter-spacing:0.14em; text-transform:uppercase; color:#555; text-align:center;">
+          From zero to building your first app — today
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 02 · YOU ALREADY USE AI EVERY DAY
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="AI every day">
+      <div class="sg"></div>
+      <div class="gn">02</div>
+      <div class="sl">What is AI?</div>
+      <div class="pl">Block 2 · What is AI?</div>
+      <div class="sc">02 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">You Already Use AI</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Every.<br />Single.<br />Day<span class="ac">.</span></div>
+        <div class="tiles-3 r d3" style="margin-top:clamp(0.5rem,1vh,0.8rem);">
+          <div class="tile">
+            <span class="tile-tag">Mail</span>
+            <div class="tile-name">Gmail Spam</div>
+            <div class="tile-desc">AI learns what junk looks like from your behavior.</div>
+          </div>
+          <div class="tile">
+            <span class="tile-tag">Phone</span>
+            <div class="tile-name">Face ID</div>
+            <div class="tile-desc">Deep learning recognizes your face in any lighting.</div>
+          </div>
+          <div class="tile hi">
+            <span class="tile-tag">Translate</span>
+            <div class="tile-name">Google Translate</div>
+            <div class="tile-desc">NLP bridges human language and computers in real time.</div>
+          </div>
+          <div class="tile">
+            <span class="tile-tag">Social</span>
+            <div class="tile-name">TikTok For You</div>
+            <div class="tile-desc">Recommends exactly what keeps you scrolling.</div>
+          </div>
+          <div class="tile">
+            <span class="tile-tag">Music</span>
+            <div class="tile-name">Spotify Recs</div>
+            <div class="tile-desc">Learns your taste and surfaces new artists.</div>
+          </div>
+          <div class="tile">
+            <span class="tile-tag">Maps</span>
+            <div class="tile-name">Google Maps</div>
+            <div class="tile-desc">Predicts live traffic and reroutes around jams.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 03 · SO WHAT IS AI?
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="What is AI simple definition">
+      <div class="sg"></div>
+      <div class="gn">03</div>
+      <div class="sl">What is AI?</div>
+      <div class="pl">Block 2 · What is AI?</div>
+      <div class="sc">03 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Simple Definition</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Teaching computers<br />to think<span class="ac">.</span></div>
+        <div class="defs def-box r d3">
+          <div class="def">
+            <div class="def-abbr">AI</div>
+            <div>
+              <div class="def-main">Teaching computers to do things that normally need a human brain.</div>
+              <div class="def-sub">Recognize what's in a photo · Understand what you're saying · Predict what you'll want next</div>
+            </div>
+          </div>
+        </div>
+        <div class="body r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">It's not magic. It's pattern-matching at a scale humans can't match.</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 04 · AI FAMILY TREE
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="AI family tree">
+      <div class="sg"></div>
+      <div class="gn">04</div>
+      <div class="sl">AI · Family Tree</div>
+      <div class="pl">Block 2 · What is AI?</div>
+      <div class="sc">04 / 54</div>
+      <div class="si row" style="gap:clamp(2rem,5vw,6rem); align-items:center; justify-content:center;">
+        <div style="flex:0 0 auto;">
+          <div class="eyebrow r d1">The Hierarchy</div>
+          <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">The Family<br />Tree<span class="ac">.</span></div>
+          <div class="c-outer r d3">
+            <span class="c-tag">Outer · 01</span>
+            <div class="c-name">Artificial Intelligence</div>
+            <div class="c-mid">
+              <span class="c-tag">Subset · 02</span>
+              <div class="c-name">Machine Learning</div>
+              <div class="c-inner">
+                <span class="c-tag">Subset · 03</span>
+                <div class="c-name">Deep Learning</div>
+                <div class="c-inner" style="margin-top:clamp(0.35rem,0.7vh,0.55rem);">
+                  <span class="c-tag">Subset · 04</span>
+                  <div class="c-name">Computer Vision<span class="c-dot" style="background:var(--black)"></span>NLP</div>
+                  <div class="c-core">
+                    <span class="c-tag">Core · 05</span>
+                    <div class="c-name">LLMs<span class="c-dot"></span>GPT<span class="c-dot"></span>Copilot</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="flex:1; min-width:0;">
+          <div class="defs r d3">
+            <div class="def">
+              <div class="def-abbr">AI</div>
+              <div><div class="def-main">Computers performing tasks that need human intelligence.</div><div class="def-sub">The umbrella. Everything sits inside this circle.</div></div>
+            </div>
+            <div class="def r d4">
+              <div class="def-abbr">ML</div>
+              <div><div class="def-main">Learning patterns from data.</div><div class="def-sub">Example: spam filters learning from your behavior.</div></div>
+            </div>
+            <div class="def r d5">
+              <div class="def-abbr">DL</div>
+              <div><div class="def-main">Layered neural networks for complex patterns.</div><div class="def-sub">Example: Face ID, self-driving car vision.</div></div>
+            </div>
+            <div class="def r d6">
+              <div class="def-abbr">LLM</div>
+              <div><div class="def-main">Language models trained on billions of words.</div><div class="def-sub">← This is ChatGPT and GitHub Copilot.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 05 · MACHINE LEARNING
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="Machine learning">
+      <div class="sg"></div>
+      <div class="gn">05</div>
+      <div class="sl">Machine Learning</div>
+      <div class="pl">Block 2 · What is AI?</div>
+      <div class="sc">05 / 54</div>
+      <div class="si left" style="flex-direction:column; align-items:flex-start; gap:clamp(0.8rem,1.8vh,1.4rem);">
+        <!-- top row: headline + tile -->
+        <div style="display:flex; flex-direction:row; gap:clamp(2rem,5vw,6rem); width:min(92vw,1200px); align-items:flex-start;">
+          <div style="flex:1; min-width:0;">
+            <div class="eyebrow r d1">Machine Learning</div>
+            <div class="headline r d2">Learning from<br />examples<span class="ac">.</span></div>
+            <div class="body r d3" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">Instead of following strict rules, the computer learns from patterns in data.</div>
+          </div>
+          <div style="flex:1; min-width:0;">
+            <div class="eyebrow r d3">Real-Life Example</div>
+            <div class="tile hi r d4">
+              <span class="tile-tag">Email</span>
+              <div class="tile-name">Spam Filter</div>
+              <div class="tile-desc">Every time you mark something as spam, the email app learns what spam looks like. Over time it gets smarter — automatically.</div>
+            </div>
+          </div>
+        </div>
+        <!-- full-width quote -->
+        <div class="hs r d4" style="width:min(92vw,1200px);">
+          <div class="hs-text" style="font-size:clamp(1.1rem,2.2vw,1.8rem); line-height:1.5;">Like a child learning what a "dog" is —<br />not from a definition, but from seeing 1,000 dogs.</div>
+        </div>
+        <!-- full-width illustration -->
+        <div style="width:min(92vw,1200px);">
+        <div class="r d5" style="width:100%; border:1.5px solid var(--border); background:var(--surface); padding:clamp(0.6rem,1.2vw,1rem);">
+            <svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" style="display:block; width:100%; height:clamp(140px,22vh,220px);" aria-label="Spam filter diagram: inbound mail sorted into inbox and spam">
+          <div class="r d5" style="width:100%; margin-top:clamp(0.75rem,1.5vh,1.2rem); border:1.5px solid var(--border); background:var(--surface); padding:clamp(0.6rem,1.2vw,1rem);">
+            <svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" style="display:block; width:100%; height:clamp(100px,16vh,160px);" aria-label="Spam filter diagram: inbound mail sorted into inbox and spam">
+              <defs>
+                <g id="env">
+                  <rect width="66" height="42" rx="2" fill="#fff" stroke="#111" stroke-width="2"/>
+                  <polyline points="0,0 33,26 66,0" fill="none" stroke="#111" stroke-width="2"/>
+                </g>
+              </defs>
+              <!-- inbound stack -->
+              <g transform="translate(40,40)">
+                <use href="#env" x="0" y="0"/>
+                <use href="#env" x="10" y="50"/>
+                <use href="#env" x="-4" y="100"/>
+                <use href="#env" x="12" y="150"/>
+              </g>
+              <text x="40" y="24" font-family="ui-monospace,monospace" font-size="13" letter-spacing="2" fill="#6e6657">INBOUND</text>
+              <!-- connecting flow lines -->
+              <g stroke="#c0b8ab" stroke-width="1.5" fill="none">
+                <path d="M 130 60 C 200 60, 240 130, 310 140"/>
+                <path d="M 140 110 C 220 110, 250 138, 310 142"/>
+                <path d="M 130 160 C 220 160, 250 144, 310 144"/>
+                <path d="M 145 210 C 240 210, 260 152, 310 148"/>
+              </g>
+              <!-- filter box -->
+              <g transform="translate(310,80)">
+                <rect width="180" height="130" fill="#fff" stroke="#111" stroke-width="2.5"/>
+                <rect x="0" y="0" width="180" height="26" fill="#c8211a"/>
+                <text x="90" y="18" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" letter-spacing="3" fill="#fff">CLASSIFIER</text>
+                <!-- weight bars -->
+                <g fill="#111">
+                  <rect x="18" y="46" width="96" height="6"/>
+                  <rect x="18" y="62" width="140" height="6"/>
+                  <rect x="18" y="78" width="72" height="6"/>
+                  <rect x="18" y="94" width="120" height="6"/>
+                  <rect x="18" y="110" width="58" height="6"/>
+                </g>
+              </g>
+              <!-- output flow -->
+              <g stroke="#c0b8ab" stroke-width="1.5" fill="none">
+                <path d="M 490 110 C 560 110, 580 70, 640 70"/>
+                <path d="M 490 180 C 560 180, 580 220, 640 220"/>
+              </g>
+              <!-- inbox output -->
+              <g transform="translate(630,40)">
+                <use href="#env" x="0" y="0"/>
+                <use href="#env" x="8" y="14"/>
+                <text x="82" y="-12" font-family="ui-monospace,monospace" font-size="13" letter-spacing="2" fill="#111" font-weight="700">INBOX</text>
+              </g>
+              <!-- spam output -->
+              <g transform="translate(630,190)">
+                <use href="#env" x="0" y="0"/>
+                <use href="#env" x="8" y="14"/>
+                <line x1="6" y1="6" x2="68" y2="50" stroke="#c8211a" stroke-width="3"/>
+                <line x1="68" y1="6" x2="6" y2="50" stroke="#c8211a" stroke-width="3"/>
+                <text x="82" y="76" font-family="ui-monospace,monospace" font-size="13" letter-spacing="2" fill="#c8211a" font-weight="700">SPAM</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 06 · DEEP LEARNING
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="Deep learning">
+      <div class="sg"></div>
+      <div class="gn">06</div>
+      <div class="sl">Deep Learning</div>
+      <div class="pl">Block 2 · What is AI?</div>
+      <div class="sc">06 / 54</div>
+      <div class="si row" style="gap:clamp(2rem,5vw,6rem);">
+        <div style="flex:1; min-width:0;">
+          <div class="eyebrow r d1">Deep Learning</div>
+          <div class="headline r d2">Like your brain,<br />but made of<br />math<span class="ac">.</span></div>
+          <div class="practices r d3" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">
+            <div class="prac"><div class="prac-n">L1</div><div><div class="prac-r">Edges &amp; Shapes</div><div class="prac-d">Layer 1 learns the simplest visual patterns.</div></div></div>
+            <div class="prac"><div class="prac-n">L2</div><div><div class="prac-r">Eyes, Nose, Mouth</div><div class="prac-d">Layer 2 combines shapes into features.</div></div></div>
+            <div class="prac"><div class="prac-n">L3</div><div><div class="prac-r">Faces</div><div class="prac-d">Layer 3 recognizes complete faces — even in glasses or dim light.</div></div></div>
+          </div>
+        </div>
+        <div style="flex:1; min-width:0;">
+          <div class="eyebrow r d3">Real-Life Example</div>
+          <div class="tile hi r d4">
+            <span class="tile-tag">iPhone</span>
+            <div class="tile-name">Face ID</div>
+            <div class="tile-desc">Deep learning layers process your face into math. Your phone recognizes YOU — even in different lighting or with glasses.</div>
+          </div>
+          <div class="r d5" style="width:100%; margin-top:clamp(0.75rem,1.5vh,1.2rem); border:1.5px solid var(--border); background:var(--surface); padding:clamp(0.6rem,1.2vw,1rem);">
+            <svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" style="display:block; width:100%; height:clamp(100px,16vh,160px);" aria-label="Neural network: input pixels through hidden layers to face recognition">
+              <!-- column labels -->
+              <g font-family="ui-monospace,monospace" font-size="11" letter-spacing="3" fill="#6e6657">
+                <text x="80" y="24" text-anchor="middle">INPUT</text>
+                <text x="280" y="24" text-anchor="middle">LAYER 1</text>
+                <text x="480" y="24" text-anchor="middle">LAYER 2</text>
+                <text x="680" y="24" text-anchor="middle">OUTPUT</text>
+              </g>
+              <!-- column dividers -->
+              <g stroke="#d6cfc1" stroke-width="1" stroke-dasharray="2 4">
+                <line x1="180" y1="40" x2="180" y2="260"/>
+                <line x1="380" y1="40" x2="380" y2="260"/>
+                <line x1="580" y1="40" x2="580" y2="260"/>
+              </g>
+              <!-- pixel grid input -->
+              <g transform="translate(50,70)" fill="#111">
+                <rect x="0" y="0" width="12" height="12" opacity="0.15"/>
+                <rect x="15" y="0" width="12" height="12" opacity="0.55"/>
+                <rect x="30" y="0" width="12" height="12" opacity="0.85"/>
+                <rect x="45" y="0" width="12" height="12" opacity="0.30"/>
+                <rect x="60" y="0" width="12" height="12" opacity="0.10"/>
+                <rect x="0" y="15" width="12" height="12" opacity="0.30"/>
+                <rect x="15" y="15" width="12" height="12" opacity="0.90"/>
+                <rect x="30" y="15" width="12" height="12" opacity="0.65"/>
+                <rect x="45" y="15" width="12" height="12" opacity="0.95"/>
+                <rect x="60" y="15" width="12" height="12" opacity="0.25"/>
+                <rect x="0" y="30" width="12" height="12" opacity="0.45"/>
+                <rect x="15" y="30" width="12" height="12" opacity="0.20"/>
+                <rect x="30" y="30" width="12" height="12" opacity="0.75"/>
+                <rect x="45" y="30" width="12" height="12" opacity="0.40"/>
+                <rect x="60" y="30" width="12" height="12" opacity="0.60"/>
+                <rect x="0" y="45" width="12" height="12" opacity="0.10"/>
+                <rect x="15" y="45" width="12" height="12" opacity="0.45"/>
+                <rect x="30" y="45" width="12" height="12" opacity="0.80"/>
+                <rect x="45" y="45" width="12" height="12" opacity="0.30"/>
+                <rect x="60" y="45" width="12" height="12" opacity="0.15"/>
+                <rect x="0" y="60" width="12" height="12" opacity="0.05"/>
+                <rect x="15" y="60" width="12" height="12" opacity="0.15"/>
+                <rect x="30" y="60" width="12" height="12" opacity="0.40"/>
+                <rect x="45" y="60" width="12" height="12" opacity="0.18"/>
+                <rect x="60" y="60" width="12" height="12" opacity="0.08"/>
+              </g>
+              <!-- connections L1 -->
+              <g stroke="#c0b8ab" stroke-width="1" fill="none" opacity="0.7">
+                <line x1="140" y1="100" x2="280" y2="80"/>
+                <line x1="140" y1="100" x2="280" y2="130"/>
+                <line x1="140" y1="100" x2="280" y2="180"/>
+                <line x1="140" y1="100" x2="280" y2="230"/>
+              </g>
+              <!-- L1 nodes -->
+              <g>
+                <circle cx="280" cy="80" r="14" fill="#fff" stroke="#111" stroke-width="2"/>
+                <circle cx="280" cy="130" r="14" fill="#fff" stroke="#111" stroke-width="2"/>
+                <circle cx="280" cy="180" r="14" fill="#c8211a" stroke="#c8211a" stroke-width="2"/>
+                <circle cx="280" cy="230" r="14" fill="#fff" stroke="#111" stroke-width="2"/>
+              </g>
+              <!-- connections L1 -> L2 -->
+              <g stroke="#c0b8ab" stroke-width="1" fill="none" opacity="0.6">
+                <line x1="294" y1="80" x2="466" y2="90"/>
+                <line x1="294" y1="80" x2="466" y2="150"/>
+                <line x1="294" y1="80" x2="466" y2="210"/>
+                <line x1="294" y1="130" x2="466" y2="90"/>
+                <line x1="294" y1="130" x2="466" y2="150"/>
+                <line x1="294" y1="130" x2="466" y2="210"/>
+                <line x1="294" y1="180" x2="466" y2="90"/>
+                <line x1="294" y1="180" x2="466" y2="150" stroke="#c8211a" stroke-width="1.8" opacity="1"/>
+                <line x1="294" y1="180" x2="466" y2="210"/>
+                <line x1="294" y1="230" x2="466" y2="90"/>
+                <line x1="294" y1="230" x2="466" y2="150"/>
+                <line x1="294" y1="230" x2="466" y2="210"/>
+              </g>
+              <!-- L2 nodes -->
+              <g>
+                <circle cx="480" cy="90" r="14" fill="#fff" stroke="#111" stroke-width="2"/>
+                <circle cx="480" cy="150" r="14" fill="#c8211a" stroke="#c8211a" stroke-width="2"/>
+                <circle cx="480" cy="210" r="14" fill="#fff" stroke="#111" stroke-width="2"/>
+              </g>
+              <!-- connections L2 -> output -->
+              <g stroke="#c0b8ab" stroke-width="1" fill="none" opacity="0.6">
+                <line x1="494" y1="90" x2="640" y2="150"/>
+                <line x1="494" y1="150" x2="640" y2="150" stroke="#c8211a" stroke-width="2" opacity="1"/>
+                <line x1="494" y1="210" x2="640" y2="150"/>
+              </g>
+              <!-- output: face badge -->
+              <g transform="translate(640,110)">
+                <rect width="110" height="80" fill="#fff" stroke="#111" stroke-width="2"/>
+                <rect x="0" y="0" width="110" height="20" fill="#111"/>
+                <text x="55" y="14" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" letter-spacing="3" fill="#fff">MATCH</text>
+                <circle cx="55" cy="48" r="16" fill="none" stroke="#111" stroke-width="1.8"/>
+                <circle cx="49" cy="45" r="1.6" fill="#111"/>
+                <circle cx="61" cy="45" r="1.6" fill="#111"/>
+                <path d="M 48 54 Q 55 58 62 54" fill="none" stroke="#111" stroke-width="1.6"/>
+                <text x="55" y="76" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" letter-spacing="2" fill="#c8211a" font-weight="700">99.8%</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 07 · NLP
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="NLP">
+      <div class="sg"></div>
+      <div class="gn">07</div>
+      <div class="sl">NLP</div>
+      <div class="pl">Block 2 · What is AI?</div>
+      <div class="sc">07 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Natural Language Processing</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Teaching computers<br />to understand<br />humans<span class="ac">.</span></div>
+        <div class="body r d3">Humans don't speak in 1s and 0s. NLP is the bridge.</div>
+        <div class="tiles-3 r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">
+          <div class="tile"><span class="tile-tag">Voice</span><div class="tile-name">Hey Siri</div><div class="tile-desc">"Set a timer" → Siri understands intent, context, and accent.</div></div>
+          <div class="tile hi"><span class="tile-tag">Language</span><div class="tile-name">Google Translate</div><div class="tile-desc">Real-time translation across 100+ languages.</div></div>
+          <div class="tile"><span class="tile-tag">Document</span><div class="tile-name">AI Summary</div><div class="tile-desc">"What does this contract say?" → AI reads and explains in plain language.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 08 · WHAT IS AN LLM
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide slide-dark" id="s2" aria-label="What is an LLM">
+      <div class="sg"></div>
+      <div class="gn">08</div>
+      <div class="sl">What is an LLM?</div>
+      <div class="pl">Block 2 · What is AI?</div>
+      <div class="sc">08 / 54</div>
+      <div class="si">
+        <div class="eyebrow r d1">The Well-Read Friend</div>
+        <div class="display r d2" style="text-align:center;">Imagine reading<br />the entire<br />internet<span class="ac">.</span></div>
+        <div class="body r d3" style="color:#555; text-align:center; margin-top:clamp(0.75rem,1.5vh,1.2rem);">Every book. Every article. Every forum post. Every Wikipedia page.</div>
+        <div class="hs r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">
+          <div class="hs-text">You don't look it up — you just predict the best answer based on everything you've read. That's an LLM.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 09 · WHY "LARGE"?
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="Why large">
+      <div class="sg"></div>
+      <div class="gn">09</div>
+      <div class="sl">Why "Large"?</div>
+      <div class="pl">Block 2 · What is AI?</div>
+      <div class="sc">09 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Scale Matters</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Why<br />"Large"<span class="ac">?</span></div>
+        <div class="stat-pair r d3">
+          <div class="stat-card">
+            <div class="stat-num">1M+</div>
+            <div class="stat-label">Books of Data</div>
+            <div class="stat-sub">Trained on hundreds of billions of words. More text than any human could read in thousands of lifetimes.</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">175B</div>
+            <div class="stat-label">Parameters</div>
+            <div class="stat-sub">Billions of mathematical connections — like neurons in a brain, but tuned on human language patterns.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 10 · KEY THING — LLMs DON'T THINK
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="LLMs don't think">
+      <div class="sg"></div>
+      <div class="gn">10</div>
+      <div class="sl">The Key Insight</div>
+      <div class="pl">Block 2 · What is AI?</div>
+      <div class="sc">10 / 54</div>
+      <div class="si">
+        <div class="eyebrow r d1">Most Important Concept</div>
+        <div class="display r d2" style="text-align:center;">It doesn't<br />actually<br />"think<span class="ac">."</span></div>
+        <div class="hs r d3" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">
+          <div class="hs-text">It predicts. Really, really well. When you type a message, the LLM asks: "What word is most likely to come next?" — thousands of times.</div>
+          <span class="hs-sub">It's your phone's autocomplete — trained on the entire internet.</span>
+        </div>
+        <div class="body r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">This is why clear, specific prompts matter. You're guiding a prediction engine, not having a conversation with a person.</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 11 · QUIZ #1
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="Quiz 1">
+      <div class="sg"></div>
+      <div class="gn">Q1</div>
+      <div class="sl">Quiz #1</div>
+      <div class="pl">Block 2 · What is AI?</div>
+      <div class="sc">11 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Quiz Time — Shout Your Answer</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">ML · Deep Learning<br />· or NLP<span class="ac">?</span></div>
+        <div class="quiz-grid r d3">
+          <div class="quiz-item"><div class="quiz-q">Your email app automatically moves suspicious emails to Junk.</div><div class="quiz-a">ML</div></div>
+          <div class="quiz-item"><div class="quiz-q">Your phone unlocks by scanning your face.</div><div class="quiz-a">Deep Learning</div></div>
+          <div class="quiz-item"><div class="quiz-q">You say "Hey Google, play some jazz" and it understands you.</div><div class="quiz-a">NLP</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 12 · SOFTWARE DOESN'T JUST APPEAR
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="Software doesn't just appear">
+      <div class="sg"></div>
+      <div class="gn">12</div>
+      <div class="sl">How Software is Built</div>
+      <div class="pl">Block 3 · SDLC</div>
+      <div class="sc">12 / 54</div>
+      <div class="si row" style="gap:clamp(2rem,5vw,6rem);">
+        <div style="flex:1; min-width:0;">
+          <div class="eyebrow r d1">The Process</div>
+          <div class="headline r d2">Software doesn't<br />just appear<span class="ac">.</span></div>
+          <div class="body r d3" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">Every app you use was built in stages. There's a process. Always.</div>
+          <div class="img-placeholder r d4" style="width:100%; height:clamp(120px,18vh,180px); margin-top:clamp(0.75rem,1.5vh,1.2rem);">
+            <span class="img-placeholder-label">Insert Image — Left</span>
+            <span class="img-placeholder-kw">Polished app on phone</span>
+          </div>
+        </div>
+        <div style="flex:1; min-width:0;">
+          <div class="eyebrow r d3">Behind the Scenes</div>
+          <div class="img-placeholder r d4" style="width:100%; height:clamp(220px,38vh,380px);">
+            <span class="img-placeholder-label">Insert Image — Right</span>
+            <span class="img-placeholder-kw">Sticky notes, wireframes, planning documents, messy desk</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 13 · SDLC OVERVIEW
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="SDLC overview">
+      <div class="sg"></div>
+      <div class="gn">13</div>
+      <div class="sl">SDLC</div>
+      <div class="pl">Block 3 · SDLC</div>
+      <div class="sc">13 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">How Software Gets Built</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">The Life<br />Cycle<span class="ac">.</span></div>
+        <div class="sdlc-grid r d3">
+          <div class="sdlc-cell"><div class="sdlc-phase-num">Phase 01</div><div class="sdlc-phase-name">Plan</div><div class="sdlc-phase-desc">What are we building? For who? Why?</div></div>
+          <div class="sdlc-cell"><div class="sdlc-phase-num">Phase 02</div><div class="sdlc-phase-name">Design</div><div class="sdlc-phase-desc">What does it look like? How does it flow?</div></div>
+          <div class="sdlc-cell is-featured"><div class="sdlc-phase-num">Phase 03</div><div class="sdlc-phase-name">Build</div><div class="sdlc-phase-desc">Write the actual code. This is where Copilot comes in.</div></div>
+          <div class="sdlc-cell"><div class="sdlc-phase-num">Phase 04</div><div class="sdlc-phase-name">Test</div><div class="sdlc-phase-desc">Does it actually work? Find and fix bugs.</div></div>
+          <div class="sdlc-cell"><div class="sdlc-phase-num">Phase 05</div><div class="sdlc-phase-name">Launch</div><div class="sdlc-phase-desc">Ship it to users. Monitor. Improve.</div></div>
+        </div>
+        <div class="body r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">Every app in the world goes through this.</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 14 · HOUSE ANALOGY
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="House building analogy">
+      <div class="sg"></div>
+      <div class="gn">14</div>
+      <div class="sl">The Analogy</div>
+      <div class="pl">Block 3 · SDLC</div>
+      <div class="sc">14 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Building a House = Building Software</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Same logic,<br />different materials<span class="ac">.</span></div>
+        <div class="two-col r d3">
+          <div class="cc hi">
+            <span class="cc-tag">Construction</span>
+            <div class="cc-title">Building a House</div>
+            <div class="cc-body">Blueprint → Foundation → Walls → Interior → Move In</div>
+          </div>
+          <div class="cc">
+            <span class="cc-tag">Development</span>
+            <div class="cc-title">Building an App</div>
+            <div class="cc-body">Plan → Design → Build → Test → Launch</div>
+          </div>
+        </div>
+        <div class="body r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">You wouldn't move in before the walls are up. Same logic applies to software.</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 15 · WATERFALL VS AGILE
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="Waterfall vs Agile">
+      <div class="sg"></div>
+      <div class="gn">15</div>
+      <div class="sl">Waterfall vs Agile</div>
+      <div class="pl">Block 3 · SDLC</div>
+      <div class="sc">15 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Two Ways to Build</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">How teams<br />organize work<span class="ac">.</span></div>
+        <div class="two-col r d3">
+          <div class="cc hi">
+            <span class="cc-tag">Waterfall</span>
+            <div class="cc-title">Structured &amp; Sequential</div>
+            <div class="cc-body">Complete each phase fully before moving to the next. Very structured and documented. Used in large companies, especially in Japan. → Straight staircase, one direction.</div>
+          </div>
+          <div class="cc">
+            <span class="cc-tag">Agile</span>
+            <div class="cc-title">Flexible &amp; Iterative</div>
+            <div class="cc-body">Build in small rounds called "sprints." Flexible — adapt as you go. Used by most startups. → Circular loop, constantly revisiting.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 16 · TODAY'S RULE — WATERFALL
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="Today we use waterfall">
+      <div class="sg"></div>
+      <div class="gn">16</div>
+      <div class="sl">Today's Rule</div>
+      <div class="pl">Block 3 · SDLC</div>
+      <div class="sc">16 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">⚠️ Rule for Today</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Today, we<br />follow Waterfall<span class="ac">.</span></div>
+        <div class="checklist r d3">
+          <div class="check"><span class="check-mark">✅</span><span class="check-text">Finish your PRD before coding</span></div>
+          <div class="check"><span class="check-mark">✅</span><span class="check-text">Finish your design before building</span></div>
+          <div class="check"><span class="check-mark">✅</span><span class="check-text">Test before you submit</span></div>
+          <div class="check no"><span class="check-mark" style="color:var(--red);">❌</span><span class="check-text">Do not skip phases</span></div>
+        </div>
+        <div class="body r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">This is not just a rule for today — it's how professional teams avoid disasters.</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 17 · TEAM ROLES
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="Team roles">
+      <div class="sg"></div>
+      <div class="gn">17</div>
+      <div class="sl">Your Team Roles</div>
+      <div class="pl">Block 3 · SDLC</div>
+      <div class="sc">17 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Every Team Has 4 Roles</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.5rem,1vh,0.8rem);">Here's yours<span class="ac">.</span></div>
+        <div class="roles-grid r d3">
+          <div class="role-card hi">
+            <div class="role-icon">🧑‍💼</div>
+            <div class="role-title">Product Manager</div>
+            <div class="role-items">Defines what the app does · Writes the PRD · Reviews output at each phase</div>
+          </div>
+          <div class="role-card">
+            <div class="role-icon">🎨</div>
+            <div class="role-title">UI/UX Designer</div>
+            <div class="role-items">Creates wireframes · Decides look, feel &amp; user flow · Owns visual design</div>
+          </div>
+          <div class="role-card">
+            <div class="role-icon">👨‍💻</div>
+            <div class="role-title">Developer</div>
+            <div class="role-items">Prompts GitHub Copilot Agent · Manages code files · Fixes bugs</div>
+          </div>
+          <div class="role-card">
+            <div class="role-icon">🧪</div>
+            <div class="role-title">QA Tester</div>
+            <div class="role-items">Tests every feature · Finds bugs · Reports to Developer to fix</div>
+          </div>
+        </div>
+        <div class="body r d4" style="margin-top:clamp(0.5rem,1vh,0.8rem);">3-person team? PM + Designer merge. 2-person? Split planning and building.</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 18 · ROLES MATRIX
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="Roles matrix">
+      <div class="sg"></div>
+      <div class="gn">18</div>
+      <div class="sl">Who Does What</div>
+      <div class="pl">Block 3 · SDLC</div>
+      <div class="sc">18 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Role × Phase Matrix</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.5vh,1.2rem);">Who does what<br />at each phase<span class="ac">?</span></div>
+        <table class="matrix r d3">
+          <thead><tr><th>Phase</th><th>🧑‍💼 PM</th><th>🎨 Designer</th><th>👨‍💻 Developer</th><th>🧪 QA</th></tr></thead>
+          <tbody>
+            <tr><td>Plan</td><td class="active">✅ Writes PRD</td><td>Reviews</td><td>Reviews</td><td>Reviews</td></tr>
+            <tr><td>Design</td><td>Reviews</td><td class="active">✅ Wireframes</td><td>Reviews</td><td>Reviews</td></tr>
+            <tr><td>Build</td><td>Reviews</td><td>Reviews</td><td class="active">✅ Prompts Copilot</td><td>—</td></tr>
+            <tr><td>Test</td><td>Reviews</td><td>Reviews</td><td>Fixes bugs</td><td class="active">✅ Tests</td></tr>
+            <tr><td>Launch</td><td class="active">✅ Signs off</td><td>—</td><td class="active">✅ Deploys</td><td class="active">✅ Final check</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 19 · WEB BASICS
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="Web basics">
+      <div class="sg"></div>
+      <div class="gn">19</div>
+      <div class="sl">Web Basics</div>
+      <div class="pl">Block 3 · SDLC</div>
+      <div class="sc">19 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Every Website is Built With 3 Things</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">The building<br />blocks<span class="ac">.</span></div>
+        <div class="tiles-3 r d3">
+          <div class="tile hi">
+            <span class="tile-tag">HTML 🦴</span>
+            <div class="tile-name">The Skeleton</div>
+            <div class="tile-desc">Gives the page its structure. Buttons, text, images, headers — all HTML. Without it there's nothing to see.</div>
+          </div>
+          <div class="tile">
+            <span class="tile-tag">CSS 👗</span>
+            <div class="tile-name">The Outfit</div>
+            <div class="tile-desc">Makes things look good. Colors, fonts, layout, spacing. Without it everything is grey and unstyled.</div>
+          </div>
+          <div class="tile">
+            <span class="tile-tag">JavaScript 💪</span>
+            <div class="tile-name">The Muscles</div>
+            <div class="tile-desc">Makes things DO stuff. Button clicks, cart updates, animations. Without it nothing interacts.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 20 · QUIZ #2
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="Quiz 2">
+      <div class="sg"></div>
+      <div class="gn">Q2</div>
+      <div class="sl">Quiz #2</div>
+      <div class="pl">Block 3 · SDLC</div>
+      <div class="sc">20 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Quiz Time — HTML, CSS, or JavaScript?</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Which one<br />is it<span class="ac">?</span></div>
+        <div class="quiz-grid r d3">
+          <div class="quiz-item"><div class="quiz-q">The button turns red when you hover over it.</div><div class="quiz-a">CSS</div></div>
+          <div class="quiz-item"><div class="quiz-q">Clicking "Add to Cart" updates the total price.</div><div class="quiz-a">JavaScript</div></div>
+          <div class="quiz-item"><div class="quiz-q">The page has a title, a product list, and an image.</div><div class="quiz-a">HTML</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 21 · BREAK
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="Break">
+      <div class="sg"></div>
+      <div class="gn">BR</div>
+      <div class="sl">Break · 10 min</div>
+      <div class="pl">11:15 – 11:25</div>
+      <div class="sc">21 / 54</div>
+      <div class="si">
+        <div class="eyebrow r d1">11:15 — 11:25</div>
+        <div class="display r d2" style="text-align:center;">☕ Break<br />Time<span class="ac">.</span></div>
+        <div class="r d3" style="font-family:var(--cond); font-size:clamp(1.2rem,3vw,2.5rem); letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-top:clamp(0.75rem,1.5vh,1.2rem); text-align:center;">Back at 11:25</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 22 · VIBE CODING VS TRADITIONAL
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="Vibe coding vs traditional">
+      <div class="sg"></div>
+      <div class="gn">22</div>
+      <div class="sl">Vibe Coding</div>
+      <div class="pl">Block 4 · Vibe Coding</div>
+      <div class="sc">22 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">A New Way to Build</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Traditional vs.<br />Vibe Coding<span class="ac">.</span></div>
+        <div class="two-col r d3">
+          <div class="cc">
+            <span class="cc-tag">Traditional Coding</span>
+            <div class="cc-title">The Old Way</div>
+            <div class="cc-body">Write every single line of code · Learn syntax for years · One typo breaks everything · Wall of green text</div>
+          </div>
+          <div class="cc hi">
+            <span class="cc-tag">Vibe Coding</span>
+            <div class="cc-title">The New Way</div>
+            <div class="cc-body">Describe what you want in plain English · AI writes the code · You guide, test, and refine · Simple chat → beautiful app</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 23 · WHERE DID VIBE CODING COME FROM
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide slide-dark" id="s3" aria-label="Origin of vibe coding">
+      <div class="sg"></div>
+      <div class="gn">23</div>
+      <div class="sl">Origin Story</div>
+      <div class="pl">Block 4 · Vibe Coding</div>
+      <div class="sc">23 / 54</div>
+      <div class="si">
+        <div class="eyebrow r d1">The Term Was Born in 2025</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Andrej<br />Karpathy<span class="ac">.</span></div>
+        <div class="hs r d3">
+          <div class="hs-text">"There's a new kind of coding where you fully give in to the vibes, embrace exponentials, and forget the code even exists."</div>
+          <span class="hs-sub">Andrej Karpathy · Co-founder OpenAI · Former AI Director Tesla · February 2025</span>
+        </div>
+        <div class="body r d4" style="color:#555; margin-top:clamp(0.75rem,1.5vh,1.2rem);">He posted this in February 2025. The internet ran with it.</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 24 · WHY "VIBE"
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="Why vibe">
+      <div class="sg"></div>
+      <div class="gn">24</div>
+      <div class="sl">Why "Vibe"?</div>
+      <div class="pl">Block 4 · Vibe Coding</div>
+      <div class="sc">24 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">The Meaning</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Why<br />"VIBE"<span class="ac">?</span></div>
+        <div class="practices r d3">
+          <div class="prac"><div class="prac-n">01</div><div><div class="prac-r">No Syntax Anxiety</div><div class="prac-d">You're not thinking about semicolons, brackets, or import statements.</div></div></div>
+          <div class="prac"><div class="prac-n">02</div><div><div class="prac-r">Work from Intent</div><div class="prac-d">You describe the feeling of what you want to create — the vibe. The AI handles the implementation.</div></div></div>
+          <div class="prac"><div class="prac-n">03</div><div><div class="prac-r">Like a Music Producer</div><div class="prac-d">You don't need to play every instrument. You direct. You set the creative vision.</div></div></div>
+        </div>
+        <div class="body r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">You describe the vibe. The AI handles the rest.</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 25 · YOUR NEW ROLE — DIRECTOR
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="Director not typist">
+      <div class="sg"></div>
+      <div class="gn">25</div>
+      <div class="sl">Your New Role</div>
+      <div class="pl">Block 4 · Vibe Coding</div>
+      <div class="sc">25 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Your Job Has Changed</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Director,<br />not typist<span class="ac">.</span></div>
+        <div class="tiles-3 r d3">
+          <div class="tile hi">
+            <span class="tile-tag">Step 01 · 🎯</span>
+            <div class="tile-name">Guide</div>
+            <div class="tile-desc">Tell the AI what to build. Be specific. Use the PRD format.</div>
+          </div>
+          <div class="tile">
+            <span class="tile-tag">Step 02 · 🧪</span>
+            <div class="tile-name">Test</div>
+            <div class="tile-desc">Check if the AI did it right. Open the app. Click everything. Try to break it.</div>
+          </div>
+          <div class="tile">
+            <span class="tile-tag">Step 03 · 🔄</span>
+            <div class="tile-name">Refine</div>
+            <div class="tile-desc">Give feedback and improve. Describe exactly what's wrong and what you want instead.</div>
+          </div>
+        </div>
+        <div class="body r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">The AI is the actor. You are the director. The better your direction, the better the performance.</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 26 · GARBAGE IN, GARBAGE OUT
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="Garbage in garbage out">
+      <div class="sg"></div>
+      <div class="gn">26</div>
+      <div class="sl">The Golden Rule</div>
+      <div class="pl">Block 4 · Vibe Coding</div>
+      <div class="sc">26 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">The Golden Rule</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Quality in =<br />Quality out<span class="ac">.</span></div>
+        <div class="two-col r d3">
+          <div class="cc">
+            <span class="cc-tag">🚫 Vague Prompt</span>
+            <div class="cc-title">Bad Input</div>
+            <div class="cc-body" style="font-family:var(--mono); font-size:clamp(0.8rem,1.2vw,0.95rem);">"Make me an app"</div>
+            <div class="cc-body" style="margin-top:8px;">→ Something random, incomplete, confusing</div>
+          </div>
+          <div class="cc hi">
+            <span class="cc-tag">✅ Specific Prompt</span>
+            <div class="cc-title">Good Input</div>
+            <div class="cc-body" style="font-family:var(--mono); font-size:clamp(0.75rem,1.1vw,0.88rem);">"Build a shopping app with a product list page showing 6 items with photos and prices, a shopping cart with quantity controls, and a checkout form with name and address fields. Clean white design, blue buttons."</div>
+            <div class="cc-body" style="margin-top:8px;">→ Focused, structured, usable</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 27 · VIBE CODING LOOP
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="Vibe coding loop">
+      <div class="sg"></div>
+      <div class="gn">27</div>
+      <div class="sl">The Workflow Loop</div>
+      <div class="pl">Block 4 · Vibe Coding</div>
+      <div class="sc">27 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">The Loop You'll Run All Day</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">4 stages,<br />infinite cycles<span class="ac">.</span></div>
+        <div class="phases-row r d3">
+          <div class="phase-box hi">📝 Spec<br/><small style="font-size:0.8em; font-family:var(--sans); font-weight:400; text-transform:none; letter-spacing:0;">Write your PRD</small></div>
+          <div class="phase-arrow">→</div>
+          <div class="phase-box dark">🤖 Build<br/><small style="font-size:0.8em; font-family:var(--sans); font-weight:400; text-transform:none; letter-spacing:0; color:#888;">AI generates code</small></div>
+          <div class="phase-arrow">→</div>
+          <div class="phase-box">🧪 Test<br/><small style="font-size:0.8em; font-family:var(--sans); font-weight:400; text-transform:none; letter-spacing:0;">Does it work?</small></div>
+          <div class="phase-arrow">→</div>
+          <div class="phase-box">💬 Refine<br/><small style="font-size:0.8em; font-family:var(--sans); font-weight:400; text-transform:none; letter-spacing:0;">Give feedback</small></div>
+          <div class="phase-arrow" style="color:var(--red);">↩</div>
+        </div>
+        <div class="body r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">You're never done in one shot. Iteration is normal. Iteration is the job.</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 28 · YOUR SECRET WEAPON — PRD
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="The PRD">
+      <div class="sg"></div>
+      <div class="gn">28</div>
+      <div class="sl">The PRD</div>
+      <div class="pl">Block 4 · Vibe Coding</div>
+      <div class="sc">28 / 54</div>
+      <div class="si row" style="gap:clamp(2rem,5vw,6rem);">
+        <div style="flex:1; min-width:0;">
+          <div class="eyebrow r d1">Your Secret Weapon</div>
+          <div class="headline r d2">Before you touch<br />Copilot, write<br />this<span class="ac">.</span></div>
+          <div class="body r d3" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">Product Requirements Document — a 1-page brief that tells the AI exactly what to build. Think of it as your script for the AI actor.</div>
+          <div class="body r d4" style="margin-top:8px; font-family:var(--cond); font-weight:700; font-size:clamp(1rem,2vw,1.6rem); color:var(--red); text-transform:uppercase; letter-spacing:0.06em;">The PM writes this first. Nothing gets built until it's done.</div>
+        </div>
+        <div style="flex:1; min-width:0;">
+          <div class="code-block r d3">
+            <span class="cmt">// PRD Template</span><br/><br/>
+            <span class="kw">App Name:</span> ___________<br/><br/>
+            <span class="kw">This app helps</span> [who]<br/>
+            &nbsp;&nbsp;<span class="kw">to</span> [do what].<br/><br/>
+            <span class="kw">Pages:</span><br/>
+            &nbsp;&nbsp;- Page 1: [name + what it shows]<br/>
+            &nbsp;&nbsp;- Page 2: [name + what it shows]<br/><br/>
+            <span class="kw">Users can:</span><br/>
+            &nbsp;&nbsp;- [action 1]<br/>
+            &nbsp;&nbsp;- [action 2]<br/><br/>
+            <span class="kw">Design style:</span> [colors / tone]
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 29 · QUIZ #3 — WRITE YOUR FIRST PROMPT
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="Quiz 3 write your first prompt">
+      <div class="sg"></div>
+      <div class="gn">Q3</div>
+      <div class="sl">Activity</div>
+      <div class="pl">Block 4 · Vibe Coding</div>
+      <div class="sc">29 / 54</div>
+      <div class="si">
+        <div class="eyebrow r d1">Your Turn</div>
+        <div class="display r d2" style="text-align:center;">Write your<br />first prompt<span class="ac">.</span></div>
+        <div class="hs r d3" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">
+          <div class="hs-text">In your notebook or phone, write ONE sentence:<br/><em>"I want to build an app that..."</em></div>
+          <span class="hs-sub">Then share with the person next to you.</span>
+        </div>
+        <div class="body r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem); text-align:center;">Instructor evaluates 3–4 examples live. What's clear? What's vague? How to improve?</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 30 · PRO TIPS
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="Pro tips">
+      <div class="sg"></div>
+      <div class="gn">30</div>
+      <div class="sl">Pro Tips 🚀</div>
+      <div class="pl">Block 4 · Vibe Coding</div>
+      <div class="sc">30 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">🚀 For Tech-Track Students &amp; Future Reference</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Going deeper<span class="ac">.</span></div>
+        <div class="files r d3">
+          <div class="file">
+            <div class="head"><span class="n">SDD</span><span class="t">Spec-Driven Dev</span></div>
+            <div class="role">Write the full spec first</div>
+            <div class="desc">Intent → AI writes specs → Review → AI plans → Review → AI codes. Clear specs = 10× better output in real product teams.</div>
+          </div>
+          <div class="file">
+            <div class="head"><span class="n">TDD</span><span class="t">Test-Driven Dev</span></div>
+            <div class="role">Write tests before building</div>
+            <div class="desc">Build until tests pass. Your QA Tester role today is the human version of this. Industry standard at mature engineering teams.</div>
+          </div>
+          <div class="file">
+            <div class="head"><span class="n">🛠</span><span class="t">Tools</span></div>
+            <div class="role">Other tools worth knowing</div>
+            <div class="desc">GitHub Copilot (today) · Cursor · Claude Code · Codex</div>
+            <div class="snip"><span class="acc">// Model selection guide</span><br/>Opus/GPT-4o → <span class="cmt">Planning, PRD, strategy</span><br/>Sonnet/Codex → <span class="cmt">Coding, execution</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 31 · FIRST TIME — LET'S TRY IT
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="First hands on">
+      <div class="sg"></div>
+      <div class="gn">31</div>
+      <div class="sl">Hands-On Intro</div>
+      <div class="pl">Block 5 · Practice</div>
+      <div class="sc">31 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Your First Copilot Prompt — Right Now</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Let's try it<br />together<span class="ac">.</span></div>
+        <div class="checklist r d3">
+          <div class="check"><span class="check-mark">01</span><span class="check-text">Open VSCode + GitHub Copilot chat panel</span></div>
+          <div class="check"><span class="check-mark">02</span><span class="check-text">Fill in the PRD template for any simple app idea (your own)</span></div>
+          <div class="check"><span class="check-mark">03</span><span class="check-text">In Agent mode, enter: "Build this app based on my PRD: [paste your PRD]"</span></div>
+          <div class="check"><span class="check-mark">04</span><span class="check-text">Watch it generate. Note what it got right and what seems off.</span></div>
+        </div>
+        <div class="body r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">This isn't a finished product. It's your first conversation with the AI.</div>
+        <div class="img-placeholder r d5" style="width:min(90vw,900px); height:clamp(80px,10vh,120px); margin-top:clamp(0.5rem,1vh,0.8rem);">
+          <span class="img-placeholder-label">Insert Image Here</span>
+          <span class="img-placeholder-kw">Screenshot of VSCode with Copilot panel open, highlighting where to type</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 32 · WHAT TO LOOK FOR WHEN TESTING
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="Testing checklist">
+      <div class="sg"></div>
+      <div class="gn">32</div>
+      <div class="sl">Testing</div>
+      <div class="pl">Block 5 · Practice</div>
+      <div class="sc">32 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">After It Generates — Ask Yourself</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">What to look<br />for<span class="ac">.</span></div>
+        <div class="checklist r d3">
+          <div class="check"><span class="check-mark">✅</span><span class="check-text">Does the app open in the browser?</span></div>
+          <div class="check"><span class="check-mark">✅</span><span class="check-text">Are all the pages there?</span></div>
+          <div class="check"><span class="check-mark">✅</span><span class="check-text">Does clicking things actually work?</span></div>
+          <div class="check"><span class="check-mark">✅</span><span class="check-text">Does it look like what you described?</span></div>
+          <div class="check no"><span class="check-mark" style="color:var(--red);">❌</span><span class="check-text">If something is wrong → describe the problem and ask Copilot to fix it</span></div>
+        </div>
+        <div class="body r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">Getting something broken is NORMAL. Fixing it is the skill.</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 33 · END OF SESSION 1 — LUNCH
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="End of session 1">
+      <div class="sg"></div>
+      <div class="gn">33</div>
+      <div class="sl">Session 1 · End</div>
+      <div class="pl">12:30 · Lunch</div>
+      <div class="sc">33 / 54</div>
+      <div class="si">
+        <div class="eyebrow r d1">12:30 — Great Work This Morning</div>
+        <div class="display r d2" style="text-align:center;">Lunch<br />Break<span class="ac">.</span></div>
+        <div class="hs r d3" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">
+          <div class="hs-text">Over lunch: Think about what app your team wants to build this afternoon.</div>
+          <span class="hs-sub">We resume at 14:00 — come back ready to build something real. PRD comes first. Always.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 34 · SESSION 2 — WELCOME BACK
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide slide-dark" id="s2" aria-label="Session 2 welcome back">
+      <div class="sg"></div>
+      <div class="gn">S2</div>
+      <div class="sl">Session 2</div>
+      <div class="pl">14:00 · Practice</div>
+      <div class="sc">34 / 54</div>
+      <div class="si bottom">
+        <div class="eyebrow r d1">14:00 — Session 2 · Practice</div>
+        <div class="display r d2">Welcome<br />back<span class="ac">.</span><br />Time to build<span class="ac">.</span></div>
+        <div class="r d3" style="font-family:var(--cond); font-size:clamp(0.9rem,1.8vw,1.4rem); letter-spacing:0.14em; text-transform:uppercase; color:#555; margin-top:clamp(0.6rem,1.2vh,1rem);">
+          14:00 Setup check &nbsp;·&nbsp; 14:10 Live tutorial &nbsp;·&nbsp; 14:25 Teams &nbsp;·&nbsp; 14:35 Build &nbsp;·&nbsp; 15:40 Demos &nbsp;·&nbsp; 15:55 Wrap-up
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 35 · TOOL CHECK
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="Tool check">
+      <div class="sg"></div>
+      <div class="gn">35</div>
+      <div class="sl">Tool Check</div>
+      <div class="pl">Block 6 · Setup</div>
+      <div class="sc">35 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Before We Start — Confirm You Have</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Is everyone<br />ready<span class="ac">?</span></div>
+        <div class="checklist r d3">
+          <div class="check"><span class="check-mark">✅</span><span class="check-text">VSCode installed</span></div>
+          <div class="check"><span class="check-mark">✅</span><span class="check-text">GitHub Copilot extension installed and logged in</span></div>
+          <div class="check"><span class="check-mark">✅</span><span class="check-text">A project folder created and opened in VSCode</span></div>
+          <div class="check"><span class="check-mark">✅</span><span class="check-text">Copilot chat panel visible on the right side</span></div>
+        </div>
+        <div class="body r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">Stuck? Raise your hand now — don't wait until it's build time.</div>
+        <div class="img-placeholder r d5" style="width:min(90vw,900px); height:clamp(80px,10vh,120px); margin-top:clamp(0.5rem,1vh,0.8rem);">
+          <span class="img-placeholder-label">Insert Image Here</span>
+          <span class="img-placeholder-kw">Screenshot of VSCode fully set up with Copilot panel visible, annotated with arrows</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 36 · COPILOT 3 MODES
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="Copilot 3 modes">
+      <div class="sg"></div>
+      <div class="gn">36</div>
+      <div class="sl">Copilot · 3 Modes</div>
+      <div class="pl">Block 6 · Setup</div>
+      <div class="sc">36 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Copilot Has 3 Modes — Know Them</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Which mode<br />when<span class="ac">?</span></div>
+        <div class="tiles-3 r d3">
+          <div class="tile">
+            <span class="tile-tag">💬 Ask Mode</span>
+            <div class="tile-name">Questions</div>
+            <div class="tile-desc">Use when you want to understand existing code or get an explanation.<br/><em>"What does this function do?"</em></div>
+          </div>
+          <div class="tile">
+            <span class="tile-tag">✏️ Edit Mode</span>
+            <div class="tile-name">Small Changes</div>
+            <div class="tile-desc">Use when you want to modify a specific part of your code.<br/><em>"Change the button color to blue."</em></div>
+          </div>
+          <div class="tile hi">
+            <span class="tile-tag">🤖 Agent Mode ← Today's Tool</span>
+            <div class="tile-name">Build from Scratch</div>
+            <div class="tile-desc">Use when you want to create entire features or files.<br/><em>"Build me a shopping cart page based on this PRD."</em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 37 · PRD TEMPLATE REMINDER
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="PRD template">
+      <div class="sg"></div>
+      <div class="gn">37</div>
+      <div class="sl">PRD Template</div>
+      <div class="pl">Block 6 · Setup</div>
+      <div class="sc">37 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Fill This In First. Every Time.</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Your build's<br />constitution<span class="ac">.</span></div>
+        <div class="code-block r d3" style="width:min(92vw,1100px);">
+          <span class="acc">App Name:</span> ___________<br/><br/>
+          <span class="kw">This app helps</span> [who] <span class="kw">to</span> [do what].<br/><br/>
+          <span class="acc">Pages:</span><br/>
+          &nbsp;&nbsp;- Page 1: [name + what it shows]<br/>
+          &nbsp;&nbsp;- Page 2: [name + what it shows]<br/>
+          &nbsp;&nbsp;- Page 3: [name + what it shows]<br/><br/>
+          <span class="acc">Users can:</span><br/>
+          &nbsp;&nbsp;- [action 1]<br/>
+          &nbsp;&nbsp;- [action 2]<br/>
+          &nbsp;&nbsp;- [action 3]<br/><br/>
+          <span class="acc">Design style:</span> [colors / tone / inspiration]
+        </div>
+        <div class="body r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">PM writes this. Team reviews. Then and only then does the Developer open Copilot.</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 38 · TUTORIAL STEP 1 — SETUP
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="Tutorial step 1 setup">
+      <div class="sg"></div>
+      <div class="gn">38</div>
+      <div class="sl">Tutorial · Step 1</div>
+      <div class="pl">Block 6 · Setup</div>
+      <div class="sc">38 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Step 1 of 5 · Setup</div>
+        <div style="display:flex; align-items:baseline; gap:clamp(0.5rem,1vw,0.8rem);">
+          <div class="step-n r d1">1</div>
+          <div class="step-a r d2">Setup Your<br/>Environment</div>
+        </div>
+        <div class="checklist r d3" style="margin-top:clamp(0.5rem,1vh,0.8rem);">
+          <div class="check"><span class="check-mark">→</span><span class="check-text">Create a new folder called <code style="font-family:var(--mono); background:var(--surface); padding:2px 8px;">TodoApp</code></span></div>
+          <div class="check"><span class="check-mark">→</span><span class="check-text">Open in VSCode: File → Open Folder</span></div>
+          <div class="check"><span class="check-mark">→</span><span class="check-text">Open Copilot chat panel: View → GitHub Copilot</span></div>
+        </div>
+        <div class="img-placeholder r d4" style="width:min(90vw,900px); height:clamp(80px,10vh,120px); margin-top:clamp(0.75rem,1.5vh,1.2rem);">
+          <span class="img-placeholder-label">Insert Image Here</span>
+          <span class="img-placeholder-kw">VSCode with empty folder structure open, annotated with numbered steps</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 39 · TUTORIAL STEP 2 — GENERATE PRD
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="Tutorial step 2 PRD">
+      <div class="sg"></div>
+      <div class="gn">39</div>
+      <div class="sl">Tutorial · Step 2</div>
+      <div class="pl">Block 6 · Setup</div>
+      <div class="sc">39 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Step 2 of 5 · Write Your PRD</div>
+        <div style="display:flex; align-items:baseline; gap:clamp(0.5rem,1vw,0.8rem);">
+          <div class="step-n r d1">2</div>
+          <div class="step-a r d2">Write the PRD</div>
+        </div>
+        <div class="code-block r d3" style="margin-top:clamp(0.5rem,1vh,0.8rem);">
+          <span class="acc">App Name:</span> TodoApp<br/><br/>
+          <span class="kw">This app helps</span> busy people <span class="kw">to</span> manage their daily tasks.<br/><br/>
+          <span class="acc">Pages:</span> Task List, Add Task form, Completed Tasks<br/><br/>
+          <span class="acc">Users can:</span> add tasks, mark tasks complete, delete tasks<br/><br/>
+          <span class="acc">Design style:</span> clean white, green accent buttons, minimal
+        </div>
+        <div class="body r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">Then paste it into Copilot and say: <em>"Review this PRD and suggest any improvements."</em></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 40 · TUTORIAL STEP 3 — WIREFRAMES
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="Tutorial step 3 wireframes">
+      <div class="sg"></div>
+      <div class="gn">40</div>
+      <div class="sl">Tutorial · Step 3</div>
+      <div class="pl">Block 6 · Setup</div>
+      <div class="sc">40 / 54</div>
+      <div class="si row" style="gap:clamp(2rem,5vw,6rem);">
+        <div style="flex:1; min-width:0;">
+          <div class="eyebrow r d1">Step 3 of 5 · Create Wireframes</div>
+          <div style="display:flex; align-items:baseline; gap:clamp(0.5rem,1vw,0.8rem);">
+            <div class="step-n r d1">3</div>
+            <div class="step-a r d2">Generate<br/>Wireframes</div>
+          </div>
+          <div class="code-block r d3" style="margin-top:clamp(0.5rem,1vh,0.8rem);">
+            <span class="cmt">// Paste this into Copilot:</span><br/><br/>
+            <span class="acc">"Based on this PRD, create simple</span><br/>
+            <span class="acc"> text-based wireframes for each page</span><br/>
+            <span class="acc"> showing the layout and key elements."</span>
+          </div>
+          <div class="body r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">This is your blueprint. Review it. Does it match what you imagined?</div>
+        </div>
+        <div style="flex:1; min-width:0;">
+          <div class="eyebrow r d3">Example Output</div>
+          <div class="img-placeholder r d4" style="width:100%; height:clamp(220px,38vh,360px);">
+            <span class="img-placeholder-label">Insert Image Here</span>
+            <span class="img-placeholder-kw">Screenshot of text wireframe from Copilot, or hand-drawn wireframe showing boxes labeled Header / Task List / Add Button</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 41 · TUTORIAL STEP 4 — BUILD
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="Tutorial step 4 build">
+      <div class="sg"></div>
+      <div class="gn">41</div>
+      <div class="sl">Tutorial · Step 4</div>
+      <div class="pl">Block 6 · Setup</div>
+      <div class="sc">41 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Step 4 of 5 · Build with Agent Mode</div>
+        <div style="display:flex; align-items:baseline; gap:clamp(0.5rem,1vw,0.8rem);">
+          <div class="step-n r d1">4</div>
+          <div class="step-a r d2">Build the App</div>
+        </div>
+        <div class="checklist r d3" style="margin-top:clamp(0.5rem,1vh,0.8rem);">
+          <div class="check"><span class="check-mark">01</span><span class="check-text">Add both the PRD and wireframe to the chat context</span></div>
+          <div class="check"><span class="check-mark">02</span><span class="check-text">Switch to <strong>Agent mode</strong> first</span></div>
+          <div class="check"><span class="check-mark">03</span><span class="check-text">Enter: <em>"Build the complete app based on this PRD and wireframes. Create separate HTML, CSS, and JavaScript files."</em></span></div>
+          <div class="check"><span class="check-mark">04</span><span class="check-text">Watch Copilot create files. Open index.html in your browser.</span></div>
+        </div>
+        <div class="img-placeholder r d4" style="width:min(90vw,900px); height:clamp(80px,10vh,100px); margin-top:clamp(0.5rem,1vh,0.8rem);">
+          <span class="img-placeholder-label">Insert Image Here</span>
+          <span class="img-placeholder-kw">VSCode showing Copilot generating multiple files in the file tree</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 42 · TUTORIAL STEP 5 — TEST & FIX
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="Tutorial step 5 test and fix">
+      <div class="sg"></div>
+      <div class="gn">42</div>
+      <div class="sl">Tutorial · Step 5</div>
+      <div class="pl">Block 6 · Setup</div>
+      <div class="sc">42 / 54</div>
+      <div class="si row" style="gap:clamp(2rem,5vw,6rem);">
+        <div style="flex:1; min-width:0;">
+          <div class="eyebrow r d1">Step 5 of 5 · Test and Fix</div>
+          <div style="display:flex; align-items:baseline; gap:clamp(0.5rem,1vw,0.8rem);">
+            <div class="step-n r d1">5</div>
+            <div class="step-a r d2">Test, Break,<br/>and Fix</div>
+          </div>
+          <div class="checklist r d3" style="margin-top:clamp(0.5rem,1vh,0.8rem);">
+            <div class="check"><span class="check-mark">?</span><span class="check-text">Can you add a task?</span></div>
+            <div class="check"><span class="check-mark">?</span><span class="check-text">Can you mark it complete?</span></div>
+            <div class="check"><span class="check-mark">?</span><span class="check-text">Does it look right on mobile? (resize browser)</span></div>
+          </div>
+          <div class="body r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">Getting something broken is NORMAL. Now you know how to fix it.</div>
+        </div>
+        <div style="flex:1; min-width:0;">
+          <div class="eyebrow r d3">Bug Fix Example</div>
+          <div class="code-block r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">
+            <span class="cmt">// Bug report prompt</span><br/><br/>
+            <span class="acc">"The Add button is not visible on</span><br/>
+            <span class="acc"> mobile screens. Please fix the</span><br/>
+            <span class="acc"> layout so it works on both</span><br/>
+            <span class="acc"> desktop and mobile."</span>
+          </div>
+          <div class="img-placeholder r d5" style="width:100%; height:clamp(100px,14vh,150px); margin-top:clamp(0.75rem,1.5vh,1.2rem);">
+            <span class="img-placeholder-label">Insert Image Here</span>
+            <span class="img-placeholder-kw">Screenshot showing a bug (broken layout) vs the fixed version side-by-side</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 43 · TEAM TIME — FORM GROUPS
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="Form teams">
+      <div class="sg"></div>
+      <div class="gn">43</div>
+      <div class="sl">Team Time</div>
+      <div class="pl">Block 7 · Build Session</div>
+      <div class="sc">43 / 54</div>
+      <div class="si">
+        <div class="eyebrow r d1">14:25 — Action</div>
+        <div class="display r d2" style="text-align:center;">Form your<br />teams<br />now<span class="ac">.</span></div>
+        <div class="hs r d3" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">
+          <div class="hs-text">Maximum 4 people per team. If you don't know who to group with — find people near you.</div>
+          <span class="hs-sub">3 minutes to form teams. Timer starts now.</span>
+        </div>
+        <div class="body r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem); text-align:center;">You'll work with this team for the rest of the day, including the prototype session.</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 44 · ASSIGN ROLES
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="Assign roles">
+      <div class="sg"></div>
+      <div class="gn">44</div>
+      <div class="sl">Assign Roles</div>
+      <div class="pl">Block 7 · Build Session</div>
+      <div class="sc">44 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Assign One Role Per Person — Right Now</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.5rem,1vh,0.8rem);">Your role,<br />your responsibility<span class="ac">.</span></div>
+        <div class="roles-grid r d3">
+          <div class="role-card hi">
+            <div class="role-icon">🧑‍💼</div>
+            <div class="role-title">PM</div>
+            <div class="role-items">You own the PRD. Nothing builds without your spec.</div>
+          </div>
+          <div class="role-card">
+            <div class="role-icon">🎨</div>
+            <div class="role-title">Designer</div>
+            <div class="role-items">You create the wireframes before the Developer touches Copilot.</div>
+          </div>
+          <div class="role-card">
+            <div class="role-icon">👨‍💻</div>
+            <div class="role-title">Developer</div>
+            <div class="role-items">You are the one who prompts Copilot Agent to build.</div>
+          </div>
+          <div class="role-card">
+            <div class="role-icon">🧪</div>
+            <div class="role-title">QA Tester</div>
+            <div class="role-items">You break things on purpose. Then you report bugs.</div>
+          </div>
+        </div>
+        <div class="body r d4" style="margin-top:clamp(0.5rem,1vh,0.8rem);">3-person team? PM and Designer merge. Can't decide? Alphabetical by first name — highest letter = PM.</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 45 · BUILD SESSION RULES
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="Build session rules">
+      <div class="sg"></div>
+      <div class="gn">45</div>
+      <div class="sl">Build Session</div>
+      <div class="pl">Block 7 · Build Session</div>
+      <div class="sc">45 / 54</div>
+      <div class="si row" style="gap:clamp(2rem,5vw,6rem);">
+        <div style="flex:1; min-width:0;">
+          <div class="eyebrow r d1">Your Build Session — 60 Minutes</div>
+          <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.5vh,1.2rem);">Rules &amp;<br />milestones<span class="ac">.</span></div>
+          <div class="checklist r d3">
+            <div class="check"><span class="check-mark">✅</span><span class="check-text">PM must complete PRD before Developer opens Copilot</span></div>
+            <div class="check"><span class="check-mark">✅</span><span class="check-text">Designer must share wireframe before build starts</span></div>
+            <div class="check"><span class="check-mark">✅</span><span class="check-text">QA must test and log at least 2 bugs</span></div>
+            <div class="check"><span class="check-mark">✅</span><span class="check-text">All bugs must be fixed before demo</span></div>
+            <div class="check no"><span class="check-mark" style="color:var(--red);">❌</span><span class="check-text">Do not skip the PRD. Ever.</span></div>
+          </div>
+        </div>
+        <div style="flex:1; min-width:0;">
+          <div class="eyebrow r d3">Timeline</div>
+          <div class="phases-row r d4" style="flex-direction:column; margin-top:0;">
+            <div class="phase-box hi" style="flex:none; width:100%; justify-content:flex-start; gap:1rem; padding:clamp(0.75rem,1.5vh,1.2rem) clamp(1rem,2vw,1.8rem);"><span style="font-family:var(--mono); font-size:var(--t-mono); color:var(--red);">14:35</span><span>Start — PRD writing begins</span></div>
+            <div class="phase-box" style="flex:none; width:100%; justify-content:flex-start; gap:1rem; padding:clamp(0.75rem,1.5vh,1.2rem) clamp(1rem,2vw,1.8rem);"><span style="font-family:var(--mono); font-size:var(--t-mono); color:var(--red);">15:05</span><span>Milestone check — working prototype?</span></div>
+            <div class="phase-box dark" style="flex:none; width:100%; justify-content:flex-start; gap:1rem; padding:clamp(0.75rem,1.5vh,1.2rem) clamp(1rem,2vw,1.8rem);"><span style="font-family:var(--mono); font-size:var(--t-mono); color:var(--red);">15:35</span><span style="color:#fff;">Build time ends — prepare for demo</span></div>
+          </div>
+          <div class="body r d5" style="margin-top:8px;">Instructor will check your PRD at the 14:50 mark.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 46 · PROMPT CHEAT SHEET
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="Prompt cheat sheet">
+      <div class="sg"></div>
+      <div class="gn">46</div>
+      <div class="sl">Cheat Sheet</div>
+      <div class="pl">Block 7 · Build Session</div>
+      <div class="sc">46 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Copy-Paste These Prompts As You Need Them</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.5rem,1vh,0.8rem);">Prompt cheat<br />sheet<span class="ac">.</span></div>
+        <div class="files r d3" style="grid-template-columns:repeat(3,1fr);">
+          <div class="file">
+            <div class="head"><span class="n">PRD</span><span class="t">Review</span></div>
+            <div class="snip"><span class="acc">"Review my PRD and suggest</span><br/><span class="acc"> any improvements before</span><br/><span class="acc"> we start building."</span></div>
+          </div>
+          <div class="file">
+            <div class="head"><span class="n">WF</span><span class="t">Wireframe</span></div>
+            <div class="snip"><span class="acc">"Based on this PRD, create</span><br/><span class="acc"> text-based wireframes</span><br/><span class="acc"> for each page."</span></div>
+          </div>
+          <div class="file">
+            <div class="head"><span class="n">BUILD</span><span class="t">App Build</span></div>
+            <div class="snip"><span class="acc">"Build the full app based</span><br/><span class="acc"> on this PRD and wireframes.</span><br/><span class="acc"> Create HTML, CSS, JS files."</span></div>
+          </div>
+          <div class="file">
+            <div class="head"><span class="n">BUG</span><span class="t">Fix</span></div>
+            <div class="snip"><span class="acc">"[Describe the bug clearly].</span><br/><span class="acc"> Please identify and</span><br/><span class="acc"> fix the issue."</span></div>
+          </div>
+          <div class="file">
+            <div class="head"><span class="n">ADD</span><span class="t">Feature</span></div>
+            <div class="snip"><span class="acc">"Add [feature] to the existing</span><br/><span class="acc"> app. Match the existing</span><br/><span class="acc"> design style."</span></div>
+          </div>
+          <div class="file">
+            <div class="head"><span class="n">RESP</span><span class="t">Mobile</span></div>
+            <div class="snip"><span class="acc">"The app doesn't look right</span><br/><span class="acc"> on mobile. Make it fully</span><br/><span class="acc"> responsive."</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 47 · MILESTONE CHECK 15:05
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="Milestone check">
+      <div class="sg"></div>
+      <div class="gn">47</div>
+      <div class="sl">Milestone Check</div>
+      <div class="pl">Block 7 · Build Session</div>
+      <div class="sc">47 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">⏱️ Milestone Check — 15:05</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">By now you<br />should have<span class="ac">:</span></div>
+        <div class="checklist r d3">
+          <div class="check"><span class="check-mark">✅</span><span class="check-text">A completed PRD</span></div>
+          <div class="check"><span class="check-mark">✅</span><span class="check-text">At least one page wireframe</span></div>
+          <div class="check"><span class="check-mark">✅</span><span class="check-text">A working prototype open in the browser</span></div>
+        </div>
+        <div class="two-col r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem);">
+          <div class="cc">
+            <span class="cc-tag">If you're behind</span>
+            <div class="cc-title">Focus</div>
+            <div class="cc-body">Focus on getting ONE page working, not three half-working pages. Call the instructor over.</div>
+          </div>
+          <div class="cc hi">
+            <span class="cc-tag">Time check</span>
+            <div class="cc-title">30 Minutes Left</div>
+            <div class="cc-body">30 minutes remaining. Use them well. Fix bugs. Polish. Prepare your demo.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 48 · 5-MINUTE WARNING
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide slide-dark" id="s2" aria-label="5 minute warning">
+      <div class="sg"></div>
+      <div class="gn">48</div>
+      <div class="sl">Time Warning</div>
+      <div class="pl">Block 8 · Demo &amp; Wrap-up</div>
+      <div class="sc">48 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">⏰ 5 Minutes Remaining</div>
+        <div class="alert-num r d2">5<span class="ac">.</span></div>
+        <div class="practices r d3" style="margin-top:clamp(0.5rem,1vh,0.8rem);">
+          <div class="prac"><div class="prac-n">🛑</div><div><div class="prac-r">Stop building.</div><div class="prac-d">Start preparing your demo.</div></div></div>
+          <div class="prac"><div class="prac-n">🧪</div><div><div class="prac-r">QA</div><div class="prac-d">Do your final test right now.</div></div></div>
+          <div class="prac"><div class="prac-n">🧑‍💼</div><div><div class="prac-r">PM</div><div class="prac-d">Prepare your 30-second intro: What does your app do? Who is it for?</div></div></div>
+          <div class="prac"><div class="prac-n">👨‍💻</div><div><div class="prac-r">Developer</div><div class="prac-d">Make sure the app opens cleanly in the browser.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 49 · DEMO TIME
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="Demo time">
+      <div class="sg"></div>
+      <div class="gn">49</div>
+      <div class="sl">Demo Time</div>
+      <div class="pl">Block 8 · Demo &amp; Wrap-up</div>
+      <div class="sc">49 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Every Team Gets 2 Minutes</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Demo<br />time<span class="ac">.</span></div>
+        <div class="two-col r d3">
+          <div class="cc hi">
+            <span class="cc-tag">What to Show</span>
+            <div class="cc-title">Your 2 Minutes</div>
+            <div class="cc-body">
+              <strong>:30</strong> — Name of your app &amp; what it does<br/>
+              <strong>:60</strong> — Live demo — click through the main pages<br/>
+              <strong>:30</strong> — "One thing Copilot got wrong that you fixed"
+            </div>
+          </div>
+          <div class="cc">
+            <span class="cc-tag">Voting Categories</span>
+            <div class="cc-title">Awards</div>
+            <div class="cc-body">
+              🏆 Most Functional<br/>
+              🎨 Most Creative<br/>
+              🤝 Best Teamwork<br/><br/>
+              Be kind. Cheer for each other.
+            </div>
+          </div>
+        </div>
+        <div class="img-placeholder r d4" style="width:min(90vw,900px); height:clamp(80px,10vh,100px); margin-top:clamp(0.75rem,1.5vh,1.2rem);">
+          <span class="img-placeholder-label">Insert Image Here</span>
+          <span class="img-placeholder-kw">Stage / spotlight / presentation podium illustration — startup demo day</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 50 · VOTING
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="Voting">
+      <div class="sg"></div>
+      <div class="gn">50</div>
+      <div class="sl">Voting</div>
+      <div class="pl">Block 8 · Demo &amp; Wrap-up</div>
+      <div class="sc">50 / 54</div>
+      <div class="si">
+        <div class="eyebrow r d1">Cast Your Vote</div>
+        <div class="display r d2" style="text-align:center;">Vote<span class="ac">.</span></div>
+        <div class="code-block r d3" style="text-align:left; margin-top:clamp(0.75rem,1.5vh,1.2rem);">
+          <span class="cmt">// In the chat or on a card, write:</span><br/><br/>
+          <span class="acc">Most Functional:</span>&nbsp;&nbsp;Team ___<br/>
+          <span class="acc">Most Creative:</span>&nbsp;&nbsp;&nbsp;&nbsp;Team ___<br/>
+          <span class="acc">Best Teamwork:</span>&nbsp;&nbsp;&nbsp;&nbsp;Team ___
+        </div>
+        <div class="body r d4" style="margin-top:clamp(0.75rem,1.5vh,1.2rem); text-align:center;">You cannot vote for your own team.</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 51 · CLOSING — WHAT YOU LEARNED
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="What you learned">
+      <div class="sg"></div>
+      <div class="gn">51</div>
+      <div class="sl">What You Learned</div>
+      <div class="pl">Block 8 · Demo &amp; Wrap-up</div>
+      <div class="sc">51 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">You Built a Real App Today. With AI.</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">Here's what<br />you now know<span class="ac">.</span></div>
+        <div class="practices r d3">
+          <div class="prac"><div class="prac-n">01</div><div><div class="prac-r">AI is a Tool You Guide</div><div class="prac-d">Not a magic button. Your direction determines the output quality.</div></div></div>
+          <div class="prac"><div class="prac-n">02</div><div><div class="prac-r">Clear Specs = Better Output</div><div class="prac-d">Always write the PRD first. Garbage in, garbage out.</div></div></div>
+          <div class="prac"><div class="prac-n">03</div><div><div class="prac-r">Vibe Coding = Guide → Test → Refine</div><div class="prac-d">Iteration is the job. Getting something broken is normal.</div></div></div>
+          <div class="prac"><div class="prac-n">04</div><div><div class="prac-r">Teams Work With Clear Roles</div><div class="prac-d">Waterfall + defined roles = fewer disasters, better products.</div></div></div>
+          <div class="prac"><div class="prac-n">05</div><div><div class="prac-r">One Sentence Can Start a Product</div><div class="prac-d">The skill is in making it the right sentence.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 52 · REFLECTION QUESTION
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s2" aria-label="Reflection question">
+      <div class="sg"></div>
+      <div class="gn">52</div>
+      <div class="sl">Reflection</div>
+      <div class="pl">Block 8 · Demo &amp; Wrap-up</div>
+      <div class="sc">52 / 54</div>
+      <div class="si">
+        <div class="eyebrow r d1">30 Seconds — Think About It</div>
+        <div class="display r d2" style="text-align:center; font-size:clamp(1.8rem,5vw,5rem); line-height:1.2;">What's one app you'd build — not for a class, but for yourself or someone you know<span class="ac">?</span></div>
+        <div class="body r d3" style="margin-top:clamp(0.75rem,1.5vh,1.2rem); text-align:center; color:var(--muted);">No need to share out loud. Just plant the seed.</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 53 · KEEP BUILDING — RESOURCES
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide" id="s3" aria-label="Resources">
+      <div class="sg"></div>
+      <div class="gn">53</div>
+      <div class="sl">Keep Building</div>
+      <div class="pl">Block 8 · Demo &amp; Wrap-up</div>
+      <div class="sc">53 / 54</div>
+      <div class="si left">
+        <div class="eyebrow r d1">You Don't Have to Stop Here</div>
+        <div class="headline r d2" style="margin-bottom:clamp(0.75rem,1.8vh,1.5rem);">The tools<br />are free<span class="ac">.</span></div>
+        <div class="tiles-3 r d3">
+          <div class="tile hi">
+            <span class="tile-tag">GitHub Copilot</span>
+            <div class="tile-name">Today's Tool</div>
+            <div class="tile-desc">github.com/features/copilot</div>
+          </div>
+          <div class="tile">
+            <span class="tile-tag">Cursor</span>
+            <div class="tile-name">Code Editor</div>
+            <div class="tile-desc">cursor.sh — AI-native code editor</div>
+          </div>
+          <div class="tile">
+            <span class="tile-tag">Claude</span>
+            <div class="tile-name">Anthropic</div>
+            <div class="tile-desc">claude.ai — Great for planning and PRDs</div>
+          </div>
+          <div class="tile">
+            <span class="tile-tag">ChatGPT</span>
+            <div class="tile-name">OpenAI</div>
+            <div class="tile-desc">chat.openai.com — GPT-4o and more</div>
+          </div>
+          <div class="tile" style="grid-column:span 2;">
+            <span class="tile-tag">Practice Tip</span>
+            <div class="tile-name">Keep Prompting</div>
+            <div class="tile-desc">Take any app idea, write the PRD, and build it with Copilot this week. The only way to get better is to keep prompting.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SLIDE 54 · THANK YOU
+    ═══════════════════════════════════════════════════ -->
+    <section class="slide slide-dark" id="s2" aria-label="Thank you">
+      <div class="sg"></div>
+      <div class="gn">VC</div>
+      <div class="sl">AI &amp; Vibe Coding</div>
+      <div class="pl">Internship Day · 2026</div>
+      <div class="sc">54 / 54</div>
+      <div class="si bottom">
+        <div class="eyebrow r d1">AI &amp; Vibe Coding · Internship Day · 2026</div>
+        <div class="display r d2">Thank<br />You<span class="ac">.</span></div>
+        <div class="r d3" style="margin-top:clamp(0.75rem,1.5vh,1.2rem); font-family:var(--cond); font-size:clamp(1.1rem,2.5vw,2rem); letter-spacing:0.14em; text-transform:uppercase; color:#555; text-align:center;">Questions?</div>
+        <div class="img-placeholder r d4" style="width:min(90vw,900px); height:clamp(80px,12vh,120px); margin-top:clamp(1rem,2vh,1.5rem);">
+          <span class="img-placeholder-label">Insert Image Here</span>
+          <span class="img-placeholder-kw">Same or complementary visual to the opening slide — bookend the experience</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         JAVASCRIPT
+    ═══════════════════════════════════════════════════ -->
+    <script>
+      class SlidePresentation {
+        constructor() {
+          this.slides = Array.from(document.querySelectorAll(".slide"));
+          this.total = this.slides.length;
+          this.current = 0;
+          this.lastWheel = 0;
+          this.touchStartY = 0;
+          this.touchStartX = 0;
+          this.progressFill = document.getElementById("pf");
+          let mx = 0, my = 0, tx = 0, ty = 0, raf = null;
+          const loop = () => {
+            tx += (mx - tx) * 0.08; ty += (my - ty) * 0.08;
+            const active = this.slides[this.current];
+            if (active) {
+              const gn = active.querySelector(".gn");
+              if (gn) { gn.style.setProperty("--ghx", tx.toFixed(2) + "px"); gn.style.setProperty("--ghy", ty.toFixed(2) + "px"); }
+            }
+            raf = requestAnimationFrame(loop);
+          };
+          window.addEventListener("mousemove", (e) => {
+            const w = window.innerWidth, h = window.innerHeight;
+            mx = (e.clientX / w - 0.5) * 28; my = (e.clientY / h - 0.5) * 18;
+            if (!raf) loop();
+          }, { passive: true });
+          this._observe(); this._keyboard(); this._wheel(); this._touch();
+          this._updateProgress(0); this._setActiveSlide(this.slides[0], 0);
+        }
+        _observe() {
+          const io = new IntersectionObserver((entries) => {
+            const active = entries.filter(e => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+            if (!active) return;
+            const idx = this.slides.indexOf(active.target);
+            this._setActiveSlide(active.target, idx);
+          }, { threshold: 0.55 });
+          this.slides.forEach(s => io.observe(s));
+        }
+        _setActiveSlide(slide, idx = this.slides.indexOf(slide)) {
+          if (!slide || idx < 0) return;
+          this.slides.forEach(s => { if (s !== slide) s.classList.remove("visible"); });
+          slide.classList.remove("visible"); void slide.offsetWidth; slide.classList.add("visible");
+          this.current = idx; this._updateProgress(idx);
+        }
+        goTo(idx) { if (idx < 0 || idx >= this.total) return; this.current = idx; this.slides[idx].scrollIntoView({ behavior: "smooth" }); this._updateProgress(idx); }
+        next() { this.goTo(this.current + 1); }
+        prev() { this.goTo(this.current - 1); }
+        _keyboard() {
+          document.addEventListener("keydown", (e) => {
+            if (["ArrowRight","ArrowDown","PageDown"].includes(e.key) || e.code === "Space") { e.preventDefault(); this.next(); }
+            else if (["ArrowLeft","ArrowUp","PageUp","Backspace"].includes(e.key)) { e.preventDefault(); this.prev(); }
+          });
+        }
+        _wheel() {
+          document.addEventListener("wheel", (e) => {
+            e.preventDefault(); const now = Date.now();
+            if (now - this.lastWheel < 750) return; this.lastWheel = now;
+            e.deltaY > 0 ? this.next() : this.prev();
+          }, { passive: false });
+        }
+        _touch() {
+          document.addEventListener("touchstart", (e) => { this.touchStartY = e.touches[0].clientY; this.touchStartX = e.touches[0].clientX; }, { passive: true });
+          document.addEventListener("touchend", (e) => {
+            const dy = this.touchStartY - e.changedTouches[0].clientY;
+            const dx = this.touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 48) { dy > 0 ? this.next() : this.prev(); }
+          }, { passive: true });
+        }
+        _updateProgress(idx) { if (!this.progressFill) return; const pct = this.total > 1 ? (idx / (this.total - 1)) * 100 : 0; this.progressFill.style.width = pct + "%"; }
+      }
+      new SlidePresentation();
+    </script>
+  </body>
+</html>
