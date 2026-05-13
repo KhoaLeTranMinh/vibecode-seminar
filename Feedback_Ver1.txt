@@ -1,0 +1,11 @@
+"Fb" stands for Feedback
+Fb1: Use easy-to-understand language (demystifying)
+Fb2: For the AI Family Tree section, elaborate on each section, use easy-to-understand examples
+Fb3: Add some more slides to clearly explain what LLM is, why is it called "Large", and what is "Vibe Coding", and why is it called that
+Fb4: SDLC part, make sure to note that this is the Waterfall v-model, which Japanese companies usually implement, briefly introduce Agile and Scrum, make comparisons
+Fb5: Choosing the right model, elaborate more on that: Planning using Opus, Gpt 5.5, Task execution (Agent) usually employs Sonnet, Codex
+Fb6: Elaborate more on what is Copilot
+Fb7: Elaborate clearly on the HTML,CSS,JS Part. For each of them dives a bit deeper.
+Fb8: Dives a tiny bit on the SDD Flow: human intent -> agent write specs -> human review -> agent makes plans -> human review -> agent breakdown to tasks -> human review
+and TDD Flow : agent write test cases, UT, IT, E2E -> Code -> test -> fix code -> test -> ... -> review code -> CICD
+Fb9: Maybe show them how to collaborate with each other on this task?....
