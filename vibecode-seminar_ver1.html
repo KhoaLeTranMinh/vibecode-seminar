@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -341,7 +341,7 @@
    ===================================================== */
       .eyebrow {
         font-family: var(--cond);
-        font-size: clamp(0.75rem, 1.3vw, 1.05rem);
+        font-size: clamp(1rem, 1.8vw, 1.4rem);
         font-weight: 600;
         letter-spacing: 0.28em;
         text-transform: uppercase;
@@ -1205,7 +1205,7 @@
       <div class="gn">VC</div>
       <div class="sl">VibeCODE · Seminar</div>
       <div class="pl">AI · Vibe Coding</div>
-      <div class="sc">01 / 37</div>
+      <div class="sc">01 / 40</div>
       <div class="si bottom">
         <div class="eyebrow r d1">2026 · Non-Technical Series</div>
         <div class="display r d2">
@@ -1235,7 +1235,7 @@
       <div class="gn">01</div>
       <div class="sl">Presentation 01</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">02 / 37</div>
+      <div class="sc">02 / 40</div>
       <div class="si bottom">
         <div class="eyebrow r d1">Part One</div>
         <div class="display r d2">
@@ -1256,7 +1256,7 @@
       <div class="gn">AI</div>
       <div class="sl">01 · Demystifying AI</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">03 / 37</div>
+      <div class="sc">03 / 40</div>
       <div class="si">
         <div class="eyebrow r d1">Part 1 · Section 1</div>
         <div class="rule r d1"></div>
@@ -1279,28 +1279,51 @@
       <div class="gn">04</div>
       <div class="sl">What is AI?</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">04 / 37</div>
-      <div class="si left">
-        <div class="eyebrow r d1">What is AI, Really?</div>
-        <div
-          class="headline r d2"
-          style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
-        >
-          The Umbrella<span class="ac">.</span>
-        </div>
-        <div class="defs def-box r d3">
-          <div class="def">
-            <div class="def-abbr">AI</div>
-            <div>
-              <div class="def-main">
-                Computers performing tasks that usually need human intelligence.
-              </div>
-              <div class="def-sub">
-                Pattern recognition. Decision-making. Language understanding.
-                Everything else sits inside this circle.
+      <div class="sc">04 / 40</div>
+      <div class="si row" style="align-items:center; gap: clamp(2rem,4vw,4rem); flex-wrap: wrap; justify-content: space-between; width: 100%; padding: 0 clamp(2rem,5vw,5rem);">
+        <!-- Left: text -->
+        <div style="flex: 0 0 40%; min-width: 280px;">
+          <div class="eyebrow r d1">What is AI, Really?</div>
+          <div
+            class="headline r d2"
+            style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
+          >
+            The Umbrella<span class="ac">.</span>
+          </div>
+          <div class="defs def-box r d3">
+            <div class="def">
+              <div class="def-abbr">AI</div>
+              <div>
+                <div class="def-main">
+                  Computers performing tasks that usually need human intelligence.
+                </div>
+                <div class="def-sub">
+                  Pattern recognition. Decision-making. Language understanding.
+                  Everything else sits inside this circle.
+                </div>
               </div>
             </div>
           </div>
+        </div>
+        <!-- Right: concentric circles diagram -->
+        <div class="r d4" style="flex: 0 0 auto; display:flex; align-items:center; justify-content:center;">
+          <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Nested circles: AI contains ML contains Deep Learning contains LLMs"
+            style="width: clamp(280px,36vw,440px); height: auto; display: block;">
+            <!-- AI circle -->
+            <circle cx="150" cy="150" r="135" fill="#f5f2ee" stroke="#d5d0c9" stroke-width="2"/>
+            <!-- ML circle -->
+            <circle cx="150" cy="165" r="100" fill="#ede9e3" stroke="#d5d0c9" stroke-width="2"/>
+            <!-- Deep Learning circle -->
+            <circle cx="150" cy="178" r="64" fill="#d5d0c9" stroke="#8a8580" stroke-width="1.5"/>
+            <!-- LLMs circle (red) -->
+            <circle cx="150" cy="188" r="30" fill="#c8211a" stroke="none"/>
+            <!-- Labels -->
+            <text x="150" y="28" text-anchor="middle" font-family="Space Mono,monospace" font-size="13" fill="#111111" letter-spacing="0.05em">AI</text>
+            <text x="150" y="75" text-anchor="middle" font-family="Space Mono,monospace" font-size="11" fill="#111111" letter-spacing="0.04em">Machine Learning</text>
+            <text x="150" y="124" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#111111" letter-spacing="0.04em">Deep Learning</text>
+            <text x="150" y="192" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#ede9e3" letter-spacing="0.04em">LLMs</text>
+          </svg>
         </div>
       </div>
     </section>
@@ -1313,7 +1336,7 @@
       <div class="gn">05</div>
       <div class="sl">AI · A Family Tree</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">05 / 37</div>
+      <div class="sc">05 / 40</div>
       <div
         class="si row family-tree-wrap"
         style="
@@ -1419,7 +1442,7 @@
       <div class="gn">AI</div>
       <div class="sl">01 · AI — Deep Dive</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">06 / 37</div>
+      <div class="sc">06 / 40</div>
       <div class="si left">
         <div class="eyebrow r d1">Artificial Intelligence — Closer Look</div>
         <div
@@ -1439,27 +1462,30 @@
         </div>
         <div class="tiles-3 r d4">
           <div class="tile">
-            <span class="tile-tag">Where It's Used</span>
-            <div class="tile-name">Applications</div>
+            <span class="tile-tag">ML-Driven Family</span>
+            <div class="tile-name">Our Focus</div>
             <div class="tile-desc">
-              Healthcare diagnostics · Financial fraud detection · Transport
-              routing · Virtual customer service agents
+              Machine Learning → Deep Learning → NLP → LLMs. This is the
+              branch of AI this seminar follows — the one powering ChatGPT,
+              Copilot, and everything like them.
             </div>
           </div>
           <div class="tile">
-            <span class="tile-tag">Real World</span>
-            <div class="tile-name">Examples</div>
+            <span class="tile-tag">Other Subfields</span>
+            <div class="tile-name">Beyond ML</div>
             <div class="tile-desc">
-              AI cancer screening at hospitals · Bank fraud alerts · Tesla
-              Autopilot · Smart email filters
+              Robotics — motion planning, kinetics, heat control — crosses
+              into physics and mechanical engineering. Even Robotics today
+              increasingly applies Machine Learning methods.
             </div>
           </div>
           <div class="tile hi">
-            <span class="tile-tag">In the Family Tree</span>
-            <div class="tile-name">The Roof</div>
+            <span class="tile-tag">The Modern Reality</span>
+            <div class="tile-name">ML Dominates</div>
             <div class="tile-desc">
-              ML, Deep Learning, and NLP are all subsets. Not all AI uses ML —
-              early AI relied entirely on hand-coded rules.
+              Today, Machine Learning drives most AI breakthroughs. Before
+              it, rule-based expert systems — hand-coded "if this, then that"
+              logic — were the norm.
             </div>
           </div>
         </div>
@@ -1467,112 +1493,279 @@
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 07 — ML DEEP DIVE                           ║
+     ║  SLIDE 07 — THREE WAYS TO LEARN                    ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s5c" aria-label="Machine Learning — Deep Dive">
+    <section class="slide" id="s5b2" aria-label="Three Ways to Learn">
       <div class="sg"></div>
       <div class="gn">ML</div>
-      <div class="sl">01 · ML — Deep Dive</div>
+      <div class="sl">01 · ML — Learning Types</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">07 / 37</div>
-      <div class="si left">
-        <div class="eyebrow r d1">Machine Learning — Closer Look</div>
+      <div class="sc">07 / 40</div>
+      <div class="si left" style="font-size:0.8em;">
+        <div class="eyebrow r d1">Machine Learning — Three Ways to Learn</div>
         <div
           class="headline r d2"
-          style="margin-bottom: clamp(0.5rem, 1.2vh, 0.9rem)"
+          style="margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem)"
         >
-          Learning from<br />Data<span class="ac">.</span>
+          Supervised,<br />Unsupervised &amp;<br />Self-Supervised<span
+            class="ac"
+            >.</span
+          >
+        </div>
+        <div class="tiles-3 r d3" style="gap: clamp(0.5rem, 1.2vw, 1rem);">
+          <div class="tile" style="padding: clamp(0.6rem, 1.2vw, 1rem);">
+            <span class="tile-tag">Type · 01</span>
+            <div class="tile-name">Supervised</div>
+            <div class="tile-desc">
+              Learn from labelled examples. A <strong>"label"</strong> is a human annotation — e.g., draw bounding boxes around cats so the model learns to spot them.
+            </div>
+            <!-- Bounding box annotation diagram -->
+            <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"
+              aria-label="Bounding box annotation example"
+              style="width:100%; height:auto; display:block; margin-top:0.6rem;">
+              <rect x="4" y="4" width="112" height="72" rx="3" fill="#ede9e3" stroke="#d5d0c9" stroke-width="1.5"/>
+              <rect x="28" y="14" width="56" height="44" rx="2" fill="none" stroke="#c8211a" stroke-width="1.8" stroke-dasharray="4 2.5"/>
+              <rect x="28" y="7" width="32" height="12" rx="2" fill="#c8211a"/>
+              <text x="44" y="16.5" text-anchor="middle" font-family="Space Mono,monospace" font-size="7" fill="#ede9e3">cat?</text>
+              <line x1="28" y1="14" x2="28" y2="20" stroke="#c8211a" stroke-width="1.8"/>
+              <line x1="28" y1="14" x2="34" y2="14" stroke="#c8211a" stroke-width="1.8"/>
+              <line x1="84" y1="14" x2="84" y2="20" stroke="#c8211a" stroke-width="1.8"/>
+              <line x1="84" y1="14" x2="78" y2="14" stroke="#c8211a" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <div class="tile" style="padding: clamp(0.6rem, 1.2vw, 1rem);">
+            <span class="tile-tag">Type · 02</span>
+            <div class="tile-name">Unsupervised</div>
+            <div class="tile-desc">
+              Find patterns with no labels. The model groups data by similarity — no human tells it what to look for.<br /><br />
+              Example: clustering customers by shopping behaviour.
+            </div>
+          </div>
+          <div class="tile hi" style="padding: clamp(0.6rem, 1.2vw, 1rem);">
+            <span class="tile-tag">Type · 03 · LLMs</span>
+            <div class="tile-name">Self-Supervised</div>
+            <div class="tile-desc">
+              Creates its own training task from raw data — no labels needed. Example: hide words in a sentence, let the model predict the missing ones.
+              <strong>Examples are created by the data itself.</strong>
+            </div>
+          </div>
         </div>
         <div
-          class="hs r d3"
-          style="margin-bottom: clamp(0.65rem, 1.5vh, 1.2rem)"
+          class="body r d4"
+          style="margin-top: clamp(0.4rem, 1vh, 0.8rem)"
         >
-          <div class="hs-text" style="font-size: clamp(1rem, 1.8vw, 1.5rem)">
-            Teaching computers to improve at a task through exposure to data —
-            no explicit rules, no manual programming of every case.
-          </div>
-        </div>
-        <div class="tiles-3 r d4">
-          <div class="tile">
-            <span class="tile-tag">Where It's Used</span>
-            <div class="tile-name">Applications</div>
-            <div class="tile-desc">
-              Recommendation engines · Credit risk scoring · Medical image
-              diagnosis · Predictive maintenance in factories
-            </div>
-          </div>
-          <div class="tile">
-            <span class="tile-tag">Real World</span>
-            <div class="tile-name">Examples</div>
-            <div class="tile-desc">
-              Netflix learning your watch habits · Spam filters that improve
-              over time · Banks scoring your loan application
-            </div>
-          </div>
-          <div class="tile hi">
-            <span class="tile-tag">In the Family Tree</span>
-            <div class="tile-name">Subset of AI</div>
-            <div class="tile-desc">
-              Lives inside AI. Deep Learning is a further specialisation of ML
-              using neural networks. The most widely deployed AI technique
-              today.
-            </div>
-          </div>
+          LLMs are <em>mainly</em> self-supervised. "Large" = billions of
+          parameters trained on nearly the entire internet.
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 08 — DL DEEP DIVE                           ║
+     ║  SLIDE 08 — CLASSICAL ML vs DEEP LEARNING          ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s5d" aria-label="Deep Learning — Deep Dive">
+    <section
+      class="slide"
+      id="s5c"
+      aria-label="Machine Learning — Classical vs Deep"
+    >
       <div class="sg"></div>
-      <div class="gn">DL</div>
-      <div class="sl">01 · DL — Deep Dive</div>
+      <div class="gn">ML</div>
+      <div class="sl">01 · ML — Classical vs Deep</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">08 / 37</div>
-      <div class="si left">
-        <div class="eyebrow r d1">Deep Learning — Closer Look</div>
-        <div
-          class="headline r d2"
-          style="margin-bottom: clamp(0.5rem, 1.2vh, 0.9rem)"
-        >
-          Neural<br />Networks<span class="ac">.</span>
+      <div class="sc">08 / 40</div>
+      <div class="si left" style="position:relative; align-items:flex-start;">
+        <!-- Text: natural left layout -->
+        <div style="font-size:0.9em; max-width:55%;">
+          <div class="eyebrow r d1">Machine Learning — A Decade of Change</div>
+          <div class="headline r d2" style="margin-bottom: clamp(0.6rem, 1.5vh, 1.2rem)">
+            Classical vs<br />Deep<span class="ac">.</span>
+          </div>
+          <div class="two-col r d3" style="font-size:0.9em;">
+            <div class="cc">
+              <span class="cc-tag">Before 2012</span>
+              <div class="cc-title">Hand-Crafted Features</div>
+              <div class="cc-body">
+                Linear Regression · Decision Trees · k-NN · SVM.<br /><br />
+                A human expert manually picks the properties ("features")
+                the model uses. Works on small, structured data.
+              </div>
+            </div>
+            <div class="cc hi">
+              <span class="cc-tag">2012 → Now</span>
+              <div class="cc-title">Learns Its Own Features</div>
+              <div class="cc-body">
+                <strong>No feature engineering</strong> — the network
+                discovers what matters from raw data automatically.<br /><br />
+                The dominant approach today — the engine behind every LLM.
+              </div>
+            </div>
+          </div>
         </div>
-        <div
-          class="hs r d3"
-          style="margin-bottom: clamp(0.65rem, 1.5vh, 1.2rem)"
-        >
-          <div class="hs-text" style="font-size: clamp(1rem, 1.8vw, 1.5rem)">
-            Multi-layered networks loosely inspired by the human brain — excels
-            at finding complex patterns in raw images, audio, and text.
+        <!-- SVG: absolutely anchored top-right -->
+        <div class="r d4" style="position:absolute; top:clamp(1rem,3vh,2.5rem); right:clamp(1rem,2vw,2rem); width:30%;">
+          <svg viewBox="0 0 240 300" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Vertical timeline: Classical ML era then 2012 AlexNet breakthrough then Deep Learning era"
+            style="width:100%; height:auto; display:block;">
+            <!-- Classical ML era block -->
+            <rect x="70" y="8" width="100" height="88" rx="6" fill="#ede9e3" stroke="#d5d0c9" stroke-width="1.5"/>
+            <text x="120" y="30" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#8a8580" letter-spacing="0.05em">CLASSICAL ML</text>
+            <text x="120" y="50" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#8a8580">Linear Reg.</text>
+            <text x="120" y="63" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#8a8580">Decision Trees</text>
+            <text x="120" y="76" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#8a8580">k-NN · SVM</text>
+            <!-- Connector line top to 2012 -->
+            <line x1="120" y1="96" x2="120" y2="122" stroke="#d5d0c9" stroke-width="2" stroke-dasharray="4 3"/>
+            <!-- 2012 milestone -->
+            <circle cx="120" cy="146" r="24" fill="#c8211a"/>
+            <text x="120" y="143" text-anchor="middle" font-family="Space Mono,monospace" font-size="13" fill="#ede9e3" font-weight="bold">2012</text>
+            <text x="120" y="157" text-anchor="middle" font-family="Space Mono,monospace" font-size="7.5" fill="#ede9e3">AlexNet</text>
+            <!-- Connector line 2012 to DL -->
+            <line x1="120" y1="170" x2="120" y2="192" stroke="#c8211a" stroke-width="2" stroke-dasharray="4 3"/>
+            <!-- Deep Learning era block -->
+            <rect x="40" y="192" width="160" height="88" rx="6" fill="rgba(200,33,26,0.10)" stroke="#c8211a" stroke-width="1.5"/>
+            <text x="120" y="213" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#c8211a" letter-spacing="0.05em" font-weight="bold">DEEP LEARNING</text>
+            <text x="120" y="232" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#c8211a">Neural Networks</text>
+            <text x="120" y="246" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#c8211a">Auto feature learning</text>
+            <text x="120" y="260" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#c8211a">Scales with data</text>
+            <text x="120" y="275" text-anchor="middle" font-family="Space Mono,monospace" font-size="7.5" fill="#8a8580">→ powers LLMs today</text>
+            <!-- Arrow down -->
+            <line x1="120" y1="280" x2="120" y2="292" stroke="#c8211a" stroke-width="2"/>
+            <polygon points="113,287 120,300 127,287" fill="#c8211a"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════════════╗
+     ║  SLIDE 09 — NEURAL NETWORKS                        ║
+     ╚══════════════════════════════════════════════════════╝ -->
+    <section class="slide" id="s5d" aria-label="Deep Learning — Neural Networks">
+      <div class="sg"></div>
+      <div class="gn">NN</div>
+      <div class="sl">01 · DL — Neural Networks</div>
+      <div class="pl">01 · Theory</div>
+      <div class="sc">09 / 40</div>
+      <div class="si left" style="position:relative;">
+        <!-- Text: natural left layout -->
+        <div style="font-size:0.88em;">
+          <div class="eyebrow r d1">Deep Learning — Neural Networks</div>
+          <div class="headline r d2" style="margin-bottom: clamp(0.4rem, 1vh, 0.7rem)">
+            Neural<br />Networks<span class="ac">.</span>
+          </div>
+          <div class="hs r d3" style="margin-bottom: clamp(0.5rem, 1.2vh, 1rem)">
+            <div class="hs-text" style="font-size: clamp(0.78rem, 1.2vw, 1rem)">
+              Loosely inspired by the brain's neuron structure — nodes
+              connected in layers. Each <strong>node</strong> represents a
+              piece of useful information the network has learned.
+            </div>
+          </div>
+          <div class="practices r d4" style="width: 100%">
+            <div class="prac">
+              <div class="prac-n">→</div>
+              <div class="prac-r" style="font-size: clamp(0.78rem, 1.2vw, 1rem)">
+                Input Layer — raw data in
+              </div>
+            </div>
+            <div class="prac">
+              <div class="prac-n">→</div>
+              <div class="prac-r" style="font-size: clamp(0.78rem, 1.2vw, 1rem)">
+                Hidden Layers — learn what matters
+              </div>
+            </div>
+            <div class="prac">
+              <div class="prac-n">→</div>
+              <div class="prac-r" style="font-size: clamp(0.78rem, 1.2vw, 1rem)">
+                Output Layer — prediction or answer
+              </div>
+            </div>
+          </div>
+          <div class="body r d5" style="margin-top: clamp(0.5rem, 1.2vh, 0.8rem); font-size: clamp(0.75rem, 1.1vw, 0.95rem)">
+            <em>"Deep"</em> = many hidden layers. LLMs are transformer
+            networks — billions of parameters, trained to predict the next word.
           </div>
         </div>
-        <div class="tiles-3 r d4">
-          <div class="tile">
-            <span class="tile-tag">Where It's Used</span>
-            <div class="tile-name">Applications</div>
-            <div class="tile-desc">
-              Computer vision (security &amp; medicine) · Speech recognition ·
-              Self-driving vehicles · AI-generated images and video
-            </div>
-          </div>
-          <div class="tile">
-            <span class="tile-tag">Real World</span>
-            <div class="tile-name">Examples</div>
-            <div class="tile-desc">
-              Face ID on your iPhone · Self-driving cameras distinguishing
-              pedestrians from lampposts · MRI analysis · Midjourney art
-            </div>
-          </div>
-          <div class="tile hi">
-            <span class="tile-tag">In the Family Tree</span>
-            <div class="tile-name">Subset of ML</div>
-            <div class="tile-desc">
-              Needs far more data and compute than classic ML. The technology
-              behind the current AI boom — and the engine powering every LLM.
-            </div>
-          </div>
+        <!-- SVG: absolutely anchored bottom-right, clear of text column -->
+        <div class="r d3" style="position:absolute; bottom:clamp(1.5rem,3vh,3rem); right:clamp(1rem,2vw,2rem); width:38%;">
+          <svg
+            viewBox="0 0 520 290"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-label="Neural network diagram: input, hidden, output layers"
+            style="width:100%; height:auto; display:block;"
+          >
+            <style>
+              .nn-line { stroke: rgba(0,0,0,0.13); stroke-width: 1.2; }
+              .nn-in   { fill: #ede9e3; stroke: #c8211a; stroke-width: 2.5; }
+              .nn-hid  { fill: #111111; }
+              .nn-out  { fill: #c8211a; }
+              .nn-lbl  {
+                font-family: 'Space Mono', monospace;
+                font-size: 10px;
+                fill: #8a8580;
+                text-anchor: middle;
+                letter-spacing: 0.08em;
+              }
+            </style>
+            <!-- Connections Input → Hidden 1 -->
+            <line class="nn-line" x1="60"  y1="70"  x2="190" y2="40"/>
+            <line class="nn-line" x1="60"  y1="70"  x2="190" y2="107"/>
+            <line class="nn-line" x1="60"  y1="70"  x2="190" y2="173"/>
+            <line class="nn-line" x1="60"  y1="70"  x2="190" y2="240"/>
+            <line class="nn-line" x1="60"  y1="140" x2="190" y2="40"/>
+            <line class="nn-line" x1="60"  y1="140" x2="190" y2="107"/>
+            <line class="nn-line" x1="60"  y1="140" x2="190" y2="173"/>
+            <line class="nn-line" x1="60"  y1="140" x2="190" y2="240"/>
+            <line class="nn-line" x1="60"  y1="210" x2="190" y2="40"/>
+            <line class="nn-line" x1="60"  y1="210" x2="190" y2="107"/>
+            <line class="nn-line" x1="60"  y1="210" x2="190" y2="173"/>
+            <line class="nn-line" x1="60"  y1="210" x2="190" y2="240"/>
+            <!-- Connections Hidden 1 → Hidden 2 -->
+            <line class="nn-line" x1="190" y1="40"  x2="320" y2="40"/>
+            <line class="nn-line" x1="190" y1="40"  x2="320" y2="107"/>
+            <line class="nn-line" x1="190" y1="40"  x2="320" y2="173"/>
+            <line class="nn-line" x1="190" y1="40"  x2="320" y2="240"/>
+            <line class="nn-line" x1="190" y1="107" x2="320" y2="40"/>
+            <line class="nn-line" x1="190" y1="107" x2="320" y2="107"/>
+            <line class="nn-line" x1="190" y1="107" x2="320" y2="173"/>
+            <line class="nn-line" x1="190" y1="107" x2="320" y2="240"/>
+            <line class="nn-line" x1="190" y1="173" x2="320" y2="40"/>
+            <line class="nn-line" x1="190" y1="173" x2="320" y2="107"/>
+            <line class="nn-line" x1="190" y1="173" x2="320" y2="173"/>
+            <line class="nn-line" x1="190" y1="173" x2="320" y2="240"/>
+            <line class="nn-line" x1="190" y1="240" x2="320" y2="40"/>
+            <line class="nn-line" x1="190" y1="240" x2="320" y2="107"/>
+            <line class="nn-line" x1="190" y1="240" x2="320" y2="173"/>
+            <line class="nn-line" x1="190" y1="240" x2="320" y2="240"/>
+            <!-- Connections Hidden 2 → Output -->
+            <line class="nn-line" x1="320" y1="40"  x2="450" y2="105"/>
+            <line class="nn-line" x1="320" y1="40"  x2="450" y2="175"/>
+            <line class="nn-line" x1="320" y1="107" x2="450" y2="105"/>
+            <line class="nn-line" x1="320" y1="107" x2="450" y2="175"/>
+            <line class="nn-line" x1="320" y1="173" x2="450" y2="105"/>
+            <line class="nn-line" x1="320" y1="173" x2="450" y2="175"/>
+            <line class="nn-line" x1="320" y1="240" x2="450" y2="105"/>
+            <line class="nn-line" x1="320" y1="240" x2="450" y2="175"/>
+            <!-- Input nodes -->
+            <circle class="nn-in"  cx="60"  cy="70"  r="18"/>
+            <circle class="nn-in"  cx="60"  cy="140" r="18"/>
+            <circle class="nn-in"  cx="60"  cy="210" r="18"/>
+            <!-- Hidden layer 1 nodes -->
+            <circle class="nn-hid" cx="190" cy="40"  r="18"/>
+            <circle class="nn-hid" cx="190" cy="107" r="18"/>
+            <circle class="nn-hid" cx="190" cy="173" r="18"/>
+            <circle class="nn-hid" cx="190" cy="240" r="18"/>
+            <!-- Hidden layer 2 nodes -->
+            <circle class="nn-hid" cx="320" cy="40"  r="18"/>
+            <circle class="nn-hid" cx="320" cy="107" r="18"/>
+            <circle class="nn-hid" cx="320" cy="173" r="18"/>
+            <circle class="nn-hid" cx="320" cy="240" r="18"/>
+            <!-- Output nodes -->
+            <circle class="nn-out" cx="450" cy="105" r="18"/>
+            <circle class="nn-out" cx="450" cy="175" r="18"/>
+            <!-- Layer labels -->
+            <text class="nn-lbl" x="60"  y="276">Input</text>
+            <text class="nn-lbl" x="190" y="276">Hidden 1</text>
+            <text class="nn-lbl" x="320" y="276">Hidden 2</text>
+            <text class="nn-lbl" x="450" y="276">Output</text>
+          </svg>
         </div>
       </div>
     </section>
@@ -1585,7 +1778,7 @@
       <div class="gn">NLP</div>
       <div class="sl">01 · NLP — Deep Dive</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">09 / 37</div>
+      <div class="sc">10 / 40</div>
       <div class="si left">
         <div class="eyebrow r d1">
           Natural Language Processing — Closer Look
@@ -1643,41 +1836,58 @@
       <div class="gn">06</div>
       <div class="sl">What is an LLM?</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">10 / 37</div>
-      <div class="si left">
-        <div class="eyebrow r d1">Large Language Models</div>
-        <div
-          class="headline r d2"
-          style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
-        >
-          The Engine<br />Behind the Chat<span class="ac">.</span>
-        </div>
-        <div class="hs r d3">
-          <div class="hs-text">
-            Trained on billions of words. Predicts the next most likely word in
-            a sequence. That's it.
+      <div class="sc">11 / 40</div>
+      <div class="si" style="display:flex; flex-direction:row; align-items:center; gap:clamp(3rem,5vw,5rem); width:min(96vw,1400px); margin:0 auto;">
+        <!-- Left: text, compact -->
+        <div style="flex:0 0 36%; min-width:0; font-size:0.85em;">
+          <div class="eyebrow r d1">Large Language Models</div>
+          <div class="headline r d2" style="margin-bottom: clamp(0.5rem, 1.2vh, 1rem)">
+            The Engine<br />Behind the Chat<span class="ac">.</span>
           </div>
-          <span class="hs-sub">Deep Learning · NLP · Core Technology</span>
-        </div>
-        <div
-          class="defs r d4"
-          style="
-            margin-top: clamp(0.75rem, 1.8vh, 1.4rem);
-            width: min(92vw, 1000px);
-          "
-        >
-          <div class="def" style="border-top: 1px solid var(--border)">
-            <div class="def-abbr">Why<br />Large?</div>
-            <div>
-              <div class="def-main">
-                Nearly the entire internet — as training data.
-              </div>
-              <div class="def-sub">
-                Billions of neural "parameters" encode the patterns. More data +
-                more parameters = more capable model.
+          <div class="hs r d3">
+            <div class="hs-text" style="font-size: clamp(0.8rem, 1.3vw, 1.05rem)">
+              Trained on billions of words. Predicts the next most likely word in
+              a sequence. That's it.
+            </div>
+            <span class="hs-sub">Deep Learning · NLP · Core Technology</span>
+          </div>
+          <div class="defs r d4" style="margin-top: clamp(0.5rem, 1.2vh, 1rem);">
+            <div class="def" style="border-top: 1px solid var(--border)">
+              <div class="def-abbr">Why<br />Large?</div>
+              <div>
+                <div class="def-main" style="font-size: clamp(0.85rem, 1.3vw, 1.1rem)">
+                  Nearly the entire internet — as training data.
+                </div>
+                <div class="def-sub">
+                  Billions of neural "parameters" encode the patterns. More data +
+                  more parameters = more capable model.
+                </div>
               </div>
             </div>
           </div>
+        </div>
+        <!-- Right: scale bar SVG, large -->
+        <div class="r d5" style="flex:1; min-width:0;">
+          <svg viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Scale comparison: Small model vs Medium vs Large Language Model"
+            style="width:100%; height:auto; display:block;">
+            <!-- Header -->
+            <text x="0" y="18" font-family="Space Mono,monospace" font-size="13" fill="#8a8580" letter-spacing="0.08em">SCALE OF PARAMETERS</text>
+            <!-- Row 1: Small -->
+            <text x="0" y="58" font-family="Space Mono,monospace" font-size="14" fill="#8a8580">Small</text>
+            <rect x="100" y="38" width="44" height="28" rx="5" fill="#d5d0c9"/>
+            <text x="152" y="57" font-family="Space Mono,monospace" font-size="13" fill="#8a8580">~1M params</text>
+            <!-- Row 2: Medium -->
+            <text x="0" y="112" font-family="Space Mono,monospace" font-size="14" fill="#8a8580">Medium</text>
+            <rect x="100" y="90" width="180" height="28" rx="5" fill="#8a8580"/>
+            <text x="288" y="109" font-family="Space Mono,monospace" font-size="13" fill="#8a8580">~1B params</text>
+            <!-- Row 3: LLM -->
+            <text x="0" y="168" font-family="Space Mono,monospace" font-size="16" fill="#c8211a" font-weight="bold">LLM</text>
+            <rect x="100" y="144" width="440" height="38" rx="5" fill="#c8211a"/>
+            <text x="528" y="169" font-family="Space Mono,monospace" font-size="13" fill="#ede9e3" text-anchor="end">100B+ params</text>
+            <!-- Footnote -->
+            <text x="0" y="200" font-family="Space Mono,monospace" font-size="10" fill="#8a8580" letter-spacing="0.04em">GPT-4 ~1.8T · LLaMA 3 ~70B · Gemini Ultra ~1T+</text>
+          </svg>
         </div>
       </div>
     </section>
@@ -1690,7 +1900,7 @@
       <div class="gn">07</div>
       <div class="sl">Under the Hood</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">11 / 37</div>
+      <div class="sc">12 / 40</div>
       <div class="si left">
         <div class="eyebrow r d1">How LLMs Think</div>
         <div
@@ -1752,7 +1962,7 @@
       <div class="gn">VC</div>
       <div class="sl">01 · Modern Dev</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">12 / 37</div>
+      <div class="sc">13 / 40</div>
       <div class="si">
         <div class="eyebrow r d1">Part 1 · Section 2</div>
         <div class="rule r d1"></div>
@@ -1773,7 +1983,7 @@
       <div class="gn">09</div>
       <div class="sl">The SDLC</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">13 / 37</div>
+      <div class="sc">14 / 40</div>
       <div class="si left">
         <div class="eyebrow r d1">Software Development Life Cycle</div>
         <div
@@ -1835,33 +2045,110 @@
       <div class="gn">10</div>
       <div class="sl">Methodology Comparison</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">14 / 37</div>
-      <div class="si left">
-        <div class="eyebrow r d1">Software Methodologies</div>
-        <div
-          class="headline r d2"
-          style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
-        >
-          Waterfall vs<br />Agile<span class="ac">.</span>
-        </div>
-        <div class="two-col r d3">
-          <div class="cc">
-            <span class="cc-tag">Traditional · Waterfall</span>
-            <div class="cc-title">Sequential &amp; Rigid</div>
-            <div class="cc-body">
-              Full planning upfront. Each phase must finish before the next
-              begins. Widely used by Japanese enterprises. Changes mid-project
-              are expensive.
-            </div>
+      <div class="sc">15 / 40</div>
+      <div class="si" style="display:flex; flex-direction:column; justify-content:center; gap:clamp(0.8rem,1.5vh,1.2rem); width:min(96vw,1300px); margin:0 auto;">
+        <div>
+          <div class="eyebrow r d1">Software Methodologies</div>
+          <div class="headline r d2" style="margin-bottom:0; font-size:clamp(2rem,4.5vw,3.8rem);">
+            Waterfall vs Agile<span class="ac">.</span>
           </div>
-          <div class="cc hi">
-            <span class="cc-tag">Modern · Agile / Scrum</span>
-            <div class="cc-title">Iterative &amp; Flexible</div>
-            <div class="cc-body">
-              Work in short sprints. Adapt to changes quickly. Build
-              incrementally — test early, improve often. The dominant approach
-              in most software teams today.
+        </div>
+        <!-- Two columns: card + SVG each -->
+        <div class="r d3" style="display:flex; gap:clamp(1.5rem,3vw,3rem); align-items:stretch;">
+          <!-- Waterfall column -->
+          <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:0.8rem;">
+            <div class="cc" style="font-size:0.82em;">
+              <span class="cc-tag">Traditional · Waterfall</span>
+              <div class="cc-title">Sequential &amp; Rigid</div>
+              <div class="cc-body">
+                Full planning upfront. Each phase must complete before the next begins. Changes mid-project are costly.
+              </div>
             </div>
+            <!-- Waterfall diagram: cascading staircase -->
+            <svg viewBox="0 0 240 158" xmlns="http://www.w3.org/2000/svg"
+              aria-label="Waterfall diagram: phases cascade one after another"
+              style="width:100%; height:auto; display:block;">
+              <defs>
+                <marker id="wf-arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+                  <polygon points="0,0 7,3.5 0,7" fill="#8a8580"/>
+                </marker>
+              </defs>
+              <!-- Phase boxes: staircase down-right, width=92, height=24, step=28x26 -->
+              <rect x="0"   y="0"   width="92" height="24" rx="3" fill="#ede9e3" stroke="#d5d0c9" stroke-width="1.5"/>
+              <text x="46"  y="16"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9.5" fill="#111111">Planning</text>
+
+              <rect x="28"  y="26"  width="92" height="24" rx="3" fill="#e0dbd3" stroke="#d5d0c9" stroke-width="1.5"/>
+              <text x="74"  y="42"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9.5" fill="#111111">Design</text>
+
+              <rect x="56"  y="52"  width="92" height="24" rx="3" fill="#d5d0c9" stroke="#c5c0b9" stroke-width="1.5"/>
+              <text x="102" y="68"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9.5" fill="#111111">Build</text>
+
+              <rect x="84"  y="78"  width="92" height="24" rx="3" fill="#c8c2ba" stroke="#b8b2aa" stroke-width="1.5"/>
+              <text x="130" y="94"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9.5" fill="#111111">Testing</text>
+
+              <rect x="112" y="104" width="92" height="24" rx="3" fill="#c8211a" stroke="none"/>
+              <text x="158" y="120" text-anchor="middle" font-family="Space Mono,monospace" font-size="9.5" fill="#ede9e3">Deploy</text>
+
+              <!-- Connector arrows (right edge → down → next box left) -->
+              <polyline points="92,12 108,12 108,38 120,38"   fill="none" stroke="#8a8580" stroke-width="1.2" marker-end="url(#wf-arr)"/>
+              <polyline points="120,64 136,64 136,90 148,90"  fill="none" stroke="#8a8580" stroke-width="1.2" marker-end="url(#wf-arr)"/>
+              <polyline points="148,90 148,90" fill="none" stroke="none"/>
+              <polyline points="92,38 108,38" fill="none" stroke="none"/>
+              <!-- simplified: just small downward ticks between boxes -->
+              <line x1="28" y1="24" x2="28" y2="26" stroke="#8a8580" stroke-width="1"/>
+              <line x1="56" y1="50" x2="56" y2="52" stroke="#8a8580" stroke-width="1"/>
+              <line x1="84" y1="76" x2="84" y2="78" stroke="#8a8580" stroke-width="1"/>
+              <line x1="112" y1="102" x2="112" y2="104" stroke="#8a8580" stroke-width="1"/>
+              <!-- No-going-back label -->
+              <text x="0" y="150" font-family="Space Mono,monospace" font-size="8" fill="#8a8580" letter-spacing="0.04em">← no going back once a phase ends</text>
+            </svg>
+          </div>
+
+          <!-- Agile column -->
+          <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:0.8rem;">
+            <div class="cc hi" style="font-size:0.82em;">
+              <span class="cc-tag">Modern · Agile / Scrum</span>
+              <div class="cc-title">Iterative &amp; Flexible</div>
+              <div class="cc-body">
+                Work in short sprints. Adapt to changes quickly. Build incrementally — test early, improve often.
+              </div>
+            </div>
+            <!-- Agile diagram: sprint cycle loop -->
+            <svg viewBox="0 0 240 158" xmlns="http://www.w3.org/2000/svg"
+              aria-label="Agile sprint cycle: Plan, Build, Test, Release repeat"
+              style="width:100%; height:auto; display:block;">
+              <defs>
+                <marker id="ag-arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+                  <polygon points="0,0 7,3.5 0,7" fill="#c8211a"/>
+                </marker>
+              </defs>
+              <!-- Sprint cycle: 4 nodes in a rough diamond, connected clockwise -->
+              <!-- Center: (120, 82) radius ~54 -->
+              <!-- Plan (top): (120, 22), Build (right): (174, 82), Test (bottom): (120, 142), Release (left): (66, 82) -->
+
+              <!-- Connecting arcs (clockwise) -->
+              <path d="M 142,28 A 58,58 0 0 1 170,68"  fill="none" stroke="#c8211a" stroke-width="2" marker-end="url(#ag-arr)"/>
+              <path d="M 170,96 A 58,58 0 0 1 142,136" fill="none" stroke="#c8211a" stroke-width="2" marker-end="url(#ag-arr)"/>
+              <path d="M 98,136 A 58,58 0 0 1 70,96"   fill="none" stroke="#c8211a" stroke-width="2" marker-end="url(#ag-arr)"/>
+              <path d="M 70,68  A 58,58 0 0 1 98,28"   fill="none" stroke="#c8211a" stroke-width="2" marker-end="url(#ag-arr)"/>
+
+              <!-- Phase nodes -->
+              <rect x="86"  y="10"  width="68" height="24" rx="12" fill="#c8211a"/>
+              <text x="120" y="26"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#ede9e3" font-weight="bold">PLAN</text>
+
+              <rect x="158" y="70"  width="68" height="24" rx="12" fill="#111111"/>
+              <text x="192" y="86"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#ede9e3" font-weight="bold">BUILD</text>
+
+              <rect x="86"  y="130" width="68" height="24" rx="12" fill="#111111"/>
+              <text x="120" y="146" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#ede9e3" font-weight="bold">TEST</text>
+
+              <rect x="14"  y="70"  width="68" height="24" rx="12" fill="#111111"/>
+              <text x="48"  y="86"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#ede9e3" font-weight="bold">RELEASE</text>
+
+              <!-- "Sprint" label in center -->
+              <text x="120" y="78"  text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#8a8580">SPRINT</text>
+              <text x="120" y="90"  text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#8a8580">CYCLE</text>
+            </svg>
           </div>
         </div>
       </div>
@@ -1875,7 +2162,7 @@
       <div class="gn">11</div>
       <div class="sl">Vibe Coding</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">15 / 37</div>
+      <div class="sc">16 / 40</div>
       <div class="si left">
         <div class="eyebrow r d1">What is Vibe Coding?</div>
         <div
@@ -1923,7 +2210,7 @@
       <div class="gn">12</div>
       <div class="sl">Two Approaches</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">16 / 37</div>
+      <div class="sc">17 / 40</div>
       <div class="si left">
         <div class="eyebrow r d1">Two Ways to Start a Project</div>
         <div
@@ -1961,28 +2248,52 @@
       <div class="gn">13</div>
       <div class="sl">The PRD</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">17 / 37</div>
-      <div class="si left">
-        <div class="eyebrow r d1">Spec-Driven Development</div>
-        <div
-          class="headline r d2"
-          style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
-        >
-          Your Blueprint<span class="ac">.</span>
-        </div>
-        <div class="defs def-box r d3">
-          <div class="def">
-            <div class="def-abbr">PRD</div>
-            <div>
-              <div class="def-main">
-                Product Requirements Document — your blueprint for the AI.
-              </div>
-              <div class="def-sub">
-                Purpose · Users · Features · Pages · Data · Constraints.<br />The
-                clearer the blueprint, the better the AI builds.
+      <div class="sc">18 / 40</div>
+      <div class="si row" style="align-items:center; gap:clamp(2rem,5vw,6rem); flex-wrap:wrap; justify-content:center;">
+        <!-- Left: text -->
+        <div style="flex:1 1 300px; min-width:0;">
+          <div class="eyebrow r d1">Spec-Driven Development</div>
+          <div
+            class="headline r d2"
+            style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
+          >
+            Your Blueprint<span class="ac">.</span>
+          </div>
+          <div class="defs def-box r d3">
+            <div class="def">
+              <div class="def-abbr">PRD</div>
+              <div>
+                <div class="def-main">
+                  Product Requirements Document — your blueprint for the AI.
+                </div>
+                <div class="def-sub">
+                  Purpose · Users · Features · Pages · Data · Constraints.<br />The
+                  clearer the blueprint, the better the AI builds.
+                </div>
               </div>
             </div>
           </div>
+        </div>
+        <!-- Right: document icon -->
+        <div class="r d4" style="flex:0 0 auto; display:flex; align-items:center; justify-content:center;">
+          <svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Document blueprint icon"
+            style="width:clamp(180px,22vw,280px); height:auto; display:block;">
+            <!-- Page body -->
+            <rect x="8" y="8" width="84" height="114" rx="4" fill="#f5f2ee" stroke="#d5d0c9" stroke-width="2"/>
+            <!-- Red header bar -->
+            <rect x="8" y="8" width="84" height="24" rx="4" fill="#c8211a"/>
+            <rect x="8" y="24" width="84" height="8" fill="#c8211a"/>
+            <!-- Header text -->
+            <text x="50" y="24" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#ede9e3" letter-spacing="0.06em">PRD</text>
+            <!-- Ruled lines -->
+            <line x1="20" y1="48" x2="80" y2="48" stroke="#d5d0c9" stroke-width="1.5"/>
+            <line x1="20" y1="60" x2="80" y2="60" stroke="#d5d0c9" stroke-width="1.5"/>
+            <line x1="20" y1="72" x2="65" y2="72" stroke="#d5d0c9" stroke-width="1.5"/>
+            <line x1="20" y1="84" x2="80" y2="84" stroke="#d5d0c9" stroke-width="1.5"/>
+            <line x1="20" y1="96" x2="55" y2="96" stroke="#d5d0c9" stroke-width="1.5"/>
+            <line x1="20" y1="108" x2="72" y2="108" stroke="#d5d0c9" stroke-width="1.5"/>
+          </svg>
         </div>
       </div>
     </section>
@@ -1995,7 +2306,7 @@
       <div class="gn">SDD</div>
       <div class="sl">Spec-Driven Flow</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">18 / 37</div>
+      <div class="sc">19 / 40</div>
       <div class="si left">
         <div class="eyebrow r d1">
           Spec-Driven Development — The Collaboration Loop
@@ -2038,7 +2349,7 @@
       <div class="gn">TDD</div>
       <div class="sl">Test-Driven Flow</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">19 / 37</div>
+      <div class="sc">20 / 40</div>
       <div class="si left">
         <div class="eyebrow r d1">
           Test-Driven Development — The Quality Loop
@@ -2082,7 +2393,7 @@
       <div class="gn">16</div>
       <div class="sl">Best Practices</div>
       <div class="pl">01 · Theory</div>
-      <div class="sc">20 / 37</div>
+      <div class="sc">21 / 40</div>
       <div class="si left">
         <div class="eyebrow r d1">Best Practices for Vibe Coding</div>
         <div
@@ -2116,6 +2427,54 @@
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
+     ║  SLIDE 21 — CHOOSING THE RIGHT MODEL               ║
+     ╚══════════════════════════════════════════════════════╝ -->
+    <section class="slide" id="s13d" aria-label="Choosing the Right Model">
+      <div class="sg"></div>
+      <div class="gn">M</div>
+      <div class="sl">01 · Model Selection</div>
+      <div class="pl">01 · Theory</div>
+      <div class="sc">22 / 40</div>
+      <div class="si left">
+        <div class="eyebrow r d1">Best Practices — Choosing the Right Model</div>
+        <div
+          class="headline r d2"
+          style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
+        >
+          Right Tool,<br />Right Job<span class="ac">.</span>
+        </div>
+        <div class="two-col r d3">
+          <div class="cc">
+            <span class="cc-tag">Planning Phase</span>
+            <div class="cc-title">Think &amp; Strategise</div>
+            <div class="cc-body">
+              Use <strong>Opus</strong> or <strong>GPT-5.5</strong> when the
+              task requires deep reasoning — writing specs, defining
+              architecture, breaking down complex problems before any code is
+              written.
+            </div>
+          </div>
+          <div class="cc hi">
+            <span class="cc-tag">Execution Phase · Agent Mode</span>
+            <div class="cc-title">Build &amp; Generate</div>
+            <div class="cc-body">
+              Use <strong>Sonnet</strong> or <strong>Codex</strong> for fast,
+              reliable code generation — multi-file agent tasks, refactoring,
+              and building features at speed.
+            </div>
+          </div>
+        </div>
+        <div
+          class="body r d4"
+          style="margin-top: clamp(0.75rem, 1.8vh, 1.4rem)"
+        >
+          Same question, different job. Plan with the thinker. Build with the
+          doer.
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════════════╗
      ║  SLIDE 17 — PRESENTATION 2 COVER (dark)            ║
      ╚══════════════════════════════════════════════════════╝ -->
     <section
@@ -2127,7 +2486,7 @@
       <div class="gn">02</div>
       <div class="sl">Presentation 02</div>
       <div class="pl">02 · Implementation</div>
-      <div class="sc">21 / 37</div>
+      <div class="sc">23 / 40</div>
       <div class="si bottom">
         <div class="eyebrow r d1">Part Two</div>
         <div class="display r d2">
@@ -2151,7 +2510,7 @@
       <div class="gn">T</div>
       <div class="sl">02 · Tools</div>
       <div class="pl">02 · Implementation</div>
-      <div class="sc">22 / 37</div>
+      <div class="sc">24 / 40</div>
       <div class="si">
         <div class="eyebrow r d1">Part 2 · Section 1</div>
         <div class="rule r d1"></div>
@@ -2170,23 +2529,242 @@
     <section class="slide" id="s16" aria-label="VSCode">
       <div class="sg"></div>
       <div class="gn">VS</div>
-      <div class="sl">VSCode</div>
       <div class="pl">02 · Implementation</div>
-      <div class="sc">23 / 37</div>
-      <div class="si left">
-        <div class="eyebrow r d1">Your Workspace</div>
-        <div
-          class="headline r d2"
-          style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
-        >
-          Visual Studio<br />Code<span class="ac">.</span>
-        </div>
-        <div class="hs r d3">
-          <div class="hs-text">
-            The code editor where your project lives. Free. Works on any
-            computer. GitHub Copilot lives inside it.
+      <div class="sc">25 / 40</div>
+      <div class="si left" style="position:relative; align-items:flex-start;">
+        <div style="font-size:0.9em; max-width:50%;">
+          <div class="eyebrow r d1">Your Workspace</div>
+          <div class="headline r d2" style="margin-bottom: clamp(0.6rem, 1.5vh, 1.2rem)">
+            Visual Studio<br />Code<span class="ac">.</span>
           </div>
-          <span class="hs-sub">VSCode · Free · code.visualstudio.com</span>
+          <div class="hs r d3">
+            <div class="hs-text">
+              The code editor where your project lives. Free. Works on any
+              computer. GitHub Copilot lives inside it.
+            </div>
+            <span class="hs-sub">VSCode · Free · code.visualstudio.com</span>
+          </div>
+        </div>
+        <!-- VS Code editor window illustration -->
+        <div class="r d4" style="position:absolute; top:clamp(1rem,3vh,2.5rem); right:clamp(1rem,2vw,2rem); width:38%;">
+          <svg viewBox="0 0 360 230" xmlns="http://www.w3.org/2000/svg" aria-label="VS Code editor window mockup" style="width:100%; height:auto; display:block; filter:drop-shadow(0 4px 16px rgba(0,0,0,0.35));">
+            <!-- Window bg -->
+            <rect width="360" height="230" rx="10" fill="#1e1e1e"/>
+            <!-- Title bar -->
+            <rect width="360" height="26" rx="10" fill="#323233"/>
+            <rect y="18" width="360" height="8" fill="#323233"/>
+            <!-- Traffic lights -->
+            <circle cx="16" cy="13" r="5.5" fill="#ff5f57"/>
+            <circle cx="32" cy="13" r="5.5" fill="#febc2e"/>
+            <circle cx="48" cy="13" r="5.5" fill="#28c840"/>
+            <text x="180" y="17" text-anchor="middle" font-family="Space Mono,monospace" font-size="7.5" fill="#888">Visual Studio Code — ShoppingApp</text>
+            <!-- Activity bar -->
+            <rect x="0" y="26" width="40" height="204" fill="#2c2c2c"/>
+            <!-- Files icon (active) -->
+            <rect x="8" y="36" width="24" height="24" rx="4" fill="#c8211a"/>
+            <rect x="13" y="41" width="12" height="2" rx="1" fill="#ede9e3"/>
+            <rect x="13" y="45" width="14" height="2" rx="1" fill="#ede9e3"/>
+            <rect x="13" y="49" width="10" height="2" rx="1" fill="#ede9e3"/>
+            <rect x="13" y="53" width="13" height="2" rx="1" fill="#ede9e3"/>
+            <!-- Search icon -->
+            <rect x="8" y="68" width="24" height="24" rx="4" fill="#3c3c3c"/>
+            <circle cx="18" cy="77" r="5" fill="none" stroke="#888" stroke-width="1.8"/>
+            <line x1="22" y1="82" x2="26" y2="86" stroke="#888" stroke-width="1.8" stroke-linecap="round"/>
+            <!-- Source control icon -->
+            <rect x="8" y="100" width="24" height="24" rx="4" fill="#3c3c3c"/>
+            <circle cx="16" cy="106" r="3" fill="none" stroke="#888" stroke-width="1.5"/>
+            <circle cx="24" cy="106" r="3" fill="none" stroke="#888" stroke-width="1.5"/>
+            <circle cx="20" cy="118" r="3" fill="none" stroke="#888" stroke-width="1.5"/>
+            <line x1="16" y1="109" x2="20" y2="115" stroke="#888" stroke-width="1.2"/>
+            <line x1="24" y1="109" x2="20" y2="115" stroke="#888" stroke-width="1.2"/>
+            <!-- Extensions icon -->
+            <rect x="8" y="132" width="24" height="24" rx="4" fill="#3c3c3c"/>
+            <rect x="13" y="137" width="8" height="8" rx="2" fill="none" stroke="#888" stroke-width="1.5"/>
+            <rect x="19" y="143" width="8" height="8" rx="2" fill="none" stroke="#888" stroke-width="1.5"/>
+            <!-- Tab bar -->
+            <rect x="40" y="26" width="320" height="26" fill="#252526"/>
+            <!-- Active tab: index.html -->
+            <rect x="40" y="26" width="90" height="26" fill="#1e1e1e"/>
+            <rect x="40" y="26" width="90" height="2" fill="#c8211a"/>
+            <text x="50" y="42" font-family="Space Mono,monospace" font-size="8" fill="#ede9e3">index.html</text>
+            <text x="122" y="42" font-family="Space Mono,monospace" font-size="8" fill="#555">✕</text>
+            <!-- Inactive tab: styles.css -->
+            <rect x="132" y="26" width="82" height="26" fill="#2d2d2d"/>
+            <text x="142" y="42" font-family="Space Mono,monospace" font-size="8" fill="#777">styles.css</text>
+            <!-- Inactive tab: app.js -->
+            <rect x="216" y="26" width="68" height="26" fill="#2d2d2d"/>
+            <text x="226" y="42" font-family="Space Mono,monospace" font-size="8" fill="#777">app.js</text>
+            <!-- Editor area bg -->
+            <rect x="40" y="52" width="320" height="156" fill="#1e1e1e"/>
+            <!-- Line number strip -->
+            <rect x="40" y="52" width="28" height="156" fill="#1e1e1e"/>
+            <!-- Code lines (syntax highlighted) -->
+            <!-- Line 1 -->
+            <text x="65" y="67" font-family="Space Mono,monospace" font-size="8.5" fill="#569cd6">&lt;!DOCTYPE html&gt;</text>
+            <text x="60" y="67" text-anchor="end" font-family="Space Mono,monospace" font-size="7" fill="#3c3c3c">1</text>
+            <!-- Line 2 -->
+            <text x="65" y="81" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&lt;</text>
+            <text x="73" y="81" font-family="Space Mono,monospace" font-size="8.5" fill="#4ec9b0">html</text>
+            <text x="101" y="81" font-family="Space Mono,monospace" font-size="8.5" fill="#9cdcfe"> lang</text>
+            <text x="131" y="81" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">=</text>
+            <text x="137" y="81" font-family="Space Mono,monospace" font-size="8.5" fill="#ce9178">"en"</text>
+            <text x="163" y="81" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&gt;</text>
+            <text x="60" y="81" text-anchor="end" font-family="Space Mono,monospace" font-size="7" fill="#3c3c3c">2</text>
+            <!-- Line 3 -->
+            <text x="75" y="95" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&lt;</text>
+            <text x="83" y="95" font-family="Space Mono,monospace" font-size="8.5" fill="#4ec9b0">head</text>
+            <text x="111" y="95" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&gt;</text>
+            <text x="60" y="95" text-anchor="end" font-family="Space Mono,monospace" font-size="7" fill="#3c3c3c">3</text>
+            <!-- Line 4 -->
+            <text x="85" y="109" font-family="Space Mono,monospace" font-size="8.5" fill="#6a9955">&lt;!-- ShoppingApp styles --&gt;</text>
+            <text x="60" y="109" text-anchor="end" font-family="Space Mono,monospace" font-size="7" fill="#3c3c3c">4</text>
+            <!-- Line 5 -->
+            <text x="85" y="123" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&lt;</text>
+            <text x="93" y="123" font-family="Space Mono,monospace" font-size="8.5" fill="#4ec9b0">link</text>
+            <text x="117" y="123" font-family="Space Mono,monospace" font-size="8.5" fill="#9cdcfe"> rel</text>
+            <text x="139" y="123" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">=</text>
+            <text x="145" y="123" font-family="Space Mono,monospace" font-size="8.5" fill="#ce9178">"stylesheet"</text>
+            <text x="60" y="123" text-anchor="end" font-family="Space Mono,monospace" font-size="7" fill="#3c3c3c">5</text>
+            <!-- Line 6 (active / cursor line) -->
+            <rect x="40" y="128" width="320" height="14" fill="rgba(255,255,255,0.04)"/>
+            <text x="75" y="139" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&lt;</text>
+            <text x="83" y="139" font-family="Space Mono,monospace" font-size="8.5" fill="#4ec9b0">body</text>
+            <text x="111" y="139" font-family="Space Mono,monospace" font-size="8.5" fill="#9cdcfe"> class</text>
+            <text x="145" y="139" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">=</text>
+            <text x="151" y="139" font-family="Space Mono,monospace" font-size="8.5" fill="#ce9178">"app"</text>
+            <text x="179" y="139" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&gt;</text>
+            <!-- cursor -->
+            <rect x="187" y="128" width="2" height="13" fill="#ede9e3" opacity="0.85"/>
+            <text x="60" y="139" text-anchor="end" font-family="Space Mono,monospace" font-size="7" fill="#ede9e3">6</text>
+            <!-- Line 7 -->
+            <text x="85" y="153" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&lt;</text>
+            <text x="93" y="153" font-family="Space Mono,monospace" font-size="8.5" fill="#4ec9b0">div</text>
+            <text x="113" y="153" font-family="Space Mono,monospace" font-size="8.5" fill="#9cdcfe"> id</text>
+            <text x="129" y="153" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">=</text>
+            <text x="135" y="153" font-family="Space Mono,monospace" font-size="8.5" fill="#ce9178">"root"</text>
+            <text x="163" y="153" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&gt;&lt;/</text>
+            <text x="191" y="153" font-family="Space Mono,monospace" font-size="8.5" fill="#4ec9b0">div</text>
+            <text x="211" y="153" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&gt;</text>
+            <text x="60" y="153" text-anchor="end" font-family="Space Mono,monospace" font-size="7" fill="#3c3c3c">7</text>
+            <!-- Line 8 -->
+            <text x="75" y="167" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&lt;/</text>
+            <text x="87" y="167" font-family="Space Mono,monospace" font-size="8.5" fill="#4ec9b0">body</text>
+            <text x="115" y="167" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&gt;</text>
+            <text x="60" y="167" text-anchor="end" font-family="Space Mono,monospace" font-size="7" fill="#3c3c3c">8</text>
+            <!-- Status bar -->
+            <rect x="0" y="208" width="360" height="22" fill="#c8211a"/>
+            <text x="10" y="222" font-family="Space Mono,monospace" font-size="7" fill="#ede9e3">⎇ main  ✓ 0 errors  ⚠ 0</text>
+            <text x="270" y="222" font-family="Space Mono,monospace" font-size="7" fill="#ede9e3">HTML · UTF-8</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════════════╗
+     ║  SLIDE 25 — WHAT IS GITHUB COPILOT?                ║
+     ╚══════════════════════════════════════════════════════╝ -->
+    <section class="slide" id="s16b" aria-label="What is GitHub Copilot?">
+      <div class="sg"></div>
+      <div class="gn">GH</div>
+      <div class="pl">02 · Implementation</div>
+      <div class="sc">26 / 40</div>
+      <div class="si left" style="position:relative; align-items:flex-start;">
+        <div style="font-size:0.88em; max-width:50%;">
+          <div class="eyebrow r d1">Your AI Pair Programmer</div>
+          <div class="headline r d2" style="margin-bottom: clamp(0.5rem, 1.2vh, 1rem)">
+            GitHub<br />Copilot<span class="ac">.</span>
+          </div>
+          <div class="hs r d3">
+            <div class="hs-text">
+              An AI pair programmer built directly into VSCode. Powered by
+              OpenAI and Microsoft — it doesn't just autocomplete lines, it
+              understands your entire project.
+            </div>
+            <span class="hs-sub">GitHub · Subscription · github.com/copilot</span>
+          </div>
+          <div class="defs r d4" style="margin-top: clamp(0.5rem, 1.2vh, 1rem);">
+            <div class="def" style="border-top: 1px solid var(--border)">
+              <div class="def-abbr">Why<br />"Copilot"?</div>
+              <div>
+                <div class="def-main">
+                  A co-pilot doesn't fly the plane — it helps the pilot do it better.
+                </div>
+                <div class="def-sub">
+                  You stay in control. Copilot handles the boilerplate, suggests
+                  patterns, executes multi-file tasks, and helps you move ten
+                  times faster without losing oversight.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Copilot Chat panel illustration -->
+        <div class="r d5" style="position:absolute; top:clamp(1rem,3vh,2.5rem); right:clamp(1rem,2vw,2rem); width:38%;">
+          <svg viewBox="0 0 300 290" xmlns="http://www.w3.org/2000/svg" aria-label="GitHub Copilot Chat panel in VS Code" style="width:100%; height:auto; display:block; filter:drop-shadow(0 4px 16px rgba(0,0,0,0.35));">
+            <!-- Panel bg -->
+            <rect width="300" height="290" rx="10" fill="#1e1e1e"/>
+            <!-- Header bar -->
+            <rect width="300" height="40" rx="10" fill="#252526"/>
+            <rect y="30" width="300" height="10" fill="#252526"/>
+            <!-- Copilot icon -->
+            <circle cx="18" cy="20" r="9" fill="#1f6feb"/>
+            <text x="18" y="24" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#fff">✦</text>
+            <!-- Title -->
+            <text x="32" y="25" font-family="Space Mono,monospace" font-size="8.5" fill="#ede9e3" font-weight="bold">GitHub Copilot</text>
+            <!-- Model pill -->
+            <rect x="198" y="12" width="90" height="16" rx="3" fill="#3c3c3c"/>
+            <text x="243" y="23" text-anchor="middle" font-family="Space Mono,monospace" font-size="7" fill="#888">GPT-4o  ▾</text>
+            <!-- Divider -->
+            <line x1="0" y1="40" x2="300" y2="40" stroke="#333" stroke-width="1"/>
+            <!-- Chat area -->
+            <rect x="0" y="40" width="300" height="208" fill="#1e1e1e"/>
+            <!-- User label -->
+            <text x="14" y="58" font-family="Space Mono,monospace" font-size="7" fill="#888">You</text>
+            <!-- User message bubble -->
+            <rect x="14" y="63" width="272" height="34" rx="6" fill="#2a2d2e"/>
+            <text x="22" y="77" font-family="Space Mono,monospace" font-size="7.5" fill="#ede9e3">Write a function to calculate</text>
+            <text x="22" y="90" font-family="Space Mono,monospace" font-size="7.5" fill="#ede9e3">the total price in the cart.</text>
+            <!-- Separator -->
+            <line x1="14" y1="108" x2="286" y2="108" stroke="#2a2a2a" stroke-width="1"/>
+            <!-- Copilot response header -->
+            <circle cx="22" cy="120" r="7" fill="#1f6feb" opacity="0.9"/>
+            <text x="22" y="124" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#fff">✦</text>
+            <text x="34" y="124" font-family="Space Mono,monospace" font-size="8" fill="#ede9e3" font-weight="bold">Copilot</text>
+            <!-- Response text -->
+            <text x="14" y="140" font-family="Space Mono,monospace" font-size="7.5" fill="#aaa">Sure! Here's the function:</text>
+            <!-- Code block -->
+            <rect x="14" y="146" width="272" height="76" rx="4" fill="#0d0d0d" stroke="#333" stroke-width="1"/>
+            <!-- Copy button -->
+            <rect x="258" y="149" width="24" height="13" rx="2" fill="#3c3c3c"/>
+            <text x="270" y="158" text-anchor="middle" font-family="Space Mono,monospace" font-size="6" fill="#777">copy</text>
+            <!-- Code content -->
+            <text x="20" y="163" font-family="Space Mono,monospace" font-size="7.5" fill="#569cd6">function </text>
+            <text x="74" y="163" font-family="Space Mono,monospace" font-size="7.5" fill="#dcdcaa">calculateTotal</text>
+            <text x="173" y="163" font-family="Space Mono,monospace" font-size="7.5" fill="#ede9e3">(cart) {</text>
+            <text x="28" y="176" font-family="Space Mono,monospace" font-size="7.5" fill="#569cd6">return </text>
+            <text x="70" y="176" font-family="Space Mono,monospace" font-size="7.5" fill="#9cdcfe">cart</text>
+            <text x="94" y="176" font-family="Space Mono,monospace" font-size="7.5" fill="#ede9e3">.</text>
+            <text x="98" y="176" font-family="Space Mono,monospace" font-size="7.5" fill="#dcdcaa">reduce</text>
+            <text x="136" y="176" font-family="Space Mono,monospace" font-size="7.5" fill="#ede9e3">((s, i) =&gt;</text>
+            <text x="36" y="189" font-family="Space Mono,monospace" font-size="7.5" fill="#9cdcfe">s</text>
+            <text x="44" y="189" font-family="Space Mono,monospace" font-size="7.5" fill="#ede9e3"> + </text>
+            <text x="60" y="189" font-family="Space Mono,monospace" font-size="7.5" fill="#9cdcfe">i</text>
+            <text x="66" y="189" font-family="Space Mono,monospace" font-size="7.5" fill="#ede9e3">.price, </text>
+            <text x="108" y="189" font-family="Space Mono,monospace" font-size="7.5" fill="#b5cea8">0</text>
+            <text x="116" y="189" font-family="Space Mono,monospace" font-size="7.5" fill="#ede9e3">);</text>
+            <text x="20" y="202" font-family="Space Mono,monospace" font-size="7.5" fill="#ede9e3">}</text>
+            <!-- Follow-up text -->
+            <text x="14" y="234" font-family="Space Mono,monospace" font-size="7.5" fill="#aaa">It sums all item prices using</text>
+            <text x="14" y="246" font-family="Space Mono,monospace" font-size="7.5" fill="#aaa">Array.reduce().</text>
+            <!-- Input area -->
+            <rect x="0" y="248" width="300" height="42" fill="#252526"/>
+            <line x1="0" y1="248" x2="300" y2="248" stroke="#333" stroke-width="1"/>
+            <rect x="10" y="256" width="254" height="26" rx="5" fill="#3c3c3c" stroke="#444" stroke-width="0.8"/>
+            <text x="20" y="272" font-family="Space Mono,monospace" font-size="7.5" fill="#555">Ask Copilot a question...</text>
+            <!-- Send button -->
+            <rect x="270" y="256" width="22" height="26" rx="5" fill="#1f6feb"/>
+            <text x="281" y="273" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fff">▶</text>
+          </svg>
         </div>
       </div>
     </section>
@@ -2199,7 +2777,7 @@
       <div class="gn">20</div>
       <div class="sl">GitHub Copilot</div>
       <div class="pl">02 · Implementation</div>
-      <div class="sc">24 / 37</div>
+      <div class="sc">27 / 40</div>
       <div class="si left">
         <div class="eyebrow r d1">GitHub Copilot — Your AI Assistant</div>
         <div
@@ -2244,7 +2822,7 @@
       <div class="gn">21</div>
       <div class="sl">Web Building Blocks</div>
       <div class="pl">02 · Implementation</div>
-      <div class="sc">25 / 37</div>
+      <div class="sc">28 / 40</div>
       <div class="si left">
         <div class="eyebrow r d1">The Building Blocks of the Web</div>
         <div
@@ -2259,10 +2837,10 @@
               <div class="n">HTML</div>
               <div class="t">FILE · 01</div>
             </div>
-            <div class="role">The structure.</div>
+            <div class="role">The skeleton.</div>
             <div class="desc">
-              The skeleton of every page — headings, buttons, forms, the cart,
-              the product grid. Tells the browser what's on the page.
+              Every bone of the page — headings, buttons, forms, the cart,
+              the product grid. Tells the browser what exists and where.
             </div>
             <div class="snip">
               <div><span class="cmt">// index.html</span></div>
@@ -2285,10 +2863,10 @@
               <div class="n">CSS</div>
               <div class="t">FILE · 02</div>
             </div>
-            <div class="role">The visual design.</div>
+            <div class="role">The clothing &amp; makeup.</div>
             <div class="desc">
-              Colors, spacing, type, layout, and how the page reflows on a
-              phone. Makes the structure feel like a product.
+              Colors, fonts, spacing, layout — and how the page reflows on a
+              phone. Turns the skeleton into something people want to use.
             </div>
             <div class="snip">
               <div><span class="cmt">/* styles.css */</span></div>
@@ -2303,10 +2881,10 @@
               <div class="n">JS</div>
               <div class="t">FILE · 03</div>
             </div>
-            <div class="role">The interactivity.</div>
+            <div class="role">The muscles &amp; brain.</div>
             <div class="desc">
-              What happens when you click. The product catalog, cart math, page
-              navigation, and checkout logic live here.
+              What fires when you click. Cart math, page navigation, product
+              filtering, and checkout logic — all the moving parts.
             </div>
             <div class="snip">
               <div><span class="cmt">// app.js</span></div>
@@ -2328,7 +2906,7 @@
       <div class="gn">TW</div>
       <div class="sl">02 · Tutorial</div>
       <div class="pl">02 · Implementation</div>
-      <div class="sc">26 / 37</div>
+      <div class="sc">29 / 40</div>
       <div class="si">
         <div class="eyebrow r d1">Part 2 · Section 2</div>
         <div class="rule r d1"></div>
@@ -2350,7 +2928,7 @@
       <div class="gn">01</div>
       <div class="sl">Step 01 · Setup</div>
       <div class="pl">02 · Implementation</div>
-      <div class="sc">27 / 37</div>
+      <div class="sc">30 / 40</div>
       <div class="si left">
         <div class="step-n r d1">01</div>
         <div class="step-a r d2">Create Your<br />Workspace Folder</div>
@@ -2376,7 +2954,7 @@
       <div class="gn">02</div>
       <div class="sl">Steps 02–03 · PRD</div>
       <div class="pl">02 · Implementation</div>
-      <div class="sc">28 / 37</div>
+      <div class="sc">31 / 40</div>
       <div class="si left">
         <div class="step-n r d1">02–03</div>
         <div class="step-a r d2">Build Your PRD<br />with Copilot</div>
@@ -2401,7 +2979,7 @@
       <div class="gn">04</div>
       <div class="sl">Step 04 · Wireframe</div>
       <div class="pl">02 · Implementation</div>
-      <div class="sc">29 / 37</div>
+      <div class="sc">32 / 40</div>
       <div class="si left">
         <div class="step-n r d1">04</div>
         <div class="step-a r d2">Generate<br />Wireframe Diagrams</div>
@@ -2427,7 +3005,7 @@
       <div class="gn">05</div>
       <div class="sl">Step 05 · Structure</div>
       <div class="pl">02 · Implementation</div>
-      <div class="sc">30 / 37</div>
+      <div class="sc">33 / 40</div>
       <div class="si left">
         <div class="step-n r d1">05</div>
         <div class="step-a r d2">Create the<br />ShoppingApp Folder</div>
@@ -2453,7 +3031,7 @@
       <div class="gn">06</div>
       <div class="sl">Step 06 · Context</div>
       <div class="pl">02 · Implementation</div>
-      <div class="sc">31 / 37</div>
+      <div class="sc">34 / 40</div>
       <div class="si left">
         <div class="step-n r d1">06</div>
         <div class="step-a r d2">Add Files to<br />Chat Context</div>
@@ -2479,7 +3057,7 @@
       <div class="gn">07</div>
       <div class="sl">Step 07 · Build</div>
       <div class="pl">02 · Implementation</div>
-      <div class="sc">32 / 37</div>
+      <div class="sc">35 / 40</div>
       <div class="si left">
         <div class="step-n r d1">07</div>
         <div class="step-a r d2">Build the App<br />with Agent</div>
@@ -2506,7 +3084,7 @@
       <div class="gn">08</div>
       <div class="sl">Step 08 · Test</div>
       <div class="pl">02 · Implementation</div>
-      <div class="sc">33 / 37</div>
+      <div class="sc">36 / 40</div>
       <div class="si left">
         <div class="step-n r d1">08</div>
         <div class="step-a r d2">Run and Test<br />the App</div>
@@ -2550,7 +3128,7 @@
       <div class="gn">↻</div>
       <div class="sl">Steps 09–11 · Refine</div>
       <div class="pl">02 · Implementation</div>
-      <div class="sc">34 / 37</div>
+      <div class="sc">37 / 40</div>
       <div class="si left">
         <div class="eyebrow r d1">Iterative Refinement</div>
         <div
@@ -2594,7 +3172,7 @@
       <div class="gn">12</div>
       <div class="sl">Step 12 · Save</div>
       <div class="pl">02 · Implementation</div>
-      <div class="sc">35 / 37</div>
+      <div class="sc">38 / 40</div>
       <div class="si left">
         <div class="step-n r d1">12</div>
         <div class="step-a r d2">Save Your<br />Workspace</div>
@@ -2620,7 +3198,7 @@
       <div class="gn">CO</div>
       <div class="sl">Step 13 · Collaborate</div>
       <div class="pl">02 · Implementation</div>
-      <div class="sc">36 / 37</div>
+      <div class="sc">39 / 40</div>
       <div class="si left">
         <div class="eyebrow r d1">Step 13 · Collaborate with Classmates</div>
         <div
@@ -2665,7 +3243,7 @@
       <div class="gn">VC</div>
       <div class="sl">VibeCODE · Seminar</div>
       <div class="pl">Summary</div>
-      <div class="sc">37 / 37</div>
+      <div class="sc">40 / 40</div>
       <div class="si bottom">
         <div class="eyebrow r d1">Key Takeaway</div>
         <div class="display r d2">
