@@ -1,17 +1,14 @@
 ﻿<!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VibeCODE Seminar — AI & Vibe Coding</title>
+    <title>VibeCODE セミナー — AI & バイブコーディング</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow+Condensed:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <style>
-      /* =====================================================
-   CSS CUSTOM PROPERTIES — Change here to retheme all
-   ===================================================== */
       :root {
         --red: #c8211a;
         --black: #111111;
@@ -26,7 +23,6 @@
         --sans: "Inter", sans-serif;
         --mono: "Space Mono", monospace;
 
-        /* Modular type scale — presenter-sized for 1080p+ screens */
         --t-display: clamp(3rem, 9vw, 10rem);
         --t-h2: clamp(2.2rem, 6vw, 7rem);
         --t-h3: clamp(1.5rem, 3.5vw, 3rem);
@@ -41,9 +37,6 @@
         --dur: 1s;
       }
 
-      /* =====================================================
-   RESET
-   ===================================================== */
       *,
       *::before,
       *::after {
@@ -52,9 +45,6 @@
         box-sizing: border-box;
       }
 
-      /* =====================================================
-   VIEWPORT BASE (from viewport-base.css)
-   ===================================================== */
       html,
       body {
         height: 100%;
@@ -127,13 +117,6 @@
         }
       }
 
-      /* =====================================================
-   UNIVERSAL SLIDE ANATOMY
-   Top red bar  ·  Left red bar  ·  Grid overlay
-   Ghost number  ·  Section label  ·  Part label  ·  Counter
-   ===================================================== */
-
-      /* Top red bar */
       .slide::before {
         content: "";
         position: absolute;
@@ -144,7 +127,6 @@
         background: var(--red);
         z-index: 20;
       }
-      /* Left red bar */
       .slide::after {
         content: "";
         position: absolute;
@@ -156,14 +138,11 @@
         z-index: 20;
       }
 
-      /* Black vertical accent line removed per user request */
       .vrule {
         display: none;
       }
 
-      /* Faint grid */
       .sg {
-        /* slide-grid */
         position: absolute;
         inset: 0;
         pointer-events: none;
@@ -187,7 +166,6 @@
           );
       }
 
-      /* Ghost number — top-left */
       .gn {
         position: absolute;
         top: -4px;
@@ -207,7 +185,6 @@
         opacity: 0.04;
       }
 
-      /* Section label — top-right */
       .sl {
         position: absolute;
         top: clamp(12px, 1.8vh, 20px);
@@ -220,7 +197,6 @@
         z-index: 20;
       }
 
-      /* Part label — bottom-left rotated */
       .pl {
         position: absolute;
         bottom: clamp(18px, 3.5vh, 52px);
@@ -239,7 +215,6 @@
         color: #3a3a3a;
       }
 
-      /* Slide counter — bottom-right */
       .sc {
         position: absolute;
         bottom: clamp(12px, 2vh, 20px);
@@ -254,9 +229,6 @@
         color: #3a3a3a;
       }
 
-      /* =====================================================
-   SLIDE INNER — main content area
-   ===================================================== */
       .si {
         position: relative;
         z-index: 5;
@@ -279,15 +251,11 @@
         align-items: center;
         justify-content: center;
       }
-      /* .left was previously top-aligned; now all content is centred vertically */
       .si.left {
         justify-content: center;
         align-items: center;
       }
 
-      /* =====================================================
-   ANIMATION — reveal on .visible
-   ===================================================== */
       .r {
         opacity: 0;
         transform: translateY(22px);
@@ -317,28 +285,13 @@
         transform: none;
       }
 
-      .d1 {
-        transition-delay: 0.04s;
-      }
-      .d2 {
-        transition-delay: 0.1s;
-      }
-      .d3 {
-        transition-delay: 0.16s;
-      }
-      .d4 {
-        transition-delay: 0.22s;
-      }
-      .d5 {
-        transition-delay: 0.28s;
-      }
-      .d6 {
-        transition-delay: 0.34s;
-      }
+      .d1 { transition-delay: 0.04s; }
+      .d2 { transition-delay: 0.1s; }
+      .d3 { transition-delay: 0.16s; }
+      .d4 { transition-delay: 0.22s; }
+      .d5 { transition-delay: 0.28s; }
+      .d6 { transition-delay: 0.34s; }
 
-      /* =====================================================
-   TYPOGRAPHY ATOMS
-   ===================================================== */
       .eyebrow {
         font-family: var(--cond);
         font-size: clamp(1rem, 1.8vw, 1.4rem);
@@ -385,7 +338,6 @@
         color: var(--muted);
       }
 
-      /* Dark slide overrides */
       .slide-dark {
         background: var(--richblack);
         color: #fff;
@@ -401,9 +353,6 @@
         color: var(--red);
       }
 
-      /* =====================================================
-   DIVIDER RULE
-   ===================================================== */
       .rule {
         width: clamp(36px, 5vw, 72px);
         height: 3px;
@@ -411,9 +360,6 @@
         margin-bottom: clamp(0.6rem, 1.5vh, 1.2rem);
       }
 
-      /* =====================================================
-   DEFINITION ROWS
-   ===================================================== */
       .defs {
         display: flex;
         flex-direction: column;
@@ -453,7 +399,6 @@
         line-height: 1.4;
       }
 
-      /* Slide 4 — surrounding box around the AI definition (default = lifted state) */
       .def-box {
         border: 2px solid var(--black);
         padding: clamp(1.4rem, 2.6vh, 2.2rem) clamp(1.6rem, 2.8vw, 2.4rem);
@@ -480,9 +425,6 @@
         padding: 0;
       }
 
-      /* =====================================================
-   NESTED CONCEPT BOXES (AI Family Tree)
-   ===================================================== */
       .c-outer {
         border: 1.5px solid var(--border);
         padding: clamp(0.8rem, 1.8vw, 1.6rem);
@@ -538,9 +480,6 @@
         vertical-align: middle;
       }
 
-      /* =====================================================
-   STEP SLIDES
-   ===================================================== */
       .step-n {
         font-family: var(--serif);
         font-weight: 900;
@@ -609,474 +548,6 @@
       }
       .slide-dark .step-s {
         color: #444;
-      }
-
-      /* =====================================================
-   3-TILE GRID
-   ===================================================== */
-      .tiles-3 {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: clamp(0.75rem, 1.8vw, 2rem);
-        width: min(92vw, 1200px);
-      }
-      .tile {
-        border: 1px solid var(--border);
-        padding: clamp(1rem, 2.5vw, 2.5rem);
-        background: var(--surface);
-      }
-      .tile-tag {
-        font-family: var(--mono);
-        font-size: var(--t-mono);
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--red);
-        display: block;
-        margin-bottom: clamp(0.4rem, 0.9vh, 0.75rem);
-      }
-      .tile-name {
-        font-family: var(--cond);
-        font-size: clamp(1.3rem, 3vw, 2.6rem);
-        font-weight: 700;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: var(--black);
-        margin-bottom: clamp(0.35rem, 0.7vh, 0.6rem);
-      }
-      .tile-desc {
-        font-family: var(--sans);
-        font-size: clamp(0.85rem, 1.35vw, 1.05rem);
-        color: var(--muted);
-        line-height: 1.5;
-      }
-      .tile.hi {
-        border-color: var(--red);
-      }
-      .tile.hi .tile-name {
-        color: var(--red);
-      }
-      .tile.dark {
-        background: var(--richblack);
-        border-color: #2a2a2a;
-      }
-      .tile.dark .tile-name {
-        color: #fff;
-      }
-      .tile.dark .tile-desc {
-        color: #555;
-      }
-
-      /* =====================================================
-   TWO-COLUMN CARD
-   ===================================================== */
-      .two-col {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: clamp(1.25rem, 3vw, 3rem);
-        width: min(92vw, 1100px);
-      }
-      .cc {
-        border: 1px solid var(--border);
-        padding: clamp(1rem, 2.5vw, 2.5rem);
-      }
-      .cc-tag {
-        font-family: var(--mono);
-        font-size: var(--t-mono);
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--muted);
-        display: block;
-        margin-bottom: clamp(0.4rem, 0.8vh, 0.7rem);
-      }
-      .cc-title {
-        font-family: var(--cond);
-        font-size: clamp(1.2rem, 2.6vw, 2.2rem);
-        font-weight: 700;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        margin-bottom: clamp(0.4rem, 0.8vh, 0.7rem);
-      }
-      .cc-body {
-        font-family: var(--sans);
-        font-size: clamp(0.9rem, 1.4vw, 1.1rem);
-        color: var(--muted);
-        line-height: 1.55;
-      }
-      .cc.hi {
-        border-color: var(--red);
-      }
-      .cc.hi .cc-tag {
-        color: var(--red);
-      }
-      .cc.hi .cc-title {
-        color: var(--red);
-      }
-
-      /* =====================================================
-   SDLC PHASES — 5-column bordered grid (Vibe Coding Best Practices style)
-   ===================================================== */
-      .sdlc-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 0;
-        width: min(95vw, 1400px);
-        border-top: 2px solid var(--black);
-        border-bottom: 2px solid var(--black);
-        margin-top: clamp(1rem, 2.5vh, 2rem);
-      }
-      .sdlc-cell {
-        padding: clamp(1.2rem, 2.4vh, 2rem) clamp(1.1rem, 1.8vw, 1.7rem);
-        border-right: 2px solid var(--black);
-        position: relative;
-        background: transparent;
-        transition:
-          background 0.35s var(--ease),
-          color 0.35s var(--ease);
-        cursor: default;
-      }
-      .sdlc-cell:last-child {
-        border-right: 0;
-      }
-      .sdlc-phase-num {
-        font-family: var(--mono);
-        font-size: clamp(0.7rem, 1vw, 0.78rem);
-        letter-spacing: 0.22em;
-        font-weight: 700;
-        color: var(--red);
-        text-transform: uppercase;
-      }
-      .sdlc-phase-name {
-        font-family: var(--cond);
-        font-weight: 700;
-        font-size: clamp(1.6rem, 3vw, 2.6rem);
-        letter-spacing: 0.04em;
-        line-height: 0.95;
-        text-transform: uppercase;
-        margin-top: clamp(0.5rem, 0.9vh, 0.7rem);
-        color: var(--black);
-      }
-      .sdlc-phase-desc {
-        font-family: var(--sans);
-        font-size: clamp(0.85rem, 1.15vw, 1rem);
-        color: #3a3631;
-        margin-top: clamp(0.45rem, 0.9vh, 0.7rem);
-        line-height: 1.45;
-      }
-      /* The featured (build) phase — inverted dark like the reference */
-      .sdlc-cell.is-featured {
-        background: var(--black);
-        color: var(--cream);
-      }
-      .sdlc-cell.is-featured .sdlc-phase-name {
-        color: #fff;
-      }
-      .sdlc-cell.is-featured .sdlc-phase-desc {
-        color: #cfc8b8;
-      }
-
-      /* Hover: any cell can flash dark, the featured cell flashes red */
-      .sdlc-cell:hover {
-        background: var(--red);
-        color: #fff;
-      }
-      .sdlc-cell:hover .sdlc-phase-num {
-        color: #1a1410;
-      }
-      .sdlc-cell:hover .sdlc-phase-name {
-        color: #fff;
-      }
-      .sdlc-cell:hover .sdlc-phase-desc {
-        color: rgba(255, 255, 255, 0.9);
-      }
-      .sdlc-cell.is-featured:hover {
-        background: var(--red);
-      }
-
-      /* Reveal stagger inside the grid */
-      .slide.visible .sdlc-cell {
-        animation: cellRise 0.7s var(--ease) both;
-      }
-      .slide.visible .sdlc-cell:nth-child(1) {
-        animation-delay: 0.2s;
-      }
-      .slide.visible .sdlc-cell:nth-child(2) {
-        animation-delay: 0.3s;
-      }
-      .slide.visible .sdlc-cell:nth-child(3) {
-        animation-delay: 0.4s;
-      }
-      .slide.visible .sdlc-cell:nth-child(4) {
-        animation-delay: 0.5s;
-      }
-      .slide.visible .sdlc-cell:nth-child(5) {
-        animation-delay: 0.6s;
-      }
-      @keyframes cellRise {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: none;
-        }
-      }
-
-      /* =====================================================
-   FILE CARDS — exact .file markup from Vibe Coding Best Practices
-   ===================================================== */
-      .files {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: clamp(0.9rem, 1.6vw, 1.5rem);
-        width: min(94vw, 1500px);
-        margin-top: clamp(0.8rem, 1.8vh, 1.4rem);
-      }
-      .file {
-        background: #0e0e0e;
-        color: #ede7da;
-        padding: clamp(1.1rem, 2vh, 1.7rem) clamp(1.2rem, 2vw, 1.75rem)
-          clamp(1.2rem, 2.2vh, 1.75rem);
-        font-family: var(--mono);
-        font-size: clamp(0.78rem, 1vw, 0.92rem);
-        line-height: 1.7;
-        min-height: clamp(320px, 42vh, 420px);
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        border: 2px solid #0e0e0e;
-        transition:
-          transform 0.4s var(--ease),
-          box-shadow 0.4s var(--ease);
-      }
-      .file .head {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        border-bottom: 1px solid rgba(237, 231, 218, 0.2);
-        padding-bottom: 12px;
-        margin-bottom: 8px;
-      }
-      .file .head .n {
-        font-family: var(--cond);
-        font-weight: 700;
-        font-size: clamp(1.8rem, 3.4vw, 2.6rem);
-        color: #fff;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        line-height: 1;
-        transition: color 0.3s var(--ease);
-      }
-      .file .head .t {
-        font-family: var(--mono);
-        font-size: clamp(0.65rem, 0.85vw, 0.75rem);
-        letter-spacing: 0.22em;
-        color: var(--red);
-        text-transform: uppercase;
-        font-weight: 700;
-      }
-      .file .role {
-        font-family: var(--sans);
-        font-weight: 600;
-        font-size: clamp(0.9rem, 1.25vw, 1.1rem);
-        color: #fff;
-        margin-top: 4px;
-      }
-      .file .desc {
-        font-family: var(--sans);
-        font-weight: 400;
-        font-size: clamp(0.82rem, 1.1vw, 0.96rem);
-        line-height: 1.5;
-        color: #cfc8b8;
-      }
-      .file .snip {
-        margin-top: auto;
-        background: rgba(237, 231, 218, 0.06);
-        padding: clamp(0.7rem, 1.2vh, 1rem) clamp(0.8rem, 1.2vw, 1rem);
-        font-size: clamp(0.72rem, 0.92vw, 0.82rem);
-        color: #cfc8b8;
-        font-family: var(--mono);
-        line-height: 1.6;
-      }
-      .file .snip .acc {
-        color: var(--red);
-      }
-      .file .snip .cmt {
-        color: #7c8784;
-      }
-      .file:hover {
-        transform: translateY(-8px) rotate(-0.3deg);
-        box-shadow: 18px 22px 0 -2px rgba(200, 33, 26, 0.85);
-      }
-      .file:hover .head .n {
-        color: var(--red);
-      }
-
-      /* =====================================================
-   GENERIC INTERACTIVITY POLISH
-   ===================================================== */
-
-      /* tile lift + red top bar */
-      .tile {
-        position: relative;
-        transition:
-          transform 0.35s var(--ease),
-          border-color 0.3s var(--ease);
-        cursor: default;
-      }
-      .tile::before {
-        content: "";
-        position: absolute;
-        top: -1px;
-        left: 0;
-        height: 2px;
-        width: 0;
-        background: var(--red);
-        transition: width 0.55s var(--ease);
-      }
-      .tile:hover {
-        transform: translateY(-6px);
-      }
-      .tile:hover::before {
-        width: 100%;
-      }
-      .tile:hover .tile-tag {
-        color: var(--black);
-      }
-      .tile.dark:hover .tile-tag {
-        color: #fff;
-      }
-
-      /* Practices rows — red shift */
-      .prac {
-        transition:
-          padding-left 0.3s var(--ease),
-          background 0.3s var(--ease);
-      }
-      .prac:hover {
-        background: rgba(200, 33, 26, 0.05);
-        padding-left: 14px;
-      }
-      .prac:hover .prac-n {
-        color: var(--red);
-      }
-
-      /* Compare cards */
-      .cc {
-        transition:
-          transform 0.35s var(--ease),
-          border-color 0.3s var(--ease);
-      }
-      .cc:hover {
-        transform: translateY(-6px);
-        border-color: var(--red);
-      }
-
-      /* Checklist items */
-      .check {
-        transition:
-          padding-left 0.3s var(--ease),
-          background 0.3s var(--ease);
-      }
-      .check:hover {
-        padding-left: 14px;
-        background: rgba(200, 33, 26, 0.05);
-      }
-      .check:hover .check-mark {
-        color: var(--red);
-        transform: scale(1.15);
-      }
-      .check-mark {
-        transition:
-          color 0.3s var(--ease),
-          transform 0.3s var(--ease);
-        display: inline-block;
-      }
-
-      /* Step cards */
-      .step-n {
-        transition: color 0.25s var(--ease);
-      }
-      .slide:hover .step-n {
-        color: var(--red);
-      }
-
-      /* Ghost number subtle parallax target */
-      .gn {
-        will-change: transform;
-        transition: transform 0.9s var(--ease);
-      }
-      .slide.visible .gn {
-        transform: translate(var(--ghx, 0), var(--ghy, 0));
-      }
-
-      /* =====================================================
-   PRACTICES (Best Practices / Steps list)
-   ===================================================== */
-      .practices {
-        display: flex;
-        flex-direction: column;
-        width: min(90vw, 1000px);
-      }
-      .prac {
-        display: flex;
-        gap: clamp(1rem, 2.2vw, 2rem);
-        align-items: start;
-        padding: clamp(0.75rem, 1.6vh, 1.35rem) 0;
-        border-bottom: 1px solid var(--border);
-      }
-      .prac:last-child {
-        border-bottom: none;
-      }
-      .prac-n {
-        font-family: var(--mono);
-        font-size: var(--t-mono);
-        letter-spacing: 0.12em;
-        color: var(--red);
-        text-transform: uppercase;
-        flex-shrink: 0;
-        padding-top: 4px;
-      }
-      .prac-r {
-        font-family: var(--cond);
-        font-size: clamp(1.1rem, 2.5vw, 2rem);
-        font-weight: 700;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        color: var(--black);
-        line-height: 1.1;
-      }
-
-      /* =====================================================
-   HIGHLIGHT STATEMENT BOX
-   ===================================================== */
-      .hs {
-        border-left: 5px solid var(--red);
-        padding: clamp(1rem, 2.5vw, 2.25rem) clamp(1.25rem, 2.8vw, 2.5rem);
-        background: var(--surface);
-        width: min(92vw, 1000px);
-      }
-      .hs-text {
-        font-family: var(--serif);
-        font-size: clamp(1.2rem, 2.8vw, 2.4rem);
-        font-weight: 700;
-        line-height: 1.3;
-        color: var(--black);
-      }
-      .hs-sub {
-        font-family: var(--mono);
-        font-size: var(--t-mono);
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--red);
-        display: block;
-        margin-top: clamp(0.4rem, 0.8vh, 0.75rem);
-      }
-      .slide-dark .hs {
-        background: rgba(255, 255, 255, 0.04);
-      }
-      .slide-dark .hs-text {
-        color: #fff;
       }
 
       /* =====================================================
@@ -1168,9 +639,400 @@
         margin-top: clamp(0.4rem, 0.8vh, 0.6rem);
       }
 
-      /* =====================================================
-   PROBABILITY BARS (Under the Hood)
-   ===================================================== */
+      .tiles-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(0.75rem, 1.8vw, 2rem);
+        width: min(92vw, 1200px);
+      }
+      .tile {
+        border: 1px solid var(--border);
+        padding: clamp(1rem, 2.5vw, 2.5rem);
+        background: var(--surface);
+      }
+      .tile-tag {
+        font-family: var(--mono);
+        font-size: var(--t-mono);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--red);
+        display: block;
+        margin-bottom: clamp(0.4rem, 0.9vh, 0.75rem);
+      }
+      .tile-name {
+        font-family: var(--cond);
+        font-size: clamp(1.3rem, 3vw, 2.6rem);
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--black);
+        margin-bottom: clamp(0.35rem, 0.7vh, 0.6rem);
+      }
+      .tile-desc {
+        font-family: var(--sans);
+        font-size: clamp(0.85rem, 1.35vw, 1.05rem);
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      .tile.hi {
+        border-color: var(--red);
+      }
+      .tile.hi .tile-name {
+        color: var(--red);
+      }
+      .tile.dark {
+        background: var(--richblack);
+        border-color: #2a2a2a;
+      }
+      .tile.dark .tile-name {
+        color: #fff;
+      }
+      .tile.dark .tile-desc {
+        color: #555;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(1.25rem, 3vw, 3rem);
+        width: min(92vw, 1100px);
+      }
+      .cc {
+        border: 1px solid var(--border);
+        padding: clamp(1rem, 2.5vw, 2.5rem);
+      }
+      .cc-tag {
+        font-family: var(--mono);
+        font-size: var(--t-mono);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        display: block;
+        margin-bottom: clamp(0.4rem, 0.8vh, 0.7rem);
+      }
+      .cc-title {
+        font-family: var(--cond);
+        font-size: clamp(1.2rem, 2.6vw, 2.2rem);
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: clamp(0.4rem, 0.8vh, 0.7rem);
+      }
+      .cc-body {
+        font-family: var(--sans);
+        font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+        color: var(--muted);
+        line-height: 1.55;
+      }
+      .cc.hi {
+        border-color: var(--red);
+      }
+      .cc.hi .cc-tag {
+        color: var(--red);
+      }
+      .cc.hi .cc-title {
+        color: var(--red);
+      }
+
+      .sdlc-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0;
+        width: min(95vw, 1400px);
+        border-top: 2px solid var(--black);
+        border-bottom: 2px solid var(--black);
+        margin-top: clamp(1rem, 2.5vh, 2rem);
+      }
+      .sdlc-cell {
+        padding: clamp(1.2rem, 2.4vh, 2rem) clamp(1.1rem, 1.8vw, 1.7rem);
+        border-right: 2px solid var(--black);
+        position: relative;
+        background: transparent;
+        transition:
+          background 0.35s var(--ease),
+          color 0.35s var(--ease);
+        cursor: default;
+      }
+      .sdlc-cell:last-child {
+        border-right: 0;
+      }
+      .sdlc-phase-num {
+        font-family: var(--mono);
+        font-size: clamp(0.7rem, 1vw, 0.78rem);
+        letter-spacing: 0.22em;
+        font-weight: 700;
+        color: var(--red);
+        text-transform: uppercase;
+      }
+      .sdlc-phase-name {
+        font-family: var(--cond);
+        font-weight: 700;
+        font-size: clamp(1.6rem, 3vw, 2.6rem);
+        letter-spacing: 0.04em;
+        line-height: 0.95;
+        text-transform: uppercase;
+        margin-top: clamp(0.5rem, 0.9vh, 0.7rem);
+        color: var(--black);
+      }
+      .sdlc-phase-desc {
+        font-family: var(--sans);
+        font-size: clamp(0.85rem, 1.15vw, 1rem);
+        color: #3a3631;
+        margin-top: clamp(0.45rem, 0.9vh, 0.7rem);
+        line-height: 1.45;
+      }
+      .sdlc-cell.is-featured {
+        background: var(--black);
+        color: var(--cream);
+      }
+      .sdlc-cell.is-featured .sdlc-phase-name {
+        color: #fff;
+      }
+      .sdlc-cell.is-featured .sdlc-phase-desc {
+        color: #cfc8b8;
+      }
+      .sdlc-cell:hover {
+        background: var(--red);
+        color: #fff;
+      }
+      .sdlc-cell:hover .sdlc-phase-num {
+        color: #1a1410;
+      }
+      .sdlc-cell:hover .sdlc-phase-name {
+        color: #fff;
+      }
+      .sdlc-cell:hover .sdlc-phase-desc {
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .sdlc-cell.is-featured:hover {
+        background: var(--red);
+      }
+
+      .slide.visible .sdlc-cell {
+        animation: cellRise 0.7s var(--ease) both;
+      }
+      .slide.visible .sdlc-cell:nth-child(1) { animation-delay: 0.2s; }
+      .slide.visible .sdlc-cell:nth-child(2) { animation-delay: 0.3s; }
+      .slide.visible .sdlc-cell:nth-child(3) { animation-delay: 0.4s; }
+      .slide.visible .sdlc-cell:nth-child(4) { animation-delay: 0.5s; }
+      .slide.visible .sdlc-cell:nth-child(5) { animation-delay: 0.6s; }
+      @keyframes cellRise {
+        from { opacity: 0; transform: translateY(20px); }
+        to   { opacity: 1; transform: none; }
+      }
+
+      .files {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(0.9rem, 1.6vw, 1.5rem);
+        width: min(94vw, 1500px);
+        margin-top: clamp(0.8rem, 1.8vh, 1.4rem);
+      }
+      .file {
+        background: #0e0e0e;
+        color: #ede7da;
+        padding: clamp(1.1rem, 2vh, 1.7rem) clamp(1.2rem, 2vw, 1.75rem)
+          clamp(1.2rem, 2.2vh, 1.75rem);
+        font-family: var(--mono);
+        font-size: clamp(0.78rem, 1vw, 0.92rem);
+        line-height: 1.7;
+        min-height: clamp(320px, 42vh, 420px);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border: 2px solid #0e0e0e;
+        transition:
+          transform 0.4s var(--ease),
+          box-shadow 0.4s var(--ease);
+      }
+      .file .head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        border-bottom: 1px solid rgba(237, 231, 218, 0.2);
+        padding-bottom: 12px;
+        margin-bottom: 8px;
+      }
+      .file .head .n {
+        font-family: var(--cond);
+        font-weight: 700;
+        font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+        color: #fff;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        line-height: 1;
+        transition: color 0.3s var(--ease);
+      }
+      .file .head .t {
+        font-family: var(--mono);
+        font-size: clamp(0.65rem, 0.85vw, 0.75rem);
+        letter-spacing: 0.22em;
+        color: var(--red);
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      .file .role {
+        font-family: var(--sans);
+        font-weight: 600;
+        font-size: clamp(0.9rem, 1.25vw, 1.1rem);
+        color: #fff;
+        margin-top: 4px;
+      }
+      .file .desc {
+        font-family: var(--sans);
+        font-weight: 400;
+        font-size: clamp(0.82rem, 1.1vw, 0.96rem);
+        line-height: 1.5;
+        color: #cfc8b8;
+      }
+      .file .snip {
+        margin-top: auto;
+        background: rgba(237, 231, 218, 0.06);
+        padding: clamp(0.7rem, 1.2vh, 1rem) clamp(0.8rem, 1.2vw, 1rem);
+        font-size: clamp(0.72rem, 0.92vw, 0.82rem);
+        color: #cfc8b8;
+        font-family: var(--mono);
+        line-height: 1.6;
+      }
+      .file .snip .acc { color: var(--red); }
+      .file .snip .cmt { color: #7c8784; }
+      .file:hover {
+        transform: translateY(-8px) rotate(-0.3deg);
+        box-shadow: 18px 22px 0 -2px rgba(200, 33, 26, 0.85);
+      }
+      .file:hover .head .n { color: var(--red); }
+
+      .tile {
+        position: relative;
+        transition:
+          transform 0.35s var(--ease),
+          border-color 0.3s var(--ease);
+        cursor: default;
+      }
+      .tile::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 0;
+        height: 2px;
+        width: 0;
+        background: var(--red);
+        transition: width 0.55s var(--ease);
+      }
+      .tile:hover { transform: translateY(-6px); }
+      .tile:hover::before { width: 100%; }
+      .tile:hover .tile-tag { color: var(--black); }
+      .tile.dark:hover .tile-tag { color: #fff; }
+
+      .prac {
+        transition:
+          padding-left 0.3s var(--ease),
+          background 0.3s var(--ease);
+      }
+      .prac:hover {
+        background: rgba(200, 33, 26, 0.05);
+        padding-left: 14px;
+      }
+      .prac:hover .prac-n { color: var(--red); }
+
+      .cc {
+        transition:
+          transform 0.35s var(--ease),
+          border-color 0.3s var(--ease);
+      }
+      .cc:hover {
+        transform: translateY(-6px);
+        border-color: var(--red);
+      }
+
+      .check {
+        transition:
+          padding-left 0.3s var(--ease),
+          background 0.3s var(--ease);
+      }
+      .check:hover {
+        padding-left: 14px;
+        background: rgba(200, 33, 26, 0.05);
+      }
+      .check:hover .check-mark {
+        color: var(--red);
+        transform: scale(1.15);
+      }
+      .check-mark {
+        transition:
+          color 0.3s var(--ease),
+          transform 0.3s var(--ease);
+        display: inline-block;
+      }
+
+      .step-n { transition: color 0.25s var(--ease); }
+      .slide:hover .step-n { color: var(--red); }
+
+      .gn {
+        will-change: transform;
+        transition: transform 0.9s var(--ease);
+      }
+      .slide.visible .gn {
+        transform: translate(var(--ghx, 0), var(--ghy, 0));
+      }
+
+      .practices {
+        display: flex;
+        flex-direction: column;
+        width: min(90vw, 1000px);
+      }
+      .prac {
+        display: flex;
+        gap: clamp(1rem, 2.2vw, 2rem);
+        align-items: start;
+        padding: clamp(0.75rem, 1.6vh, 1.35rem) 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .prac:last-child { border-bottom: none; }
+      .prac-n {
+        font-family: var(--mono);
+        font-size: var(--t-mono);
+        letter-spacing: 0.12em;
+        color: var(--red);
+        text-transform: uppercase;
+        flex-shrink: 0;
+        padding-top: 4px;
+      }
+      .prac-r {
+        font-family: var(--cond);
+        font-size: clamp(1.1rem, 2.5vw, 2rem);
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--black);
+        line-height: 1.1;
+      }
+
+      .hs {
+        border-left: 5px solid var(--red);
+        padding: clamp(1rem, 2.5vw, 2.25rem) clamp(1.25rem, 2.8vw, 2.5rem);
+        background: var(--surface);
+        width: min(92vw, 1000px);
+      }
+      .hs-text {
+        font-family: var(--serif);
+        font-size: clamp(1.2rem, 2.8vw, 2.4rem);
+        font-weight: 700;
+        line-height: 1.3;
+        color: var(--black);
+      }
+      .hs-sub {
+        font-family: var(--mono);
+        font-size: var(--t-mono);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--red);
+        display: block;
+        margin-top: clamp(0.4rem, 0.8vh, 0.75rem);
+      }
+      .slide-dark .hs { background: rgba(255, 255, 255, 0.04); }
+      .slide-dark .hs-text { color: #fff; }
+
       .prob-chain {
         display: flex;
         flex-direction: column;
@@ -1210,9 +1072,7 @@
         width: 0;
         transition: width 1.2s var(--ease);
       }
-      .slide.visible .prob-bar {
-        width: var(--w);
-      }
+      .slide.visible .prob-bar { width: var(--w); }
       .prob-pct {
         font-family: var(--mono);
         font-size: clamp(0.7rem, 1vw, 0.85rem);
@@ -1221,9 +1081,6 @@
         text-align: right;
       }
 
-      /* =====================================================
-   CHECKLIST (Test slide)
-   ===================================================== */
       .checklist {
         display: flex;
         flex-direction: column;
@@ -1237,9 +1094,7 @@
         padding: clamp(0.55rem, 1.2vh, 1rem) 0;
         border-bottom: 1px solid var(--border);
       }
-      .check:first-child {
-        border-top: 1px solid var(--border);
-      }
+      .check:first-child { border-top: 1px solid var(--border); }
       .check-mark {
         font-family: var(--mono);
         font-size: clamp(0.75rem, 1.1vw, 0.95rem);
@@ -1253,9 +1108,6 @@
         line-height: 1.3;
       }
 
-      /* =====================================================
-   PHASES ROW — SDD / TDD flow chains
-   ===================================================== */
       .phases-row {
         display: flex;
         align-items: stretch;
@@ -1297,9 +1149,6 @@
         flex-shrink: 0;
       }
 
-      /* =====================================================
-   PROGRESS BAR (fixed, above all slides)
-   ===================================================== */
       #pb {
         position: fixed;
         top: 5px;
@@ -1322,18 +1171,18 @@
     <div id="pb"><div id="pf"></div></div>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 01 — MAIN COVER                              ║
+     ║  スライド 01 — メインカバー                          ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s1" aria-label="Cover slide">
+    <section class="slide" id="s1" aria-label="カバースライド">
       <div class="sg"></div>
       <div class="gn">VC</div>
-      <div class="sl">VibeCODE · Seminar</div>
-      <div class="pl">AI · Vibe Coding</div>
-      <div class="sc">01 / 41</div>
+      <div class="sl">VibeCODE · セミナー</div>
+      <div class="pl">AI · バイブコーディング</div>
+      <div class="sc">01 / 43</div>
       <div class="si">
-        <div class="eyebrow r d1">2026 · Non-Technical Series</div>
+        <div class="eyebrow r d1">2026年 · 非エンジニア向けシリーズ</div>
         <div class="display r d2">
-          Vibe<span class="ac">CODE</span><br />Seminar<span class="ac">.</span>
+          Vibe<span class="ac">CODE</span><br />セミナー<span class="ac">.</span>
         </div>
         <div
           class="r d3"
@@ -1346,84 +1195,81 @@
             color: var(--muted);
           "
         >
-          AI × Vibe Coding for Non-Technical Builders
+          非エンジニアのための AI × バイブコーディング
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 02 — PRESENTATION 1 COVER                   ║
+     ║  スライド 02 — 第1部カバー                           ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s2" aria-label="Presentation 1 intro">
+    <section class="slide" id="s2" aria-label="第1部イントロ">
       <div class="sg"></div>
       <div class="gn">01</div>
-      <div class="sl">Presentation 01</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">02 / 41</div>
+      <div class="sl">プレゼンテーション 01</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">02 / 43</div>
       <div class="si bottom">
-        <div class="eyebrow r d1">Part One</div>
+        <div class="eyebrow r d1">第1部</div>
         <div class="display r d2">
-          The Theory<br />of AI &amp;<br />Vibe Coding<span class="ac">.</span>
+          AIと<br />バイブコーディングの<br />理論<span class="ac">.</span>
         </div>
         <div class="body r d3" style="margin-top: clamp(0.6rem, 1.5vh, 1.2rem)">
-          From demystifying AI to understanding how vibe coding changes
-          everything.
+          AIの本質を理解し、バイブコーディングがすべてを変える理由を学ぶ。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 03 — SECTION DIVIDER: DEMYSTIFYING AI       ║
+     ║  スライド 03 — セクション区切り：AIを解剖する       ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s3" aria-label="Section: Demystifying AI">
+    <section class="slide" id="s3" aria-label="セクション：AIを解剖する">
       <div class="sg"></div>
       <div class="gn">AI</div>
-      <div class="sl">01 · Demystifying AI</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">03 / 41</div>
+      <div class="sl">01 · AIを解剖する</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">03 / 43</div>
       <div class="si">
-        <div class="eyebrow r d1">Part 1 · Section 1</div>
+        <div class="eyebrow r d1">第1部 · セクション1</div>
         <div class="rule r d1"></div>
         <div class="headline r d2">
-          Demystifying<br />Artificial<br />Intelligence<span class="ac"
-            >.</span
-          >
+          人工知能の<br />謎を解く<span class="ac">.</span>
         </div>
         <div class="body r d3" style="margin-top: clamp(0.6rem, 1.5vh, 1rem)">
-          What AI actually is — no hype, no jargon.
+          AIの正体をわかりやすく語る。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 04 — WHAT IS AI?                            ║
+     ║  スライド 04 — AIとは何か？                         ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s4" aria-label="What is AI?">
+    <section class="slide" id="s4" aria-label="AIとは何か？">
       <div class="sg"></div>
       <div class="gn">04</div>
-      <div class="sl">What is AI?</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">04 / 41</div>
+      <div class="sl">AIとは何か？</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">04 / 43</div>
       <div class="si row" style="align-items:center; gap: clamp(2rem,4vw,4rem); flex-wrap: wrap; justify-content: space-between; width: 100%; padding: 0 clamp(2rem,5vw,5rem);">
         <!-- Left: text -->
         <div style="flex: 0 0 40%; min-width: 280px;">
-          <div class="eyebrow r d1">What is AI, Really?</div>
+          <div class="eyebrow r d1">AIとは、本当に何か？</div>
           <div
             class="headline r d2"
             style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
           >
-            The Umbrella<span class="ac">.</span>
+            大きな傘<span class="ac">.</span>
           </div>
           <div class="defs def-box r d3">
             <div class="def">
               <div class="def-abbr">AI</div>
               <div>
                 <div class="def-main">
-                  Computers performing tasks that usually need human intelligence.
+                  通常は人間の知性を要するタスクをこなすコンピューター技術。
                 </div>
                 <div class="def-sub">
-                  Pattern recognition. Decision-making. Language understanding.
-                  Everything else sits inside this circle.
+                  パターン認識、意思決定、言語理解。
+                  他のすべての技術はこの円の中に含まれる。
                 </div>
               </div>
             </div>
@@ -1432,35 +1278,30 @@
         <!-- Right: concentric circles diagram -->
         <div class="r d4" style="flex: 0 0 auto; display:flex; align-items:center; justify-content:center;">
           <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"
-            aria-label="Nested circles: AI contains ML contains Deep Learning contains LLMs"
+            aria-label="入れ子の円：AIの中に機械学習、その中に深層学習、その中にLLM"
             style="width: clamp(280px,36vw,440px); height: auto; display: block;">
-            <!-- AI circle -->
             <circle cx="150" cy="150" r="135" fill="#f5f2ee" stroke="#d5d0c9" stroke-width="2"/>
-            <!-- ML circle -->
             <circle cx="150" cy="165" r="100" fill="#ede9e3" stroke="#d5d0c9" stroke-width="2"/>
-            <!-- Deep Learning circle -->
             <circle cx="150" cy="178" r="64" fill="#d5d0c9" stroke="#8a8580" stroke-width="1.5"/>
-            <!-- LLMs circle (red) -->
             <circle cx="150" cy="188" r="30" fill="#c8211a" stroke="none"/>
-            <!-- Labels -->
             <text x="150" y="28" text-anchor="middle" font-family="Space Mono,monospace" font-size="13" fill="#111111" letter-spacing="0.05em">AI</text>
-            <text x="150" y="75" text-anchor="middle" font-family="Space Mono,monospace" font-size="11" fill="#111111" letter-spacing="0.04em">Machine Learning</text>
-            <text x="150" y="124" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#111111" letter-spacing="0.04em">Deep Learning</text>
-            <text x="150" y="192" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#ede9e3" letter-spacing="0.04em">LLMs</text>
+            <text x="150" y="75" text-anchor="middle" font-family="Space Mono,monospace" font-size="11" fill="#111111" letter-spacing="0.04em">機械学習</text>
+            <text x="150" y="124" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#111111" letter-spacing="0.04em">深層学習</text>
+            <text x="150" y="192" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#ede9e3" letter-spacing="0.04em">LLM</text>
           </svg>
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 05 — THE AI FAMILY TREE                     ║
+     ║  スライド 05 — AIの系譜図                           ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s5" aria-label="The AI Family Tree">
+    <section class="slide" id="s5" aria-label="AIの系譜図">
       <div class="sg"></div>
       <div class="gn">05</div>
-      <div class="sl">AI · A Family Tree</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">05 / 41</div>
+      <div class="sl">AI · 系譜図</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">05 / 43</div>
       <div
         class="si row family-tree-wrap"
         style="
@@ -1471,42 +1312,41 @@
       >
         <!-- Left: headline + nested boxes -->
         <div style="flex: 0 0 auto">
-          <div class="eyebrow r d1">What is AI, Really?</div>
+          <div class="eyebrow r d1">AIとは、本当に何か？</div>
           <div
             class="headline r d2"
             style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
           >
-            The Family<br />Tree<span class="ac">.</span>
+            AIの<br />系譜<span class="ac">.</span>
           </div>
           <div class="c-outer r d3">
-            <span class="c-tag">Outer · 01</span>
-            <div class="c-name">Artificial Intelligence</div>
+            <span class="c-tag">最上位 · 01</span>
+            <div class="c-name">人工知能</div>
             <div class="c-mid">
-              <span class="c-tag">Subset · 02</span>
-              <div class="c-name">Machine Learning</div>
+              <span class="c-tag">サブセット · 02</span>
+              <div class="c-name">機械学習</div>
               <div class="c-inner">
-                <span class="c-tag">Subset · 03</span>
-                <div class="c-name">Deep Learning</div>
+                <span class="c-tag">サブセット · 03</span>
+                <div class="c-name">深層学習</div>
                 <div class="c-core">
-                  <span class="c-tag">Core · 04</span>
-                  <div class="c-name">LLMs<span class="c-dot"></span>NLP</div>
+                  <span class="c-tag">コア · 04</span>
+                  <div class="c-name">LLM<span class="c-dot"></span>NLP</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- Right: definition rows with real-world examples -->
+        <!-- Right: definition rows -->
         <div style="flex: 1; min-width: 0">
           <div class="defs">
             <div class="def r d3">
               <div class="def-abbr">AI</div>
               <div>
                 <div class="def-main">
-                  Computers performing tasks that usually need human
-                  intelligence.
+                  通常は人間の知性を要するタスクをこなすコンピューター技術。
                 </div>
                 <div class="def-sub">
-                  The umbrella. Everything below sits inside.
+                  最上位の概念。以下の技術はすべてここに含まれる。
                 </div>
               </div>
             </div>
@@ -1514,12 +1354,10 @@
               <div class="def-abbr">ML</div>
               <div>
                 <div class="def-main">
-                  Learning patterns from data instead of being explicitly
-                  programmed.
+                  明示的にプログラムするのではなく、データからパターンを学習する。
                 </div>
                 <div class="def-sub">
-                  Example: Email spam filters that learn what junk looks like
-                  from your behaviour.
+                  例：ユーザーの行動からスパムを学習するメールフィルター。
                 </div>
               </div>
             </div>
@@ -1527,12 +1365,10 @@
               <div class="def-abbr">DL</div>
               <div>
                 <div class="def-main">
-                  Neural networks loosely inspired by the brain — for messy,
-                  complex patterns.
+                  脳の仕組みに着想を得たニューラルネットワーク。複雑なパターンに強い。
                 </div>
                 <div class="def-sub">
-                  Example: Facial recognition on your phone; self-driving car
-                  vision systems.
+                  例：スマホの顔認証、自動運転車の視覚システム。
                 </div>
               </div>
             </div>
@@ -1540,12 +1376,10 @@
               <div class="def-abbr">NLP</div>
               <div>
                 <div class="def-main">
-                  The bridge between computers and human language: read,
-                  understand, generate text.
+                  テキストを読み・理解し・生成する。コンピューターと人間の言語をつなぐ橋。
                 </div>
                 <div class="def-sub">
-                  Example: Voice assistants like Siri; real-time translation
-                  apps.
+                  例：Siriのような音声アシスタント、リアルタイム翻訳アプリ。
                 </div>
               </div>
             </div>
@@ -1555,203 +1389,121 @@
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 06 — AI DEEP DIVE                           ║
+     ║  スライド 06 — 機械学習                             ║
      ╚══════════════════════════════════════════════════════╝ -->
     <section
       class="slide"
       id="s5b"
-      aria-label="Artificial Intelligence — Deep Dive"
+      aria-label="機械学習"
     >
       <div class="sg"></div>
-      <div class="gn">AI</div>
-      <div class="sl">01 · AI — Deep Dive</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">06 / 41</div>
+      <div class="gn">ML</div>
+      <div class="sl">01 · 機械学習</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">06 / 43</div>
       <div class="si left">
-        <div class="eyebrow r d1">Artificial Intelligence — Closer Look</div>
+        <div class="eyebrow r d1">機械学習 — AIを動かす主役</div>
         <div
           class="headline r d2"
           style="margin-bottom: clamp(0.5rem, 1.2vh, 0.9rem)"
         >
-          The Umbrella<span class="ac">.</span>
+          データから学ぶ<span class="ac">.</span>
         </div>
         <div
           class="hs r d3"
           style="margin-bottom: clamp(0.65rem, 1.5vh, 1.2rem)"
         >
           <div class="hs-text" style="font-size: clamp(1rem, 1.8vw, 1.5rem)">
-            Computers performing tasks that typically require human intelligence
-            — recognising patterns, making decisions, understanding language.
+            明示的にルールをプログラムするのではなく、データからパターンを学習する——これが機械学習の本質だ。
           </div>
         </div>
         <div class="tiles-3 r d4">
           <div class="tile">
-            <span class="tile-tag">ML-Driven Family</span>
-            <div class="tile-name">Our Focus</div>
+            <span class="tile-tag">仕組み</span>
+            <div class="tile-name">パターンを発見する</div>
             <div class="tile-desc">
-              Machine Learning → Deep Learning → NLP → LLMs. This is the
-              branch of AI this seminar follows — the one powering ChatGPT,
-              Copilot, and everything like them.
+              データを与えると、モデルが自らパターンを発見し、予測や判断を行う。
+              人間がルールを書く必要はない。
             </div>
           </div>
           <div class="tile">
-            <span class="tile-tag">Other Subfields</span>
-            <div class="tile-name">Beyond ML</div>
+            <span class="tile-tag">現実世界での支配力</span>
+            <div class="tile-name">AIの成果の源泉</div>
             <div class="tile-desc">
-              Robotics — motion planning, kinetics, heat control — crosses
-              into physics and mechanical engineering. Even Robotics today
-              increasingly applies Machine Learning methods.
+              レコメンドシステム（Netflix · YouTube）、機械翻訳（Google翻訳）、
+              音声認識（Siri · Alexa）——今日の主要なAI成果はほぼすべて機械学習の産物。
             </div>
           </div>
           <div class="tile hi">
-            <span class="tile-tag">The Modern Reality</span>
-            <div class="tile-name">ML Dominates</div>
+            <span class="tile-tag">なぜ重要か</span>
+            <div class="tile-name">ルール時代の終焉</div>
             <div class="tile-desc">
-              Today, Machine Learning drives most AI breakthroughs. Before
-              it, rule-based expert systems — hand-coded "if this, then that"
-              logic — were the norm.
+              手動でルールを書く時代は終わった。MLはデータさえあれば、
+              人間が気づかないパターンを見つけ出す。
             </div>
           </div>
         </div>
       </div>
     </section>
-
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 07 — THREE WAYS TO LEARN                    ║
-     ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s5b2" aria-label="Three Ways to Learn">
-      <div class="sg"></div>
-      <div class="gn">ML</div>
-      <div class="sl">01 · ML — Learning Types</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">07 / 41</div>
-      <div class="si left" style="font-size:0.8em;">
-        <div class="eyebrow r d1">Machine Learning — Three Ways to Learn</div>
-        <div
-          class="headline r d2"
-          style="margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem)"
-        >
-          Supervised,<br />Unsupervised &amp;<br />Self-Supervised<span
-            class="ac"
-            >.</span
-          >
-        </div>
-        <div class="tiles-3 r d3" style="gap: clamp(0.5rem, 1.2vw, 1rem);">
-          <div class="tile" style="padding: clamp(0.6rem, 1.2vw, 1rem);">
-            <span class="tile-tag">Type · 01</span>
-            <div class="tile-name">Supervised</div>
-            <div class="tile-desc">
-              Learn from labelled examples. A <strong>"label"</strong> is a human annotation — e.g., draw bounding boxes around cats so the model learns to spot them.
-            </div>
-            <!-- Bounding box annotation diagram -->
-            <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"
-              aria-label="Bounding box annotation example"
-              style="width:100%; height:auto; display:block; margin-top:0.6rem;">
-              <rect x="4" y="4" width="112" height="72" rx="3" fill="#ede9e3" stroke="#d5d0c9" stroke-width="1.5"/>
-              <rect x="28" y="14" width="56" height="44" rx="2" fill="none" stroke="#c8211a" stroke-width="1.8" stroke-dasharray="4 2.5"/>
-              <rect x="28" y="7" width="32" height="12" rx="2" fill="#c8211a"/>
-              <text x="44" y="16.5" text-anchor="middle" font-family="Space Mono,monospace" font-size="7" fill="#ede9e3">cat?</text>
-              <line x1="28" y1="14" x2="28" y2="20" stroke="#c8211a" stroke-width="1.8"/>
-              <line x1="28" y1="14" x2="34" y2="14" stroke="#c8211a" stroke-width="1.8"/>
-              <line x1="84" y1="14" x2="84" y2="20" stroke="#c8211a" stroke-width="1.8"/>
-              <line x1="84" y1="14" x2="78" y2="14" stroke="#c8211a" stroke-width="1.8"/>
-            </svg>
-          </div>
-          <div class="tile" style="padding: clamp(0.6rem, 1.2vw, 1rem);">
-            <span class="tile-tag">Type · 02</span>
-            <div class="tile-name">Unsupervised</div>
-            <div class="tile-desc">
-              Find patterns with no labels. The model groups data by similarity — no human tells it what to look for.<br /><br />
-              Example: clustering customers by shopping behaviour.
-            </div>
-          </div>
-          <div class="tile hi" style="padding: clamp(0.6rem, 1.2vw, 1rem);">
-            <span class="tile-tag">Type · 03 · LLMs</span>
-            <div class="tile-name">Self-Supervised</div>
-            <div class="tile-desc">
-              Creates its own training task from raw data — no labels needed. Example: hide words in a sentence, let the model predict the missing ones.
-              <strong>Examples are created by the data itself.</strong>
-            </div>
-          </div>
-        </div>
-        <div
-          class="body r d4"
-          style="margin-top: clamp(0.4rem, 1vh, 0.8rem)"
-        >
-          LLMs are <em>mainly</em> self-supervised. "Large" = billions of
-          parameters trained on nearly the entire internet.
-        </div>
-      </div>
-    </section>
-
-    <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 08 — CLASSICAL ML vs DEEP LEARNING          ║
+     ║  スライド 08 — 古典的ML vs 深層学習                 ║
      ╚══════════════════════════════════════════════════════╝ -->
     <section
       class="slide"
       id="s5c"
-      aria-label="Machine Learning — Classical vs Deep"
+      aria-label="機械学習 — 古典的手法 vs 深層学習"
     >
       <div class="sg"></div>
       <div class="gn">ML</div>
-      <div class="sl">01 · ML — Classical vs Deep</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">08 / 41</div>
+      <div class="sl">01 · ML — 古典的 vs 深層</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">07 / 43</div>
       <div class="si left" style="position:relative; align-items:flex-start;">
-        <!-- Text: natural left layout -->
         <div style="font-size:0.9em; max-width:55%;">
-          <div class="eyebrow r d1">Machine Learning — A Decade of Change</div>
+          <div class="eyebrow r d1">深層学習 — 10年間の変革</div>
           <div class="headline r d2" style="margin-bottom: clamp(0.6rem, 1.5vh, 1.2rem)">
-            Classical vs<br />Deep<span class="ac">.</span>
+            古典的手法 vs<br />深層学習<span class="ac">.</span>
           </div>
           <div class="two-col r d3" style="font-size:0.9em;">
             <div class="cc">
-              <span class="cc-tag">Before 2012</span>
-              <div class="cc-title">Hand-Crafted Features</div>
+              <span class="cc-tag">2012年以前</span>
+              <div class="cc-title">手作業による特徴設計</div>
               <div class="cc-body">
-                Linear Regression · Decision Trees · k-NN · SVM.<br /><br />
-                A human expert manually picks the properties ("features")
-                the model uses. Works on small, structured data.
+                線形回帰 · 決定木 · k-NN · SVM。<br /><br />
+                専門家が手動で「特徴量」を選ぶ。少量の構造化データに強い。
               </div>
             </div>
             <div class="cc hi">
-              <span class="cc-tag">2012 → Now</span>
-              <div class="cc-title">Learns Its Own Features</div>
+              <span class="cc-tag">2012年〜現在</span>
+              <div class="cc-title">特徴を自ら学習</div>
               <div class="cc-body">
-                <strong>No feature engineering</strong> — the network
-                discovers what matters from raw data automatically.<br /><br />
-                The dominant approach today — the engine behind every LLM.
+                <strong>特徴エンジニアリング不要</strong> — 生データから重要な特徴を自動で発見。<br /><br />
+                現代のAIの主流。すべてのLLMの動力源。
               </div>
             </div>
           </div>
         </div>
-        <!-- SVG: absolutely anchored top-right -->
+        <!-- SVG: timeline -->
         <div class="r d4" style="position:absolute; top:clamp(1rem,3vh,2.5rem); right:clamp(1rem,2vw,2rem); width:30%;">
           <svg viewBox="0 0 240 300" xmlns="http://www.w3.org/2000/svg"
-            aria-label="Vertical timeline: Classical ML era then 2012 AlexNet breakthrough then Deep Learning era"
+            aria-label="縦タイムライン：古典的ML → 2012年 AlexNet → 深層学習時代"
             style="width:100%; height:auto; display:block;">
-            <!-- Classical ML era block -->
             <rect x="70" y="8" width="100" height="88" rx="6" fill="#ede9e3" stroke="#d5d0c9" stroke-width="1.5"/>
-            <text x="120" y="30" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#8a8580" letter-spacing="0.05em">CLASSICAL ML</text>
-            <text x="120" y="50" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#8a8580">Linear Reg.</text>
-            <text x="120" y="63" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#8a8580">Decision Trees</text>
+            <text x="120" y="30" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#8a8580" letter-spacing="0.05em">古典的ML</text>
+            <text x="120" y="50" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#8a8580">線形回帰</text>
+            <text x="120" y="63" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#8a8580">決定木</text>
             <text x="120" y="76" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#8a8580">k-NN · SVM</text>
-            <!-- Connector line top to 2012 -->
             <line x1="120" y1="96" x2="120" y2="122" stroke="#d5d0c9" stroke-width="2" stroke-dasharray="4 3"/>
-            <!-- 2012 milestone -->
             <circle cx="120" cy="146" r="24" fill="#c8211a"/>
             <text x="120" y="143" text-anchor="middle" font-family="Space Mono,monospace" font-size="13" fill="#ede9e3" font-weight="bold">2012</text>
             <text x="120" y="157" text-anchor="middle" font-family="Space Mono,monospace" font-size="7.5" fill="#ede9e3">AlexNet</text>
-            <!-- Connector line 2012 to DL -->
             <line x1="120" y1="170" x2="120" y2="192" stroke="#c8211a" stroke-width="2" stroke-dasharray="4 3"/>
-            <!-- Deep Learning era block -->
             <rect x="40" y="192" width="160" height="88" rx="6" fill="rgba(200,33,26,0.10)" stroke="#c8211a" stroke-width="1.5"/>
-            <text x="120" y="213" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#c8211a" letter-spacing="0.05em" font-weight="bold">DEEP LEARNING</text>
-            <text x="120" y="232" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#c8211a">Neural Networks</text>
-            <text x="120" y="246" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#c8211a">Auto feature learning</text>
-            <text x="120" y="260" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#c8211a">Scales with data</text>
-            <text x="120" y="275" text-anchor="middle" font-family="Space Mono,monospace" font-size="7.5" fill="#8a8580">→ powers LLMs today</text>
-            <!-- Arrow down -->
+            <text x="120" y="213" text-anchor="middle" font-family="Space Mono,monospace" font-size="10" fill="#c8211a" letter-spacing="0.05em" font-weight="bold">深層学習</text>
+            <text x="120" y="232" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#c8211a">ニューラルネットワーク</text>
+            <text x="120" y="246" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#c8211a">特徴を自動学習</text>
+            <text x="120" y="260" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#c8211a">データで拡張可能</text>
+            <text x="120" y="275" text-anchor="middle" font-family="Space Mono,monospace" font-size="7.5" fill="#8a8580">→ LLMの動力源</text>
             <line x1="120" y1="280" x2="120" y2="292" stroke="#c8211a" stroke-width="2"/>
             <polygon points="113,287 120,300 127,287" fill="#c8211a"/>
           </svg>
@@ -1760,59 +1512,56 @@
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 09 — NEURAL NETWORKS                        ║
+     ║  スライド 07 — 深層学習 + ニューラルネットワーク    ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s5d" aria-label="Deep Learning — Neural Networks">
+    <section class="slide" id="s5b_ml" aria-label="深層学習 — ニューラルネットワーク">
       <div class="sg"></div>
-      <div class="gn">NN</div>
-      <div class="sl">01 · DL — Neural Networks</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">09 / 41</div>
+      <div class="gn">DL</div>
+      <div class="sl">01 · 深層学習</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">08 / 43</div>
       <div class="si left" style="position:relative;">
-        <!-- Text: natural left layout -->
         <div style="font-size:0.88em;">
-          <div class="eyebrow r d1">Deep Learning — Neural Networks</div>
+          <div class="eyebrow r d1">深層学習 — ニューラルネットワーク</div>
           <div class="headline r d2" style="margin-bottom: clamp(0.4rem, 1vh, 0.7rem)">
-            Neural<br />Networks<span class="ac">.</span>
+            深層学習<span class="ac">.</span>
           </div>
           <div class="hs r d3" style="margin-bottom: clamp(0.5rem, 1.2vh, 1rem)">
             <div class="hs-text" style="font-size: clamp(0.78rem, 1.2vw, 1rem)">
-              Loosely inspired by the brain's neuron structure — nodes
-              connected in layers. Each <strong>node</strong> represents a
-              piece of useful information the network has learned.
+              機械学習の一分野。脳のニューロン構造に着想を得たニューラルネットワークで動く。
+              「深い（Deep）」とは、隠れ層が多数積み重なっていることを意味する。
             </div>
           </div>
           <div class="practices r d4" style="width: 100%">
             <div class="prac">
               <div class="prac-n">→</div>
               <div class="prac-r" style="font-size: clamp(0.78rem, 1.2vw, 1rem)">
-                Input Layer — raw data in
+                入力層 — 生データを受け取る
               </div>
             </div>
             <div class="prac">
               <div class="prac-n">→</div>
               <div class="prac-r" style="font-size: clamp(0.78rem, 1.2vw, 1rem)">
-                Hidden Layers — learn what matters
+                隠れ層 — 重要なパターンを自動で学習する
               </div>
             </div>
             <div class="prac">
               <div class="prac-n">→</div>
               <div class="prac-r" style="font-size: clamp(0.78rem, 1.2vw, 1rem)">
-                Output Layer — prediction or answer
+                出力層 — 予測または回答を出力する
               </div>
             </div>
           </div>
           <div class="body r d5" style="margin-top: clamp(0.5rem, 1.2vh, 0.8rem); font-size: clamp(0.75rem, 1.1vw, 0.95rem)">
-            <em>"Deep"</em> = many hidden layers. LLMs are transformer
-            networks — billions of parameters, trained to predict the next word.
+            LLMはその延長線上にあるトランスフォーマー型ネットワーク——
+            数千億のパラメーターで次の単語を予測するよう訓練されている。
           </div>
         </div>
-        <!-- SVG: absolutely anchored bottom-right, clear of text column -->
         <div class="r d3" style="position:absolute; bottom:clamp(1.5rem,3vh,3rem); right:clamp(1rem,2vw,2rem); width:38%;">
           <svg
             viewBox="0 0 520 290"
             xmlns="http://www.w3.org/2000/svg"
-            aria-label="Neural network diagram: input, hidden, output layers"
+            aria-label="ニューラルネットワーク図：入力層、隠れ層、出力層"
             style="width:100%; height:auto; display:block;"
           >
             <style>
@@ -1828,7 +1577,6 @@
                 letter-spacing: 0.08em;
               }
             </style>
-            <!-- Connections Input → Hidden 1 -->
             <line class="nn-line" x1="60"  y1="70"  x2="190" y2="40"/>
             <line class="nn-line" x1="60"  y1="70"  x2="190" y2="107"/>
             <line class="nn-line" x1="60"  y1="70"  x2="190" y2="173"/>
@@ -1841,7 +1589,6 @@
             <line class="nn-line" x1="60"  y1="210" x2="190" y2="107"/>
             <line class="nn-line" x1="60"  y1="210" x2="190" y2="173"/>
             <line class="nn-line" x1="60"  y1="210" x2="190" y2="240"/>
-            <!-- Connections Hidden 1 → Hidden 2 -->
             <line class="nn-line" x1="190" y1="40"  x2="320" y2="40"/>
             <line class="nn-line" x1="190" y1="40"  x2="320" y2="107"/>
             <line class="nn-line" x1="190" y1="40"  x2="320" y2="173"/>
@@ -1858,7 +1605,6 @@
             <line class="nn-line" x1="190" y1="240" x2="320" y2="107"/>
             <line class="nn-line" x1="190" y1="240" x2="320" y2="173"/>
             <line class="nn-line" x1="190" y1="240" x2="320" y2="240"/>
-            <!-- Connections Hidden 2 → Output -->
             <line class="nn-line" x1="320" y1="40"  x2="450" y2="105"/>
             <line class="nn-line" x1="320" y1="40"  x2="450" y2="175"/>
             <line class="nn-line" x1="320" y1="107" x2="450" y2="105"/>
@@ -1867,197 +1613,196 @@
             <line class="nn-line" x1="320" y1="173" x2="450" y2="175"/>
             <line class="nn-line" x1="320" y1="240" x2="450" y2="105"/>
             <line class="nn-line" x1="320" y1="240" x2="450" y2="175"/>
-            <!-- Input nodes -->
             <circle class="nn-in"  cx="60"  cy="70"  r="18"/>
             <circle class="nn-in"  cx="60"  cy="140" r="18"/>
             <circle class="nn-in"  cx="60"  cy="210" r="18"/>
-            <!-- Hidden layer 1 nodes -->
             <circle class="nn-hid" cx="190" cy="40"  r="18"/>
             <circle class="nn-hid" cx="190" cy="107" r="18"/>
             <circle class="nn-hid" cx="190" cy="173" r="18"/>
             <circle class="nn-hid" cx="190" cy="240" r="18"/>
-            <!-- Hidden layer 2 nodes -->
             <circle class="nn-hid" cx="320" cy="40"  r="18"/>
             <circle class="nn-hid" cx="320" cy="107" r="18"/>
             <circle class="nn-hid" cx="320" cy="173" r="18"/>
             <circle class="nn-hid" cx="320" cy="240" r="18"/>
-            <!-- Output nodes -->
             <circle class="nn-out" cx="450" cy="105" r="18"/>
             <circle class="nn-out" cx="450" cy="175" r="18"/>
-            <!-- Layer labels -->
-            <text class="nn-lbl" x="60"  y="276">Input</text>
-            <text class="nn-lbl" x="190" y="276">Hidden 1</text>
-            <text class="nn-lbl" x="320" y="276">Hidden 2</text>
-            <text class="nn-lbl" x="450" y="276">Output</text>
+            <text class="nn-lbl" x="60"  y="276">入力層</text>
+            <text class="nn-lbl" x="190" y="276">隠れ層 1</text>
+            <text class="nn-lbl" x="320" y="276">隠れ層 2</text>
+            <text class="nn-lbl" x="450" y="276">出力層</text>
           </svg>
         </div>
       </div>
     </section>
-
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 09 — NLP DEEP DIVE                          ║
+     ║  スライド 07 — 3つの学習方法                        ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s5e" aria-label="NLP — Deep Dive">
+    <section class="slide" id="s5b2" aria-label="3つの学習方法">
       <div class="sg"></div>
-      <div class="gn">NLP</div>
-      <div class="sl">01 · NLP — Deep Dive</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">10 / 41</div>
-      <div class="si left">
-        <div class="eyebrow r d1">
-          Natural Language Processing — Closer Look
-        </div>
+      <div class="gn">ML</div>
+      <div class="sl">01 · ML — 学習タイプ</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">09 / 43</div>
+      <div class="si left" style="font-size:0.8em;">
+        <div class="eyebrow r d1">機械学習 — 3つの学習方法</div>
         <div
           class="headline r d2"
-          style="margin-bottom: clamp(0.5rem, 1.2vh, 0.9rem)"
+          style="margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem)"
         >
-          Language Meets<br />Machines<span class="ac">.</span>
+          教師あり、<br />教師なし &amp;<br />自己教師あり<span
+            class="ac"
+            >.</span
+          >
+        </div>
+        <div class="tiles-3 r d3" style="gap: clamp(0.5rem, 1.2vw, 1rem);">
+          <div class="tile" style="padding: clamp(0.6rem, 1.2vw, 1rem);">
+            <span class="tile-tag">タイプ · 01</span>
+            <div class="tile-name">教師あり学習</div>
+            <div class="tile-desc">
+              ラベル付きデータから学習する。<strong>「ラベル」</strong>とは人間のアノテーション。
+              例：猫を囲むバウンディングボックスを描き、モデルに猫を認識させる。
+            </div>
+            <!-- Bounding box annotation diagram -->
+            <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"
+              aria-label="バウンディングボックスのアノテーション例"
+              style="width:100%; height:auto; display:block; margin-top:0.6rem;">
+              <rect x="4" y="4" width="112" height="72" rx="3" fill="#ede9e3" stroke="#d5d0c9" stroke-width="1.5"/>
+              <rect x="28" y="14" width="56" height="44" rx="2" fill="none" stroke="#c8211a" stroke-width="1.8" stroke-dasharray="4 2.5"/>
+              <rect x="28" y="7" width="32" height="12" rx="2" fill="#c8211a"/>
+              <text x="44" y="16.5" text-anchor="middle" font-family="Space Mono,monospace" font-size="7" fill="#ede9e3">猫?</text>
+              <line x1="28" y1="14" x2="28" y2="20" stroke="#c8211a" stroke-width="1.8"/>
+              <line x1="28" y1="14" x2="34" y2="14" stroke="#c8211a" stroke-width="1.8"/>
+              <line x1="84" y1="14" x2="84" y2="20" stroke="#c8211a" stroke-width="1.8"/>
+              <line x1="84" y1="14" x2="78" y2="14" stroke="#c8211a" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <div class="tile" style="padding: clamp(0.6rem, 1.2vw, 1rem);">
+            <span class="tile-tag">タイプ · 02</span>
+            <div class="tile-name">教師なし学習</div>
+            <div class="tile-desc">
+              ラベルなしでパターンを発見する。モデルが類似性でデータをグループ化する。
+              人間が「何を探すか」を教える必要はない。<br /><br />
+              例：購買行動による顧客クラスタリング。
+            </div>
+          </div>
+          <div class="tile hi" style="padding: clamp(0.6rem, 1.2vw, 1rem);">
+            <span class="tile-tag">タイプ · 03 · LLM</span>
+            <div class="tile-name">自己教師あり学習</div>
+            <div class="tile-desc">
+              生データから自ら学習タスクを作成する。ラベル不要。
+              例：文中の単語を隠し、モデルに穴埋めさせる。
+              <strong>データ自体が教師となる。</strong>
+            </div>
+          </div>
         </div>
         <div
-          class="hs r d3"
-          style="margin-bottom: clamp(0.65rem, 1.5vh, 1.2rem)"
+          class="body r d4"
+          style="margin-top: clamp(0.4rem, 1vh, 0.8rem)"
         >
-          <div class="hs-text" style="font-size: clamp(1rem, 1.8vw, 1.5rem)">
-            The branch of AI that gives computers the ability to read,
-            understand, and generate human language — bridging natural speech
-            and machine logic.
-          </div>
-        </div>
-        <div class="tiles-3 r d4">
-          <div class="tile">
-            <span class="tile-tag">Where It's Used</span>
-            <div class="tile-name">Applications</div>
-            <div class="tile-desc">
-              Search engines · Real-time translation · Chatbots &amp; virtual
-              assistants · Sentiment analysis for brand monitoring
-            </div>
-          </div>
-          <div class="tile">
-            <span class="tile-tag">Real World</span>
-            <div class="tile-name">Examples</div>
-            <div class="tile-desc">
-              Google understanding "best pizza near me" · Google Translate ·
-              Siri answering questions · ChatGPT writing and explaining code
-            </div>
-          </div>
-          <div class="tile hi">
-            <span class="tile-tag">In the Family Tree</span>
-            <div class="tile-name">The Bridge</div>
-            <div class="tile-desc">
-              NLP + Deep Learning = the foundation of Large Language Models.
-              Makes AI feel conversational. Without NLP, there is no ChatGPT.
-            </div>
-          </div>
+          LLMは主に自己教師あり学習で動く。「Large（大規模）」＝インターネットのほぼ全体を学習した数十億のパラメーター。
         </div>
       </div>
     </section>
 
+
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 10 — WHAT IS AN LLM?                        ║
+     ║  スライド 11 — LLMとは何か？                        ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s6" aria-label="What is an LLM?">
+    <section class="slide" id="s6" aria-label="LLMとは何か？">
       <div class="sg"></div>
       <div class="gn">06</div>
-      <div class="sl">What is an LLM?</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">11 / 41</div>
+      <div class="sl">LLMとは何か？</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">10 / 43</div>
       <div class="si" style="display:flex; flex-direction:row; align-items:center; gap:clamp(3rem,5vw,5rem); width:min(96vw,1400px); margin:0 auto;">
-        <!-- Left: text, compact -->
         <div style="flex:0 0 36%; min-width:0; font-size:0.85em;">
-          <div class="eyebrow r d1">Large Language Models</div>
+          <div class="eyebrow r d1">大規模言語モデル</div>
           <div class="headline r d2" style="margin-bottom: clamp(0.5rem, 1.2vh, 1rem)">
-            The Engine<br />Behind the Chat<span class="ac">.</span>
+            チャットを動かす<br />エンジン<span class="ac">.</span>
           </div>
           <div class="hs r d3">
             <div class="hs-text" style="font-size: clamp(0.8rem, 1.3vw, 1.05rem)">
-              Trained on billions of words. Predicts the next most likely word in
-              a sequence. That's it.
+              数十億の単語で学習。次に来る最も確率の高い単語を予測する。それだけ。深層学習が言語に応用されたのがLLM——テキストを読み、理解し、生成する。
             </div>
-            <span class="hs-sub">Deep Learning · NLP · Core Technology</span>
+            <span class="hs-sub">深層学習 · NLP · コア技術</span>
           </div>
           <div class="defs r d4" style="margin-top: clamp(0.5rem, 1.2vh, 1rem);">
             <div class="def" style="border-top: 1px solid var(--border)">
-              <div class="def-abbr">Why<br />Large?</div>
+              <div class="def-abbr">なぜ<br />「大規模」？</div>
               <div>
                 <div class="def-main" style="font-size: clamp(0.85rem, 1.3vw, 1.1rem)">
-                  Nearly the entire internet — as training data.
+                  インターネットのほぼ全体が学習データ。
                 </div>
                 <div class="def-sub">
-                  Billions of neural "parameters" encode the patterns. More data +
-                  more parameters = more capable model.
+                  数十億のニューラル「パラメーター」がパターンを記録する。
+                  データ多＋パラメーター多＝高性能モデル。
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- Right: scale bar SVG, large -->
         <div class="r d5" style="flex:1; min-width:0;">
           <svg viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg"
-            aria-label="Scale comparison: Small model vs Medium vs Large Language Model"
+            aria-label="スケール比較：小・中規模モデルと大規模言語モデル"
             style="width:100%; height:auto; display:block;">
-            <!-- Header -->
-            <text x="0" y="18" font-family="Space Mono,monospace" font-size="13" fill="#8a8580" letter-spacing="0.08em">SCALE OF PARAMETERS</text>
-            <!-- Row 1: Small -->
-            <text x="0" y="58" font-family="Space Mono,monospace" font-size="14" fill="#8a8580">Small</text>
+            <text x="0" y="18" font-family="Space Mono,monospace" font-size="13" fill="#8a8580" letter-spacing="0.08em">パラメーター数の規模</text>
+            <text x="0" y="58" font-family="Space Mono,monospace" font-size="14" fill="#8a8580">小規模</text>
             <rect x="100" y="38" width="44" height="28" rx="5" fill="#d5d0c9"/>
-            <text x="152" y="57" font-family="Space Mono,monospace" font-size="13" fill="#8a8580">~1M params</text>
-            <!-- Row 2: Medium -->
-            <text x="0" y="112" font-family="Space Mono,monospace" font-size="14" fill="#8a8580">Medium</text>
+            <text x="152" y="57" font-family="Space Mono,monospace" font-size="13" fill="#8a8580">~100万パラメーター</text>
+            <text x="0" y="112" font-family="Space Mono,monospace" font-size="14" fill="#8a8580">中規模</text>
             <rect x="100" y="90" width="180" height="28" rx="5" fill="#8a8580"/>
-            <text x="288" y="109" font-family="Space Mono,monospace" font-size="13" fill="#8a8580">~1B params</text>
-            <!-- Row 3: LLM -->
+            <text x="288" y="109" font-family="Space Mono,monospace" font-size="13" fill="#8a8580">~10億パラメーター</text>
             <text x="0" y="168" font-family="Space Mono,monospace" font-size="16" fill="#c8211a" font-weight="bold">LLM</text>
             <rect x="100" y="144" width="440" height="38" rx="5" fill="#c8211a"/>
-            <text x="528" y="169" font-family="Space Mono,monospace" font-size="13" fill="#ede9e3" text-anchor="end">100B+ params</text>
-            <!-- Footnote -->
-            <text x="0" y="200" font-family="Space Mono,monospace" font-size="10" fill="#8a8580" letter-spacing="0.04em">GPT-4 ~1.8T · LLaMA 3 ~70B · Gemini Ultra ~1T+</text>
+            <text x="528" y="169" font-family="Space Mono,monospace" font-size="13" fill="#ede9e3" text-anchor="end">1000億以上のパラメーター</text>
+            <text x="0" y="200" font-family="Space Mono,monospace" font-size="10" fill="#8a8580" letter-spacing="0.04em">GPT-4 ~1.8兆 · LLaMA 3 ~700億 · Gemini Ultra ~1兆以上</text>
           </svg>
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 07 — UNDER THE HOOD (prob bars)             ║
+     ║  スライド 12 — 内部の仕組み（確率バー）             ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s7" aria-label="Under the Hood — probability">
+    <section class="slide" id="s7" aria-label="内部の仕組み — 確率">
       <div class="sg"></div>
       <div class="gn">07</div>
-      <div class="sl">Under the Hood</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">12 / 41</div>
+      <div class="sl">内部の仕組み</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">11 / 43</div>
       <div class="si left">
-        <div class="eyebrow r d1">How LLMs Think</div>
+        <div class="eyebrow r d1">LLMの思考の仕組み</div>
         <div
           class="headline r d2"
           style="margin-bottom: clamp(1rem, 2.5vh, 2rem)"
         >
-          Next Word<br />Probability<span class="ac">.</span>
+          次の単語の<br />確率<span class="ac">.</span>
         </div>
         <div class="prob-chain r d3">
-          <div class="prob-input">Input: "The best way to learn is by…"</div>
+          <div class="prob-input">入力：「学習の最善策は...」</div>
           <div class="prob-row">
-            <div class="prob-word">Doing</div>
+            <div class="prob-word">実践する</div>
             <div class="prob-bar-wrap">
               <div class="prob-bar" style="--w: 72%"></div>
             </div>
             <div class="prob-pct">72%</div>
           </div>
           <div class="prob-row">
-            <div class="prob-word">Trying</div>
+            <div class="prob-word">試してみる</div>
             <div class="prob-bar-wrap">
               <div class="prob-bar" style="--w: 18%"></div>
             </div>
             <div class="prob-pct">18%</div>
           </div>
           <div class="prob-row">
-            <div class="prob-word">Reading</div>
+            <div class="prob-word">読むこと</div>
             <div class="prob-bar-wrap">
               <div class="prob-bar" style="--w: 7%"></div>
             </div>
             <div class="prob-pct">7%</div>
           </div>
           <div class="prob-row">
-            <div class="prob-word">Other</div>
+            <div class="prob-word">その他</div>
             <div class="prob-bar-wrap">
               <div class="prob-bar" style="--w: 3%"></div>
             </div>
@@ -2068,86 +1813,81 @@
           class="body r d4"
           style="margin-top: clamp(0.6rem, 1.5vh, 1.2rem); color: var(--muted)"
         >
-          Context + Probability → Human-like text. Repeated billions of times
-          per response.
+          文脈＋確率→人間らしいテキスト。1回の返答で数十億回繰り返される。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 08 — SECTION DIVIDER: MODERN DEV            ║
+     ║  スライド 13 — セクション区切り：現代の開発         ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section
-      class="slide"
-      id="s8"
-      aria-label="Section: Modern Dev & Vibe Coding"
-    >
+    <section class="slide" id="s8" aria-label="セクション：現代の開発とバイブコーディング">
       <div class="sg"></div>
       <div class="gn">VC</div>
-      <div class="sl">01 · Modern Dev</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">13 / 41</div>
+      <div class="sl">01 · 現代の開発</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">12 / 43</div>
       <div class="si">
-        <div class="eyebrow r d1">Part 1 · Section 2</div>
+        <div class="eyebrow r d1">第1部 · セクション2</div>
         <div class="rule r d1"></div>
         <div class="headline r d2">
-          Modern Dev<br />&amp; Vibe<br />Coding<span class="ac">.</span>
+          現代の開発<br />&amp; バイブ<br />コーディング<span class="ac">.</span>
         </div>
         <div class="body r d3" style="margin-top: clamp(0.6rem, 1.5vh, 1rem)">
-          How software gets built today — and your new role in it.
+          今日のソフトウェア開発の実態、そしてあなたの新たな役割。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 09 — THE SDLC                               ║
+     ║  スライド 14 — SDLC                                 ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s9" aria-label="The SDLC">
+    <section class="slide" id="s9" aria-label="SDLC">
       <div class="sg"></div>
       <div class="gn">09</div>
-      <div class="sl">The SDLC</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">14 / 41</div>
+      <div class="sl">SDLC</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">13 / 43</div>
       <div class="si left">
-        <div class="eyebrow r d1">Software Development Life Cycle</div>
+        <div class="eyebrow r d1">ソフトウェア開発ライフサイクル</div>
         <div
           class="headline r d2"
           style="margin-bottom: clamp(1rem, 2.5vh, 2rem)"
         >
-          Five Phases<span class="ac">.</span>
+          5つのフェーズ<span class="ac">.</span>
         </div>
         <div class="sdlc-grid r d3">
           <div class="sdlc-cell">
-            <div class="sdlc-phase-num">Phase 01</div>
-            <div class="sdlc-phase-name">Plan</div>
+            <div class="sdlc-phase-num">フェーズ 01</div>
+            <div class="sdlc-phase-name">計画</div>
             <div class="sdlc-phase-desc">
-              Decide what you're building and why.
+              何を作るか、なぜ作るかを決める。
             </div>
           </div>
           <div class="sdlc-cell">
-            <div class="sdlc-phase-num">Phase 02</div>
-            <div class="sdlc-phase-name">Design</div>
+            <div class="sdlc-phase-num">フェーズ 02</div>
+            <div class="sdlc-phase-name">設計</div>
             <div class="sdlc-phase-desc">
-              Wireframe the screens and the flow.
+              画面とフローをワイヤーフレームにする。
             </div>
           </div>
           <div class="sdlc-cell is-featured">
-            <div class="sdlc-phase-num">Phase 03</div>
-            <div class="sdlc-phase-name">Build</div>
+            <div class="sdlc-phase-num">フェーズ 03</div>
+            <div class="sdlc-phase-name">開発</div>
             <div class="sdlc-phase-desc">
-              Write the code that makes it real.
+              現実にするコードを書く。
             </div>
           </div>
           <div class="sdlc-cell">
-            <div class="sdlc-phase-num">Phase 04</div>
-            <div class="sdlc-phase-name">Test</div>
-            <div class="sdlc-phase-desc">Break it, fix it, prove it works.</div>
+            <div class="sdlc-phase-num">フェーズ 04</div>
+            <div class="sdlc-phase-name">テスト</div>
+            <div class="sdlc-phase-desc">壊して、直して、動くことを証明する。</div>
           </div>
           <div class="sdlc-cell">
-            <div class="sdlc-phase-num">Phase 05</div>
-            <div class="sdlc-phase-name">Deploy</div>
+            <div class="sdlc-phase-num">フェーズ 05</div>
+            <div class="sdlc-phase-name">リリース</div>
             <div class="sdlc-phase-desc">
-              Ship it to the people who'll use it.
+              使う人々のもとへ届ける。
             </div>
           </div>
         </div>
@@ -2155,123 +1895,93 @@
           class="body r d4"
           style="margin-top: clamp(0.75rem, 1.8vh, 1.5rem)"
         >
-          Vibe coding doesn't change these phases — it changes
-          <em>who does step 3.</em>
+          バイブコーディングはこれらのフェーズを変えない。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 10 — WATERFALL vs AGILE  [NEW]              ║
+     ║  スライド 15 — ウォーターフォール vs アジャイル     ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s10b" aria-label="Waterfall vs Agile">
+    <section class="slide" id="s10b" aria-label="ウォーターフォール vs アジャイル">
       <div class="sg"></div>
       <div class="gn">10</div>
-      <div class="sl">Methodology Comparison</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">15 / 41</div>
+      <div class="sl">開発手法の比較</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">14 / 43</div>
       <div class="si" style="display:flex; flex-direction:column; justify-content:center; gap:clamp(0.8rem,1.5vh,1.2rem); width:min(96vw,1300px); margin:0 auto;">
         <div>
-          <div class="eyebrow r d1">Software Methodologies</div>
+          <div class="eyebrow r d1">ソフトウェア開発手法</div>
           <div class="headline r d2" style="margin-bottom:0; font-size:clamp(2rem,4.5vw,3.8rem);">
-            Waterfall vs Agile<span class="ac">.</span>
+            ウォーターフォール vs アジャイル<span class="ac">.</span>
           </div>
         </div>
-        <!-- Two columns: card + SVG each -->
         <div class="r d3" style="display:flex; gap:clamp(1.5rem,3vw,3rem); align-items:stretch;">
           <!-- Waterfall column -->
           <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:0.8rem;">
             <div class="cc" style="font-size:0.82em;">
-              <span class="cc-tag">Traditional · Waterfall</span>
-              <div class="cc-title">Sequential &amp; Rigid</div>
+              <span class="cc-tag">従来型 · ウォーターフォール</span>
+              <div class="cc-title">順序固定・変更困難</div>
               <div class="cc-body">
-                Full planning upfront. Each phase must complete before the next begins. Changes mid-project are costly.
+                最初に全計画を立てる。各フェーズは前の完了後に開始。途中の変更は高コスト。
               </div>
             </div>
-            <!-- Waterfall diagram: cascading staircase -->
             <svg viewBox="0 0 240 158" xmlns="http://www.w3.org/2000/svg"
-              aria-label="Waterfall diagram: phases cascade one after another"
+              aria-label="ウォーターフォール図：フェーズが順番に流れ落ちる"
               style="width:100%; height:auto; display:block;">
               <defs>
                 <marker id="wf-arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
                   <polygon points="0,0 7,3.5 0,7" fill="#8a8580"/>
                 </marker>
               </defs>
-              <!-- Phase boxes: staircase down-right, width=92, height=24, step=28x26 -->
               <rect x="0"   y="0"   width="92" height="24" rx="3" fill="#ede9e3" stroke="#d5d0c9" stroke-width="1.5"/>
-              <text x="46"  y="16"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9.5" fill="#111111">Planning</text>
-
+              <text x="46"  y="16"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9.5" fill="#111111">計画</text>
               <rect x="28"  y="26"  width="92" height="24" rx="3" fill="#e0dbd3" stroke="#d5d0c9" stroke-width="1.5"/>
-              <text x="74"  y="42"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9.5" fill="#111111">Design</text>
-
+              <text x="74"  y="42"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9.5" fill="#111111">設計</text>
               <rect x="56"  y="52"  width="92" height="24" rx="3" fill="#d5d0c9" stroke="#c5c0b9" stroke-width="1.5"/>
-              <text x="102" y="68"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9.5" fill="#111111">Build</text>
-
+              <text x="102" y="68"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9.5" fill="#111111">開発</text>
               <rect x="84"  y="78"  width="92" height="24" rx="3" fill="#c8c2ba" stroke="#b8b2aa" stroke-width="1.5"/>
-              <text x="130" y="94"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9.5" fill="#111111">Testing</text>
-
+              <text x="130" y="94"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9.5" fill="#111111">テスト</text>
               <rect x="112" y="104" width="92" height="24" rx="3" fill="#c8211a" stroke="none"/>
-              <text x="158" y="120" text-anchor="middle" font-family="Space Mono,monospace" font-size="9.5" fill="#ede9e3">Deploy</text>
-
-              <!-- Connector arrows (right edge → down → next box left) -->
-              <polyline points="92,12 108,12 108,38 120,38"   fill="none" stroke="#8a8580" stroke-width="1.2" marker-end="url(#wf-arr)"/>
-              <polyline points="120,64 136,64 136,90 148,90"  fill="none" stroke="#8a8580" stroke-width="1.2" marker-end="url(#wf-arr)"/>
-              <polyline points="148,90 148,90" fill="none" stroke="none"/>
-              <polyline points="92,38 108,38" fill="none" stroke="none"/>
-              <!-- simplified: just small downward ticks between boxes -->
+              <text x="158" y="120" text-anchor="middle" font-family="Space Mono,monospace" font-size="9.5" fill="#ede9e3">リリース</text>
               <line x1="28" y1="24" x2="28" y2="26" stroke="#8a8580" stroke-width="1"/>
               <line x1="56" y1="50" x2="56" y2="52" stroke="#8a8580" stroke-width="1"/>
               <line x1="84" y1="76" x2="84" y2="78" stroke="#8a8580" stroke-width="1"/>
               <line x1="112" y1="102" x2="112" y2="104" stroke="#8a8580" stroke-width="1"/>
-              <!-- No-going-back label -->
-              <text x="0" y="150" font-family="Space Mono,monospace" font-size="8" fill="#8a8580" letter-spacing="0.04em">← no going back once a phase ends</text>
+              <text x="0" y="150" font-family="Space Mono,monospace" font-size="8" fill="#8a8580" letter-spacing="0.04em">← フェーズが終わると後戻りできない</text>
             </svg>
           </div>
-
           <!-- Agile column -->
           <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:0.8rem;">
             <div class="cc hi" style="font-size:0.82em;">
-              <span class="cc-tag">Modern · Agile / Scrum</span>
-              <div class="cc-title">Iterative &amp; Flexible</div>
+              <span class="cc-tag">現代型 · アジャイル / スクラム</span>
+              <div class="cc-title">反復型・柔軟</div>
               <div class="cc-body">
-                Work in short sprints. Adapt to changes quickly. Build incrementally — test early, improve often.
+                短いスプリントで作業。変化に素早く対応。段階的に開発し、早期テスト・頻繁な改善を繰り返す。
               </div>
             </div>
-            <!-- Agile diagram: sprint cycle loop -->
             <svg viewBox="0 0 240 158" xmlns="http://www.w3.org/2000/svg"
-              aria-label="Agile sprint cycle: Plan, Build, Test, Release repeat"
+              aria-label="アジャイルのスプリントサイクル：計画、開発、テスト、リリースの繰り返し"
               style="width:100%; height:auto; display:block;">
               <defs>
                 <marker id="ag-arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
                   <polygon points="0,0 7,3.5 0,7" fill="#c8211a"/>
                 </marker>
               </defs>
-              <!-- Sprint cycle: 4 nodes in a rough diamond, connected clockwise -->
-              <!-- Center: (120, 82) radius ~54 -->
-              <!-- Plan (top): (120, 22), Build (right): (174, 82), Test (bottom): (120, 142), Release (left): (66, 82) -->
-
-              <!-- Connecting arcs (clockwise) -->
               <path d="M 142,28 A 58,58 0 0 1 170,68"  fill="none" stroke="#c8211a" stroke-width="2" marker-end="url(#ag-arr)"/>
               <path d="M 170,96 A 58,58 0 0 1 142,136" fill="none" stroke="#c8211a" stroke-width="2" marker-end="url(#ag-arr)"/>
               <path d="M 98,136 A 58,58 0 0 1 70,96"   fill="none" stroke="#c8211a" stroke-width="2" marker-end="url(#ag-arr)"/>
               <path d="M 70,68  A 58,58 0 0 1 98,28"   fill="none" stroke="#c8211a" stroke-width="2" marker-end="url(#ag-arr)"/>
-
-              <!-- Phase nodes -->
               <rect x="86"  y="10"  width="68" height="24" rx="12" fill="#c8211a"/>
-              <text x="120" y="26"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#ede9e3" font-weight="bold">PLAN</text>
-
+              <text x="120" y="26"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#ede9e3" font-weight="bold">計画</text>
               <rect x="158" y="70"  width="68" height="24" rx="12" fill="#111111"/>
-              <text x="192" y="86"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#ede9e3" font-weight="bold">BUILD</text>
-
+              <text x="192" y="86"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#ede9e3" font-weight="bold">開発</text>
               <rect x="86"  y="130" width="68" height="24" rx="12" fill="#111111"/>
-              <text x="120" y="146" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#ede9e3" font-weight="bold">TEST</text>
-
+              <text x="120" y="146" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#ede9e3" font-weight="bold">テスト</text>
               <rect x="14"  y="70"  width="68" height="24" rx="12" fill="#111111"/>
-              <text x="48"  y="86"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#ede9e3" font-weight="bold">RELEASE</text>
-
-              <!-- "Sprint" label in center -->
-              <text x="120" y="78"  text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#8a8580">SPRINT</text>
-              <text x="120" y="90"  text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#8a8580">CYCLE</text>
+              <text x="48"  y="86"  text-anchor="middle" font-family="Space Mono,monospace" font-size="9" fill="#ede9e3" font-weight="bold">リリース</text>
+              <text x="120" y="78"  text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#8a8580">スプリント</text>
+              <text x="120" y="90"  text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#8a8580">サイクル</text>
             </svg>
           </div>
         </div>
@@ -2279,46 +1989,40 @@
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 11 — WHAT IS VIBE CODING?                   ║
+     ║  スライド 16 — バイブコーディングとは？             ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s10" aria-label="What is Vibe Coding?">
+    <section class="slide" id="s10" aria-label="バイブコーディングとは？">
       <div class="sg"></div>
       <div class="gn">11</div>
-      <div class="sl">Vibe Coding</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">16 / 41</div>
+      <div class="sl">バイブコーディング</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">15 / 43</div>
       <div class="si left">
-        <div class="eyebrow r d1">What is Vibe Coding?</div>
+        <div class="eyebrow r d1">バイブコーディングとは？</div>
         <div
           class="headline r d2"
           style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
         >
-          Describe It.<br />AI Builds It<span class="ac">.</span>
+          説明する。<br />AIが作る<span class="ac">.</span>
         </div>
         <div class="hs r d3">
           <div class="hs-text">
-            You describe what you want in plain English. The AI writes the code.
-            Your job: guide, test, and refine.
+            やりたいことを日常の言葉で伝える。AIがコードを書く。
+            あなたの役割は、指示し、テストし、改善すること。
           </div>
-          <span class="hs-sub"
-            >GitHub Copilot Agent · Natural Language → Code</span
-          >
+          <span class="hs-sub">GitHub Copilot Agent · 自然言語 → コード</span>
         </div>
         <div
           class="defs r d4"
-          style="
-            margin-top: clamp(0.75rem, 1.8vh, 1.4rem);
-            width: min(92vw, 1000px);
-          "
+          style="margin-top: clamp(0.75rem, 1.8vh, 1.4rem); width: min(92vw, 1000px);"
         >
           <div class="def" style="border-top: 1px solid var(--border)">
-            <div class="def-abbr">Why<br />"Vibe"?</div>
+            <div class="def-abbr">なぜ<br />「Vibe」？</div>
             <div>
-              <div class="def-main">You code based on intent, not syntax.</div>
+              <div class="def-main">構文ではなく、意図でコーディングする。</div>
               <div class="def-sub">
-                Instead of getting bogged down in brackets and semicolons, you
-                express the vibe of what you want. Your role shifts from typing
-                code to directing the AI.
+                括弧やセミコロンに悩む必要はない。欲しいものの「雰囲気（バイブ）」を伝えるだけ。
+                あなたの役割はコードを打つことから、AIに指示を出すことへと変わる。
               </div>
             </div>
           </div>
@@ -2327,90 +2031,52 @@
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 12 — TWO WAYS TO START                      ║
+     ║  スライド 18 — PRD                                  ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s11" aria-label="Two Ways to Start">
+    <section class="slide" id="s12" aria-label="PRD">
       <div class="sg"></div>
-      <div class="gn">12</div>
-      <div class="sl">Two Approaches</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">17 / 41</div>
-      <div class="si left">
-        <div class="eyebrow r d1">Two Ways to Start a Project</div>
-        <div
-          class="headline r d2"
-          style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
-        >
-          Choose Wisely<span class="ac">.</span>
-        </div>
-        <div class="two-col r d3">
-          <div class="cc">
-            <span class="cc-tag">Option A</span>
-            <div class="cc-title">Code First, Iterate Later</div>
-            <div class="cc-body">
-              Jump in. Build fast. But without a spec, the AI drifts. More time
-              fixing than building.
-            </div>
-          </div>
-          <div class="cc hi">
-            <span class="cc-tag">Option B · Recommended</span>
-            <div class="cc-title">Explore Before You Code</div>
-            <div class="cc-body">
-              Define requirements first. The AI builds exactly what you meant.
-              Less rework, better results.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 13 — THE PRD                                ║
-     ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s12" aria-label="The PRD">
-      <div class="sg"></div>
-      <div class="gn">13</div>
-      <div class="sl">The PRD</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">18 / 41</div>
+      <div class="gn">PRD</div>
+      <div class="sl">AIへの指示書</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">16 / 43</div>
       <div class="si row" style="align-items:center; gap:clamp(2rem,5vw,6rem); flex-wrap:wrap; justify-content:center;">
-        <!-- Left: text -->
         <div style="flex:1 1 300px; min-width:0;">
-          <div class="eyebrow r d1">Spec-Driven Development</div>
+          <div class="eyebrow r d1">バイブコーディング — AIへの伝え方</div>
           <div
             class="headline r d2"
             style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
           >
-            Your Blueprint<span class="ac">.</span>
+            どうやって<br />AIに伝える<span class="ac">？</span>
           </div>
-          <div class="defs def-box r d3">
+          <div class="hs r d3" style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)">
+            <div class="hs-text" style="font-size: clamp(0.9rem, 1.6vw, 1.25rem)">
+              AIは優秀な実行者だが、読心術は持っていない。<br />
+              何を作るべきかを明文化した指示書が必要だ。
+            </div>
+          </div>
+          <div class="defs def-box r d4">
             <div class="def">
               <div class="def-abbr">PRD</div>
               <div>
                 <div class="def-main">
-                  Product Requirements Document — your blueprint for the AI.
+                  プロダクト要件定義書 — AIへの指示書。
                 </div>
                 <div class="def-sub">
-                  Purpose · Users · Features · Pages · Data · Constraints.<br />The
-                  clearer the blueprint, the better the AI builds.
+                  目的 · ユーザー · 機能 · ページ · データ · 制約。<br />
+                  指示が具体的であるほど、AIの出力精度は上がる。
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- Right: document icon -->
         <div class="r d4" style="flex:0 0 auto; display:flex; align-items:center; justify-content:center;">
           <svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg"
-            aria-label="Document blueprint icon"
+            aria-label="ドキュメント設計図アイコン"
             style="width:clamp(180px,22vw,280px); height:auto; display:block;">
-            <!-- Page body -->
             <rect x="8" y="8" width="84" height="114" rx="4" fill="#f5f2ee" stroke="#d5d0c9" stroke-width="2"/>
-            <!-- Red header bar -->
             <rect x="8" y="8" width="84" height="24" rx="4" fill="#c8211a"/>
             <rect x="8" y="24" width="84" height="8" fill="#c8211a"/>
-            <!-- Header text -->
             <text x="50" y="24" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#ede9e3" letter-spacing="0.06em">PRD</text>
-            <!-- Ruled lines -->
             <line x1="20" y1="48" x2="80" y2="48" stroke="#d5d0c9" stroke-width="1.5"/>
             <line x1="20" y1="60" x2="80" y2="60" stroke="#d5d0c9" stroke-width="1.5"/>
             <line x1="20" y1="72" x2="65" y2="72" stroke="#d5d0c9" stroke-width="1.5"/>
@@ -2423,79 +2089,79 @@
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 14 — SDD COLLABORATIVE FLOW  [NEW]          ║
+     ║  スライド 19 — SDD協働フロー                        ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s13b" aria-label="SDD Collaborative Flow">
+    <section class="slide" id="s13b" aria-label="SDD協働フロー">
       <div class="sg"></div>
       <div class="gn">SDD</div>
-      <div class="sl">Spec-Driven Flow</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">19 / 41</div>
+      <div class="sl">仕様駆動フロー</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">17 / 43</div>
       <div class="si left">
         <div class="eyebrow r d1">
-          Spec-Driven Development — The Collaboration Loop
+          仕様駆動開発 — 協働ループ
         </div>
         <div
           class="headline r d2"
           style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
         >
-          Human ↔ Agent<br />Flow<span class="ac">.</span>
+          人間 ↔ エージェント<br />の流れ<span class="ac">.</span>
         </div>
         <div class="phases-row r d3">
-          <div class="phase-box">Human<br />Intent</div>
+          <div class="phase-box">人間の<br />意図</div>
           <div class="phase-arrow">→</div>
-          <div class="phase-box hi">Agent<br />Writes Specs</div>
+          <div class="phase-box hi">AIが<br />仕様を作成</div>
           <div class="phase-arrow">→</div>
-          <div class="phase-box">Human<br />Reviews</div>
+          <div class="phase-box">人間が<br />レビュー</div>
           <div class="phase-arrow">→</div>
-          <div class="phase-box hi">Agent<br />Plans</div>
+          <div class="phase-box hi">AIが<br />計画</div>
           <div class="phase-arrow">→</div>
-          <div class="phase-box">Human<br />Reviews</div>
+          <div class="phase-box">人間が<br />レビュー</div>
           <div class="phase-arrow">→</div>
-          <div class="phase-box hi">Agent<br />Breaks Down Tasks</div>
+          <div class="phase-box hi">AIが<br />タスク分解</div>
           <div class="phase-arrow">→</div>
-          <div class="phase-box">Human<br />Reviews</div>
+          <div class="phase-box">人間が<br />レビュー</div>
         </div>
         <div
           class="body r d4"
           style="margin-top: clamp(0.75rem, 1.8vh, 1.4rem)"
         >
-          You stay in the loop at every stage. The AI drafts — you decide.
+          すべてのフェーズで人間が関与する。AIが草案を作り、あなたが判断する。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 15 — TDD FLOW  [NEW]                        ║
+     ║  スライド 20 — TDDフロー                            ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s13c" aria-label="TDD Flow">
+    <section class="slide" id="s13c" aria-label="TDDフロー">
       <div class="sg"></div>
       <div class="gn">TDD</div>
-      <div class="sl">Test-Driven Flow</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">20 / 41</div>
+      <div class="sl">テスト駆動フロー</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">18 / 43</div>
       <div class="si left">
         <div class="eyebrow r d1">
-          Test-Driven Development — The Quality Loop
+          テスト駆動開発 — 品質ループ
         </div>
         <div
           class="headline r d2"
           style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
         >
-          Test First,<br />Ship Confident<span class="ac">.</span>
+          まずテスト、<br />自信を持ってリリース<span class="ac">.</span>
         </div>
         <div class="phases-row r d3">
-          <div class="phase-box hi">Agent<br />Writes Tests</div>
+          <div class="phase-box hi">AIが<br />テストを作成</div>
           <div class="phase-arrow">→</div>
-          <div class="phase-box">Generate<br />Code</div>
+          <div class="phase-box">コード<br />生成</div>
           <div class="phase-arrow">→</div>
-          <div class="phase-box hi">Run<br />Tests</div>
+          <div class="phase-box hi">テスト<br />実行</div>
           <div class="phase-arrow">→</div>
-          <div class="phase-box">Fix<br />Code</div>
+          <div class="phase-box">コード<br />修正</div>
           <div class="phase-arrow">→</div>
-          <div class="phase-box hi">Test<br />Again</div>
+          <div class="phase-box hi">再<br />テスト</div>
           <div class="phase-arrow">→</div>
-          <div class="phase-box">Review<br />Code</div>
+          <div class="phase-box">コード<br />レビュー</div>
           <div class="phase-arrow">→</div>
           <div class="phase-box dark">CI/CD</div>
         </div>
@@ -2503,88 +2169,153 @@
           class="body r d4"
           style="margin-top: clamp(0.75rem, 1.8vh, 1.4rem)"
         >
-          Unit Tests · Integration Tests · End-to-End Tests. Quality is built
-          in, not bolted on.
+          ユニットテスト · 統合テスト · E2Eテスト。品質はあとから付け足すものではなく、最初から組み込むもの。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 16 — BEST PRACTICES                         ║
+     ║  スライド 19 — BP 01: 具体的に指示する              ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s13" aria-label="Best Practices">
+    <section class="slide" id="s13_r1" aria-label="ベストプラクティス 01">
       <div class="sg"></div>
-      <div class="gn">16</div>
-      <div class="sl">Best Practices</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">21 / 41</div>
+      <div class="gn">BP</div>
+      <div class="sl">ベストプラクティス</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">19 / 43</div>
       <div class="si left">
-        <div class="eyebrow r d1">Best Practices for Vibe Coding</div>
-        <div
-          class="headline r d2"
-          style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
-        >
-          Three Rules<span class="ac">.</span>
+        <div class="eyebrow r d1">ベストプラクティス — 01</div>
+        <div class="headline r d2" style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)">
+          具体的に<br />指示する<span class="ac">.</span>
         </div>
-        <div class="practices">
-          <div class="prac r d3">
-            <div class="prac-n">01</div>
-            <div class="prac-r">
-              Be specific. Vague prompts build the wrong app.
-            </div>
-          </div>
-          <div class="prac r d4">
-            <div class="prac-n">02</div>
-            <div class="prac-r">
-              Match the model to the task — Opus for planning, Sonnet for
-              execution.
-            </div>
-          </div>
-          <div class="prac r d5">
-            <div class="prac-n">03</div>
-            <div class="prac-r">
-              Iterate. Review, test, refine — then repeat.
-            </div>
+        <div class="hs r d3">
+          <div class="hs-text">
+            「良いアプリを作って」のような曖昧なプロンプトは避けること。「何を」「どこに」「どのように」——詳細であればあるほど、AIは正確に動作する。
           </div>
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 21 — CHOOSING THE RIGHT MODEL               ║
+     ║  スライド 20 — BP 02: 反復する                      ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s13d" aria-label="Choosing the Right Model">
+    <section class="slide" id="s13_r2" aria-label="ベストプラクティス 02">
+      <div class="sg"></div>
+      <div class="gn">BP</div>
+      <div class="sl">ベストプラクティス</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">20 / 43</div>
+      <div class="si left">
+        <div class="eyebrow r d1">ベストプラクティス — 02</div>
+        <div class="headline r d2" style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)">
+          反復する<span class="ac">.</span>
+        </div>
+        <div class="hs r d3">
+          <div class="hs-text">
+            レビュー・テスト・改善を繰り返すことが、品質の高いプロダクトを生み出す。一度で完成させようとしない——改善のサイクルそのものが開発プロセスだ。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════════════╗
+     ║  スライド 21 — BP 03: コードを検証する              ║
+     ╚══════════════════════════════════════════════════════╝ -->
+    <section class="slide" id="s13_r3" aria-label="ベストプラクティス 03">
+      <div class="sg"></div>
+      <div class="gn">BP</div>
+      <div class="sl">ベストプラクティス</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">21 / 43</div>
+      <div class="si left">
+        <div class="eyebrow r d1">ベストプラクティス — 03</div>
+        <div class="headline r d2" style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)">
+          コードを<br />検証する<span class="ac">.</span>
+        </div>
+        <div class="hs r d3">
+          <div class="hs-text">
+            AIが提案したコードを盲目的に受け入れてはならない。何をしているコードなのかを確認し、承認する前に必ずテストすること。確認なき承認は、潜在的な問題を積み上げるだけだ。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════════════╗
+     ║  スライド 22 — BP 04: 完了基準を定める              ║
+     ╚══════════════════════════════════════════════════════╝ -->
+    <section class="slide" id="s13_r4" aria-label="ベストプラクティス 04">
+      <div class="sg"></div>
+      <div class="gn">BP</div>
+      <div class="sl">ベストプラクティス</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">22 / 43</div>
+      <div class="si left">
+        <div class="eyebrow r d1">ベストプラクティス — 04</div>
+        <div class="headline r d2" style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)">
+          完了基準を<br />定める<span class="ac">.</span>
+        </div>
+        <div class="hs r d3">
+          <div class="hs-text">
+            プロンプトに「どうなれば完成か」を明示することで、AIがいつ停止すべきかを把握できる。検収基準がなければ、AIは必要以上に変更し続ける。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════════════╗
+     ║  スライド 23 — BP 05: 小さく分割する                ║
+     ╚══════════════════════════════════════════════════════╝ -->
+    <section class="slide" id="s13_r5" aria-label="ベストプラクティス 05">
+      <div class="sg"></div>
+      <div class="gn">BP</div>
+      <div class="sl">ベストプラクティス</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">23 / 43</div>
+      <div class="si left">
+        <div class="eyebrow r d1">ベストプラクティス — 05</div>
+        <div class="headline r d2" style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)">
+          小さく<br />分割する<span class="ac">.</span>
+        </div>
+        <div class="hs r d3">
+          <div class="hs-text">
+            大きな指示は分割すること。プロンプトが小さいほど、エラーの発見と原因の特定が格段に容易になる。一度に多くを求めすぎると、どこで問題が起きたか追えなくなる。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════════════╗
+     ║  スライド 22 — 適切なモデルを選ぶ                   ║
+     ╚══════════════════════════════════════════════════════╝ -->
+    <section class="slide" id="s13d" aria-label="適切なモデルを選ぶ">
       <div class="sg"></div>
       <div class="gn">M</div>
-      <div class="sl">01 · Model Selection</div>
-      <div class="pl">01 · Theory</div>
-      <div class="sc">22 / 41</div>
+      <div class="sl">01 · モデル選択</div>
+      <div class="pl">01 · 理論</div>
+      <div class="sc">24 / 43</div>
       <div class="si left">
-        <div class="eyebrow r d1">Best Practices — Choosing the Right Model</div>
+        <div class="eyebrow r d1">ベストプラクティス — 適切なモデルを選ぶ</div>
         <div
           class="headline r d2"
           style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
         >
-          Right Tool,<br />Right Job<span class="ac">.</span>
+          適材<br />適所<span class="ac">.</span>
         </div>
         <div class="two-col r d3">
           <div class="cc">
-            <span class="cc-tag">Planning Phase</span>
-            <div class="cc-title">Think &amp; Strategise</div>
+            <span class="cc-tag">計画フェーズ</span>
+            <div class="cc-title">考えて戦略を立てる</div>
             <div class="cc-body">
-              Use <strong>Opus</strong> or <strong>GPT-5.5</strong> when the
-              task requires deep reasoning — writing specs, defining
-              architecture, breaking down complex problems before any code is
-              written.
+              深い推論が必要なタスクには<strong>Opus</strong>か<strong>GPT-5.5</strong>を使う。
+              仕様の作成、アーキテクチャの設計、コードを書く前の複雑な問題の分解に適している。
             </div>
           </div>
           <div class="cc hi">
-            <span class="cc-tag">Execution Phase · Agent Mode</span>
-            <div class="cc-title">Build &amp; Generate</div>
+            <span class="cc-tag">実行フェーズ · エージェントモード</span>
+            <div class="cc-title">作って生成する</div>
             <div class="cc-body">
-              Use <strong>Sonnet</strong> or <strong>Codex</strong> for fast,
-              reliable code generation — multi-file agent tasks, refactoring,
-              and building features at speed.
+              速くて確実なコード生成には<strong>Sonnet</strong>か<strong>Codex</strong>を使う。
+              複数ファイルのエージェントタスク、リファクタリング、素早い機能実装に向いている。
             </div>
           </div>
         </div>
@@ -2592,164 +2323,136 @@
           class="body r d4"
           style="margin-top: clamp(0.75rem, 1.8vh, 1.4rem)"
         >
-          Same question, different job. Plan with the thinker. Build with the
-          doer.
+          同じ問いでも、役割が違う。考えるモデルで計画し、動くモデルで実行する。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 17 — PRESENTATION 2 COVER (dark)            ║
+     ║  スライド 23 — 第2部カバー（ダーク）                ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section
-      class="slide slide-dark"
-      id="s14"
-      aria-label="Presentation 2 cover"
-    >
+    <section class="slide slide-dark" id="s14" aria-label="第2部カバー">
       <div class="sg"></div>
       <div class="gn">02</div>
-      <div class="sl">Presentation 02</div>
-      <div class="pl">02 · Implementation</div>
-      <div class="sc">23 / 41</div>
+      <div class="sl">プレゼンテーション 02</div>
+      <div class="pl">02 · 実践</div>
+      <div class="sc">25 / 43</div>
       <div class="si bottom">
-        <div class="eyebrow r d1">Part Two</div>
+        <div class="eyebrow r d1">第2部</div>
         <div class="display r d2">
-          The<br />Implemen-<br />tation<span class="ac">.</span>
+          実<br />践<span class="ac">.</span>
         </div>
         <div
           class="body r d3"
           style="margin-top: clamp(0.6rem, 1.5vh, 1.2rem); color: #555"
         >
-          Tools, technologies, and a step-by-step walkthrough. You'll build a
-          real app.
+          ツール、技術、そしてステップごとのウォークスルー。実際のアプリを作る。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 18 — SECTION DIVIDER: TOOLS                 ║
+     ║  スライド 24 — セクション区切り：ツール             ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s15" aria-label="Section: Tools & Technologies">
+    <section class="slide" id="s15" aria-label="セクション：ツールと技術">
       <div class="sg"></div>
       <div class="gn">T</div>
-      <div class="sl">02 · Tools</div>
-      <div class="pl">02 · Implementation</div>
-      <div class="sc">24 / 41</div>
+      <div class="sl">02 · ツール</div>
+      <div class="pl">02 · 実践</div>
+      <div class="sc">26 / 43</div>
       <div class="si">
-        <div class="eyebrow r d1">Part 2 · Section 1</div>
+        <div class="eyebrow r d1">第2部 · セクション1</div>
         <div class="rule r d1"></div>
         <div class="headline r d2">
-          Tools &amp;<br />Technologies<span class="ac">.</span>
+          ツール &amp;<br />技術<span class="ac">.</span>
         </div>
         <div class="body r d3" style="margin-top: clamp(0.6rem, 1.5vh, 1rem)">
-          Three things. That's all you need to build a working web app.
+          3つのもの。それだけで動くウェブアプリが作れる。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 19 — VSCODE                                 ║
+     ║  スライド 25 — VSCode                               ║
      ╚══════════════════════════════════════════════════════╝ -->
     <section class="slide" id="s16" aria-label="VSCode">
       <div class="sg"></div>
       <div class="gn">VS</div>
-      <div class="pl">02 · Implementation</div>
-      <div class="sc">25 / 41</div>
+      <div class="pl">02 · 実践</div>
+      <div class="sc">27 / 43</div>
       <div class="si left" style="position:relative; align-items:flex-start;">
         <div style="font-size:0.9em; max-width:50%;">
-          <div class="eyebrow r d1">Your Workspace</div>
+          <div class="eyebrow r d1">あなたの作業環境</div>
           <div class="headline r d2" style="margin-bottom: clamp(0.6rem, 1.5vh, 1.2rem)">
             Visual Studio<br />Code<span class="ac">.</span>
           </div>
           <div class="hs r d3">
             <div class="hs-text">
-              The code editor where your project lives. Free. Works on any
-              computer. GitHub Copilot lives inside it.
+              プロジェクトが生きるコードエディター。無料。どのPCでも動く。
+              中にGitHub Copilotが組み込まれている。
             </div>
-            <span class="hs-sub">VSCode · Free · code.visualstudio.com</span>
+            <span class="hs-sub">VSCode · 無料 · code.visualstudio.com</span>
           </div>
         </div>
-        <!-- VS Code editor window illustration -->
         <div class="r d4" style="position:absolute; top:clamp(1rem,3vh,2.5rem); right:clamp(1rem,2vw,2rem); width:38%;">
-          <svg viewBox="0 0 360 230" xmlns="http://www.w3.org/2000/svg" aria-label="VS Code editor window mockup" style="width:100%; height:auto; display:block; filter:drop-shadow(0 4px 16px rgba(0,0,0,0.35));">
-            <!-- Window bg -->
+          <svg viewBox="0 0 360 230" xmlns="http://www.w3.org/2000/svg" aria-label="VS Codeエディター画面のモックアップ" style="width:100%; height:auto; display:block; filter:drop-shadow(0 4px 16px rgba(0,0,0,0.35));">
             <rect width="360" height="230" rx="10" fill="#1e1e1e"/>
-            <!-- Title bar -->
             <rect width="360" height="26" rx="10" fill="#323233"/>
             <rect y="18" width="360" height="8" fill="#323233"/>
-            <!-- Traffic lights -->
             <circle cx="16" cy="13" r="5.5" fill="#ff5f57"/>
             <circle cx="32" cy="13" r="5.5" fill="#febc2e"/>
             <circle cx="48" cy="13" r="5.5" fill="#28c840"/>
             <text x="180" y="17" text-anchor="middle" font-family="Space Mono,monospace" font-size="7.5" fill="#888">Visual Studio Code — ShoppingApp</text>
-            <!-- Activity bar -->
             <rect x="0" y="26" width="40" height="204" fill="#2c2c2c"/>
-            <!-- Files icon (active) -->
             <rect x="8" y="36" width="24" height="24" rx="4" fill="#c8211a"/>
             <rect x="13" y="41" width="12" height="2" rx="1" fill="#ede9e3"/>
             <rect x="13" y="45" width="14" height="2" rx="1" fill="#ede9e3"/>
             <rect x="13" y="49" width="10" height="2" rx="1" fill="#ede9e3"/>
             <rect x="13" y="53" width="13" height="2" rx="1" fill="#ede9e3"/>
-            <!-- Search icon -->
             <rect x="8" y="68" width="24" height="24" rx="4" fill="#3c3c3c"/>
             <circle cx="18" cy="77" r="5" fill="none" stroke="#888" stroke-width="1.8"/>
             <line x1="22" y1="82" x2="26" y2="86" stroke="#888" stroke-width="1.8" stroke-linecap="round"/>
-            <!-- Source control icon -->
             <rect x="8" y="100" width="24" height="24" rx="4" fill="#3c3c3c"/>
             <circle cx="16" cy="106" r="3" fill="none" stroke="#888" stroke-width="1.5"/>
             <circle cx="24" cy="106" r="3" fill="none" stroke="#888" stroke-width="1.5"/>
             <circle cx="20" cy="118" r="3" fill="none" stroke="#888" stroke-width="1.5"/>
             <line x1="16" y1="109" x2="20" y2="115" stroke="#888" stroke-width="1.2"/>
             <line x1="24" y1="109" x2="20" y2="115" stroke="#888" stroke-width="1.2"/>
-            <!-- Extensions icon -->
             <rect x="8" y="132" width="24" height="24" rx="4" fill="#3c3c3c"/>
             <rect x="13" y="137" width="8" height="8" rx="2" fill="none" stroke="#888" stroke-width="1.5"/>
             <rect x="19" y="143" width="8" height="8" rx="2" fill="none" stroke="#888" stroke-width="1.5"/>
-            <!-- Tab bar -->
             <rect x="40" y="26" width="320" height="26" fill="#252526"/>
-            <!-- Active tab: index.html -->
             <rect x="40" y="26" width="90" height="26" fill="#1e1e1e"/>
             <rect x="40" y="26" width="90" height="2" fill="#c8211a"/>
             <text x="50" y="42" font-family="Space Mono,monospace" font-size="8" fill="#ede9e3">index.html</text>
             <text x="122" y="42" font-family="Space Mono,monospace" font-size="8" fill="#555">✕</text>
-            <!-- Inactive tab: styles.css -->
             <rect x="132" y="26" width="82" height="26" fill="#2d2d2d"/>
             <text x="142" y="42" font-family="Space Mono,monospace" font-size="8" fill="#777">styles.css</text>
-            <!-- Inactive tab: app.js -->
             <rect x="216" y="26" width="68" height="26" fill="#2d2d2d"/>
             <text x="226" y="42" font-family="Space Mono,monospace" font-size="8" fill="#777">app.js</text>
-            <!-- Editor area bg -->
             <rect x="40" y="52" width="320" height="156" fill="#1e1e1e"/>
-            <!-- Line number strip -->
             <rect x="40" y="52" width="28" height="156" fill="#1e1e1e"/>
-            <!-- Code lines (syntax highlighted) -->
-            <!-- Line 1 -->
             <text x="65" y="67" font-family="Space Mono,monospace" font-size="8.5" fill="#569cd6">&lt;!DOCTYPE html&gt;</text>
             <text x="60" y="67" text-anchor="end" font-family="Space Mono,monospace" font-size="7" fill="#3c3c3c">1</text>
-            <!-- Line 2 -->
             <text x="65" y="81" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&lt;</text>
             <text x="73" y="81" font-family="Space Mono,monospace" font-size="8.5" fill="#4ec9b0">html</text>
             <text x="101" y="81" font-family="Space Mono,monospace" font-size="8.5" fill="#9cdcfe"> lang</text>
             <text x="131" y="81" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">=</text>
-            <text x="137" y="81" font-family="Space Mono,monospace" font-size="8.5" fill="#ce9178">"en"</text>
+            <text x="137" y="81" font-family="Space Mono,monospace" font-size="8.5" fill="#ce9178">"ja"</text>
             <text x="163" y="81" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&gt;</text>
             <text x="60" y="81" text-anchor="end" font-family="Space Mono,monospace" font-size="7" fill="#3c3c3c">2</text>
-            <!-- Line 3 -->
             <text x="75" y="95" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&lt;</text>
             <text x="83" y="95" font-family="Space Mono,monospace" font-size="8.5" fill="#4ec9b0">head</text>
             <text x="111" y="95" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&gt;</text>
             <text x="60" y="95" text-anchor="end" font-family="Space Mono,monospace" font-size="7" fill="#3c3c3c">3</text>
-            <!-- Line 4 -->
             <text x="85" y="109" font-family="Space Mono,monospace" font-size="8.5" fill="#6a9955">&lt;!-- ShoppingApp styles --&gt;</text>
             <text x="60" y="109" text-anchor="end" font-family="Space Mono,monospace" font-size="7" fill="#3c3c3c">4</text>
-            <!-- Line 5 -->
             <text x="85" y="123" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&lt;</text>
             <text x="93" y="123" font-family="Space Mono,monospace" font-size="8.5" fill="#4ec9b0">link</text>
             <text x="117" y="123" font-family="Space Mono,monospace" font-size="8.5" fill="#9cdcfe"> rel</text>
             <text x="139" y="123" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">=</text>
             <text x="145" y="123" font-family="Space Mono,monospace" font-size="8.5" fill="#ce9178">"stylesheet"</text>
             <text x="60" y="123" text-anchor="end" font-family="Space Mono,monospace" font-size="7" fill="#3c3c3c">5</text>
-            <!-- Line 6 (active / cursor line) -->
             <rect x="40" y="128" width="320" height="14" fill="rgba(255,255,255,0.04)"/>
             <text x="75" y="139" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&lt;</text>
             <text x="83" y="139" font-family="Space Mono,monospace" font-size="8.5" fill="#4ec9b0">body</text>
@@ -2757,10 +2460,8 @@
             <text x="145" y="139" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">=</text>
             <text x="151" y="139" font-family="Space Mono,monospace" font-size="8.5" fill="#ce9178">"app"</text>
             <text x="179" y="139" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&gt;</text>
-            <!-- cursor -->
             <rect x="187" y="128" width="2" height="13" fill="#ede9e3" opacity="0.85"/>
             <text x="60" y="139" text-anchor="end" font-family="Space Mono,monospace" font-size="7" fill="#ede9e3">6</text>
-            <!-- Line 7 -->
             <text x="85" y="153" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&lt;</text>
             <text x="93" y="153" font-family="Space Mono,monospace" font-size="8.5" fill="#4ec9b0">div</text>
             <text x="113" y="153" font-family="Space Mono,monospace" font-size="8.5" fill="#9cdcfe"> id</text>
@@ -2770,12 +2471,10 @@
             <text x="191" y="153" font-family="Space Mono,monospace" font-size="8.5" fill="#4ec9b0">div</text>
             <text x="211" y="153" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&gt;</text>
             <text x="60" y="153" text-anchor="end" font-family="Space Mono,monospace" font-size="7" fill="#3c3c3c">7</text>
-            <!-- Line 8 -->
             <text x="75" y="167" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&lt;/</text>
             <text x="87" y="167" font-family="Space Mono,monospace" font-size="8.5" fill="#4ec9b0">body</text>
             <text x="115" y="167" font-family="Space Mono,monospace" font-size="8.5" fill="#808080">&gt;</text>
             <text x="60" y="167" text-anchor="end" font-family="Space Mono,monospace" font-size="7" fill="#3c3c3c">8</text>
-            <!-- Status bar -->
             <rect x="0" y="208" width="360" height="22" fill="#c8211a"/>
             <text x="10" y="222" font-family="Space Mono,monospace" font-size="7" fill="#ede9e3">⎇ main  ✓ 0 errors  ⚠ 0</text>
             <text x="270" y="222" font-family="Space Mono,monospace" font-size="7" fill="#ede9e3">HTML · UTF-8</text>
@@ -2785,83 +2484,65 @@
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 25 — WHAT IS GITHUB COPILOT?                ║
+     ║  スライド 26 — GitHub Copilotとは？                 ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s16b" aria-label="What is GitHub Copilot?">
+    <section class="slide" id="s16b" aria-label="GitHub Copilotとは？">
       <div class="sg"></div>
       <div class="gn">GH</div>
-      <div class="pl">02 · Implementation</div>
-      <div class="sc">26 / 41</div>
+      <div class="pl">02 · 実践</div>
+      <div class="sc">28 / 43</div>
       <div class="si left" style="position:relative; align-items:flex-start;">
         <div style="font-size:0.88em; max-width:50%;">
-          <div class="eyebrow r d1">Your AI Pair Programmer</div>
+          <div class="eyebrow r d1">AIペアプログラマー</div>
           <div class="headline r d2" style="margin-bottom: clamp(0.5rem, 1.2vh, 1rem)">
             GitHub<br />Copilot<span class="ac">.</span>
           </div>
           <div class="hs r d3">
             <div class="hs-text">
-              An AI pair programmer built directly into VSCode. Powered by
-              OpenAI and Microsoft — it doesn't just autocomplete lines, it
-              understands your entire project.
+              VSCodeに直接組み込まれたAIペアプログラマー。OpenAIとMicrosoftが提供。
+              単なる行補完ではなく、プロジェクト全体を理解する。
             </div>
-            <span class="hs-sub">GitHub · Subscription · github.com/copilot</span>
+            <span class="hs-sub">GitHub · サブスクリプション · github.com/copilot</span>
           </div>
           <div class="defs r d4" style="margin-top: clamp(0.5rem, 1.2vh, 1rem);">
             <div class="def" style="border-top: 1px solid var(--border)">
-              <div class="def-abbr">Why<br />"Copilot"?</div>
+              <div class="def-abbr">なぜ<br />「Copilot」？</div>
               <div>
                 <div class="def-main">
-                  A co-pilot doesn't fly the plane — it helps the pilot do it better.
+                  副操縦士は飛行機を操縦するのではなく、パイロットをサポートする。
                 </div>
                 <div class="def-sub">
-                  You stay in control. Copilot handles the boilerplate, suggests
-                  patterns, executes multi-file tasks, and helps you move ten
-                  times faster without losing oversight.
+                  あなたが主導権を持つ。Copilotは定型コードを処理し、パターンを提案し、
+                  複数ファイルにまたがるタスクをこなし、監視を失わずに10倍速で作業を進める手助けをする。
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- Copilot Chat panel illustration -->
         <div class="r d5" style="position:absolute; top:clamp(1rem,3vh,2.5rem); right:clamp(1rem,2vw,2rem); width:38%;">
-          <svg viewBox="0 0 300 290" xmlns="http://www.w3.org/2000/svg" aria-label="GitHub Copilot Chat panel in VS Code" style="width:100%; height:auto; display:block; filter:drop-shadow(0 4px 16px rgba(0,0,0,0.35));">
-            <!-- Panel bg -->
+          <svg viewBox="0 0 300 290" xmlns="http://www.w3.org/2000/svg" aria-label="VS Code内のGitHub Copilotチャットパネル" style="width:100%; height:auto; display:block; filter:drop-shadow(0 4px 16px rgba(0,0,0,0.35));">
             <rect width="300" height="290" rx="10" fill="#1e1e1e"/>
-            <!-- Header bar -->
             <rect width="300" height="40" rx="10" fill="#252526"/>
             <rect y="30" width="300" height="10" fill="#252526"/>
-            <!-- Copilot icon -->
             <circle cx="18" cy="20" r="9" fill="#1f6feb"/>
             <text x="18" y="24" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#fff">✦</text>
-            <!-- Title -->
             <text x="32" y="25" font-family="Space Mono,monospace" font-size="8.5" fill="#ede9e3" font-weight="bold">GitHub Copilot</text>
-            <!-- Model pill -->
             <rect x="198" y="12" width="90" height="16" rx="3" fill="#3c3c3c"/>
             <text x="243" y="23" text-anchor="middle" font-family="Space Mono,monospace" font-size="7" fill="#888">GPT-4o  ▾</text>
-            <!-- Divider -->
             <line x1="0" y1="40" x2="300" y2="40" stroke="#333" stroke-width="1"/>
-            <!-- Chat area -->
             <rect x="0" y="40" width="300" height="208" fill="#1e1e1e"/>
-            <!-- User label -->
-            <text x="14" y="58" font-family="Space Mono,monospace" font-size="7" fill="#888">You</text>
-            <!-- User message bubble -->
+            <text x="14" y="58" font-family="Space Mono,monospace" font-size="7" fill="#888">あなた</text>
             <rect x="14" y="63" width="272" height="34" rx="6" fill="#2a2d2e"/>
-            <text x="22" y="77" font-family="Space Mono,monospace" font-size="7.5" fill="#ede9e3">Write a function to calculate</text>
-            <text x="22" y="90" font-family="Space Mono,monospace" font-size="7.5" fill="#ede9e3">the total price in the cart.</text>
-            <!-- Separator -->
+            <text x="22" y="77" font-family="Space Mono,monospace" font-size="7.5" fill="#ede9e3">カートの合計金額を計算する</text>
+            <text x="22" y="90" font-family="Space Mono,monospace" font-size="7.5" fill="#ede9e3">関数を書いてください。</text>
             <line x1="14" y1="108" x2="286" y2="108" stroke="#2a2a2a" stroke-width="1"/>
-            <!-- Copilot response header -->
             <circle cx="22" cy="120" r="7" fill="#1f6feb" opacity="0.9"/>
             <text x="22" y="124" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#fff">✦</text>
             <text x="34" y="124" font-family="Space Mono,monospace" font-size="8" fill="#ede9e3" font-weight="bold">Copilot</text>
-            <!-- Response text -->
-            <text x="14" y="140" font-family="Space Mono,monospace" font-size="7.5" fill="#aaa">Sure! Here's the function:</text>
-            <!-- Code block -->
+            <text x="14" y="140" font-family="Space Mono,monospace" font-size="7.5" fill="#aaa">了解です。こちらが関数です：</text>
             <rect x="14" y="146" width="272" height="76" rx="4" fill="#0d0d0d" stroke="#333" stroke-width="1"/>
-            <!-- Copy button -->
             <rect x="258" y="149" width="24" height="13" rx="2" fill="#3c3c3c"/>
             <text x="270" y="158" text-anchor="middle" font-family="Space Mono,monospace" font-size="6" fill="#777">copy</text>
-            <!-- Code content -->
             <text x="20" y="163" font-family="Space Mono,monospace" font-size="7.5" fill="#569cd6">function </text>
             <text x="74" y="163" font-family="Space Mono,monospace" font-size="7.5" fill="#dcdcaa">calculateTotal</text>
             <text x="173" y="163" font-family="Space Mono,monospace" font-size="7.5" fill="#ede9e3">(cart) {</text>
@@ -2877,15 +2558,12 @@
             <text x="108" y="189" font-family="Space Mono,monospace" font-size="7.5" fill="#b5cea8">0</text>
             <text x="116" y="189" font-family="Space Mono,monospace" font-size="7.5" fill="#ede9e3">);</text>
             <text x="20" y="202" font-family="Space Mono,monospace" font-size="7.5" fill="#ede9e3">}</text>
-            <!-- Follow-up text -->
-            <text x="14" y="234" font-family="Space Mono,monospace" font-size="7.5" fill="#aaa">It sums all item prices using</text>
-            <text x="14" y="246" font-family="Space Mono,monospace" font-size="7.5" fill="#aaa">Array.reduce().</text>
-            <!-- Input area -->
+            <text x="14" y="234" font-family="Space Mono,monospace" font-size="7.5" fill="#aaa">Array.reduce()を使って</text>
+            <text x="14" y="246" font-family="Space Mono,monospace" font-size="7.5" fill="#aaa">全商品の価格を合計します。</text>
             <rect x="0" y="248" width="300" height="42" fill="#252526"/>
             <line x1="0" y1="248" x2="300" y2="248" stroke="#333" stroke-width="1"/>
             <rect x="10" y="256" width="254" height="26" rx="5" fill="#3c3c3c" stroke="#444" stroke-width="0.8"/>
-            <text x="20" y="272" font-family="Space Mono,monospace" font-size="7.5" fill="#555">Ask Copilot a question...</text>
-            <!-- Send button -->
+            <text x="20" y="272" font-family="Space Mono,monospace" font-size="7.5" fill="#555">Copilotに質問する...</text>
             <rect x="270" y="256" width="22" height="26" rx="5" fill="#1f6feb"/>
             <text x="281" y="273" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fff">▶</text>
           </svg>
@@ -2894,44 +2572,42 @@
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 20 — GITHUB COPILOT: 3 MODES                ║
+     ║  スライド 27 — GitHub Copilot 3つのモード           ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s17" aria-label="GitHub Copilot 3 Modes">
+    <section class="slide" id="s17" aria-label="GitHub Copilot 3つのモード">
       <div class="sg"></div>
       <div class="gn">20</div>
       <div class="sl">GitHub Copilot</div>
-      <div class="pl">02 · Implementation</div>
-      <div class="sc">27 / 41</div>
+      <div class="pl">02 · 実践</div>
+      <div class="sc">29 / 43</div>
       <div class="si left">
-        <div class="eyebrow r d1">GitHub Copilot — Your AI Assistant</div>
+        <div class="eyebrow r d1">GitHub Copilot — AIアシスタント</div>
         <div
           class="headline r d2"
           style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
         >
-          Three Modes<span class="ac">.</span>
+          3つのモード<span class="ac">.</span>
         </div>
         <div class="tiles-3">
           <div class="tile r d3">
-            <span class="tile-tag">Mode · 01</span>
-            <div class="tile-name">Ask</div>
+            <span class="tile-tag">モード · 01</span>
+            <div class="tile-name">質問（Ask）</div>
             <div class="tile-desc">
-              Questions about the code. Understanding. Suggestions. Learning
-              concepts.
+              コードについての質問。理解。提案。概念の学習。
             </div>
           </div>
           <div class="tile r d4">
-            <span class="tile-tag">Mode · 02</span>
-            <div class="tile-name">Edit</div>
+            <span class="tile-tag">モード · 02</span>
+            <div class="tile-name">編集（Edit）</div>
             <div class="tile-desc">
-              Refactor code. Add new features. Improve existing files.
+              コードのリファクタリング。新機能の追加。既存ファイルの改善。
             </div>
           </div>
           <div class="tile hi r d5">
-            <span class="tile-tag">Mode · 03 · Main</span>
-            <div class="tile-name">Agent</div>
+            <span class="tile-tag">モード · 03 · メイン</span>
+            <div class="tile-name">エージェント（Agent）</div>
             <div class="tile-desc">
-              Autonomous multi-step tasks. Give it a goal — it works through the
-              steps on its own.
+              自律的な複数ステップのタスク。目標を与えれば、ステップを自力で進める。
             </div>
           </div>
         </div>
@@ -2939,38 +2615,38 @@
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 21 — HTML / CSS / JS                        ║
+     ║  スライド 28 — HTML / CSS / JS                      ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s18" aria-label="HTML, CSS, JavaScript">
+    <section class="slide" id="s18" aria-label="HTML、CSS、JavaScript">
       <div class="sg"></div>
       <div class="gn">21</div>
-      <div class="sl">Web Building Blocks</div>
-      <div class="pl">02 · Implementation</div>
-      <div class="sc">28 / 41</div>
+      <div class="sl">Webの構成要素</div>
+      <div class="pl">02 · 実践</div>
+      <div class="sc">30 / 43</div>
       <div class="si left">
-        <div class="eyebrow r d1">The Building Blocks of the Web</div>
+        <div class="eyebrow r d1">Webの構成要素</div>
         <div
           class="headline r d2"
           style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
         >
-          Three Files<span class="ac">.</span>
+          3つのファイル<span class="ac">.</span>
         </div>
         <div class="files">
           <div class="file r d3">
             <div class="head">
               <div class="n">HTML</div>
-              <div class="t">FILE · 01</div>
+              <div class="t">ファイル · 01</div>
             </div>
-            <div class="role">The skeleton.</div>
+            <div class="role">骨格。</div>
             <div class="desc">
-              Every bone of the page — headings, buttons, forms, the cart,
-              the product grid. Tells the browser what exists and where.
+              ページのすべての骨格 — 見出し、ボタン、フォーム、カート、商品グリッド。
+              ブラウザに「何が、どこに存在するか」を伝える。
             </div>
             <div class="snip">
               <div><span class="cmt">// index.html</span></div>
               <div>&lt;<span class="acc">main</span>&gt;</div>
               <div>
-                &nbsp;&nbsp;&lt;<span class="acc">h1</span>&gt;Shop&lt;/<span
+                &nbsp;&nbsp;&lt;<span class="acc">h1</span>&gt;ショップ&lt;/<span
                   class="acc"
                   >h1</span
                 >&gt;
@@ -2985,12 +2661,12 @@
           <div class="file r d4">
             <div class="head">
               <div class="n">CSS</div>
-              <div class="t">FILE · 02</div>
+              <div class="t">ファイル · 02</div>
             </div>
-            <div class="role">The clothing &amp; makeup.</div>
+            <div class="role">服と化粧。</div>
             <div class="desc">
-              Colors, fonts, spacing, layout — and how the page reflows on a
-              phone. Turns the skeleton into something people want to use.
+              色・フォント・間隔・レイアウト、そしてスマホでの表示方法。
+              骨格を「使いたいもの」に変える。
             </div>
             <div class="snip">
               <div><span class="cmt">/* styles.css */</span></div>
@@ -3003,12 +2679,11 @@
           <div class="file r d5">
             <div class="head">
               <div class="n">JS</div>
-              <div class="t">FILE · 03</div>
+              <div class="t">ファイル · 03</div>
             </div>
-            <div class="role">The muscles &amp; brain.</div>
+            <div class="role">筋肉と脳。</div>
             <div class="desc">
-              What fires when you click. Cart math, page navigation, product
-              filtering, and checkout logic — all the moving parts.
+              クリックで動くもの。カートの計算、ページ遷移、商品フィルター、決済ロジック — すべての動く部品。
             </div>
             <div class="snip">
               <div><span class="cmt">// app.js</span></div>
@@ -3023,235 +2698,229 @@
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 22 — SECTION DIVIDER: TUTORIAL              ║
+     ║  スライド 29 — セクション区切り：チュートリアル     ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s19" aria-label="Section: Tutorial Walkthrough">
+    <section class="slide" id="s19" aria-label="セクション：チュートリアルウォークスルー">
       <div class="sg"></div>
       <div class="gn">TW</div>
-      <div class="sl">02 · Tutorial</div>
-      <div class="pl">02 · Implementation</div>
-      <div class="sc">29 / 41</div>
+      <div class="sl">02 · チュートリアル</div>
+      <div class="pl">02 · 実践</div>
+      <div class="sc">31 / 43</div>
       <div class="si">
-        <div class="eyebrow r d1">Part 2 · Section 2</div>
+        <div class="eyebrow r d1">第2部 · セクション2</div>
         <div class="rule r d1"></div>
         <div class="headline r d2">
-          Step-by-Step<br />Tutorial<br />Walkthrough<span class="ac">.</span>
+          ステップごとの<br />チュートリアル<br />ウォークスルー<span class="ac">.</span>
         </div>
         <div class="body r d3" style="margin-top: clamp(0.6rem, 1.5vh, 1rem)">
-          13 steps. You'll build a real shopping app with GitHub Copilot. Let's
-          go.
+          13のステップ。GitHub Copilotを使って本物のショッピングアプリを作る。さあ始めよう。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 23 — STEP 01: CREATE WORKSPACE              ║
+     ║  スライド 30 — ステップ01：ワークスペース作成       ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s20" aria-label="Step 1: Create Workspace">
+    <section class="slide" id="s20" aria-label="ステップ1：ワークスペースの作成">
       <div class="sg"></div>
       <div class="gn">01</div>
-      <div class="sl">Step 01 · Setup</div>
-      <div class="pl">02 · Implementation</div>
-      <div class="sc">30 / 41</div>
+      <div class="sl">ステップ01 · セットアップ</div>
+      <div class="pl">02 · 実践</div>
+      <div class="sc">32 / 43</div>
       <div class="si left">
         <div class="step-n r d1">01</div>
-        <div class="step-a r d2">Create Your<br />Workspace Folder</div>
+        <div class="step-a r d2">ワークスペース<br />フォルダを作成する</div>
         <div class="step-s r d3">
-          <div class="step-line">File</div>
-          <div class="step-line">Add Folder to Workspace</div>
-          <div class="step-line">Name it "VibeCoding-PrototypeApp"</div>
-          <div class="step-line">Add</div>
+          <div class="step-line">ファイル</div>
+          <div class="step-line">ワークスペースにフォルダを追加</div>
+          <div class="step-line">名前を「VibeCoding-PrototypeApp」に設定</div>
+          <div class="step-line">追加</div>
         </div>
         <div
           class="body r d4"
           style="margin-top: clamp(0.75rem, 1.8vh, 1.4rem)"
         >
-          This folder is the AI agent's home. Keep it outside any existing git
-          repo.
+          このフォルダはAIエージェントのホームになる。既存のgitリポジトリの外に置くこと。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 24 — STEPS 02–03: BUILD THE PRD             ║
+     ║  スライド 31 — ステップ02–03：PRD作成               ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s21" aria-label="Steps 2-3: Build the PRD">
+    <section class="slide" id="s21" aria-label="ステップ2-3：PRDの作成">
       <div class="sg"></div>
       <div class="gn">02</div>
-      <div class="sl">Steps 02–03 · PRD</div>
-      <div class="pl">02 · Implementation</div>
-      <div class="sc">31 / 41</div>
+      <div class="sl">ステップ02–03 · PRD</div>
+      <div class="pl">02 · 実践</div>
+      <div class="sc">33 / 43</div>
       <div class="si left">
         <div class="step-n r d1">02–03</div>
-        <div class="step-a r d2">Build Your PRD<br />with Copilot</div>
+        <div class="step-a r d2">CopilotでPRDを<br />作成する</div>
         <div class="step-s r d3">
-          <div class="step-line">Ask Mode</div>
+          <div class="step-line">質問モード</div>
           <div class="step-line">GPT-4.1</div>
-          <div class="step-line">Ask what sections your PRD needs</div>
-          <div class="step-line">Give your app details</div>
-          <div class="step-line">Agent Mode</div>
-          <div class="step-line">Save as VibeCodingPRD.md</div>
+          <div class="step-line">PRDに必要なセクションを尋ねる</div>
+          <div class="step-line">アプリの詳細を入力</div>
+          <div class="step-line">エージェントモード</div>
+          <div class="step-line">VibeCodingPRD.mdとして保存</div>
         </div>
         <div
           class="body r d4"
           style="margin-top: clamp(0.75rem, 1.8vh, 1.4rem)"
         >
-          Briefing the AI before it builds. Clearer brief = better app.
+          開発を始める前にAIをブリーフィングする。明確なブリーフ＝より良いアプリ。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 25 — STEP 04: WIREFRAMES                    ║
+     ║  スライド 32 — ステップ04：ワイヤーフレーム         ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s22" aria-label="Step 4: Wireframes">
+    <section class="slide" id="s22" aria-label="ステップ4：ワイヤーフレーム">
       <div class="sg"></div>
       <div class="gn">04</div>
-      <div class="sl">Step 04 · Wireframe</div>
-      <div class="pl">02 · Implementation</div>
-      <div class="sc">32 / 41</div>
+      <div class="sl">ステップ04 · ワイヤーフレーム</div>
+      <div class="pl">02 · 実践</div>
+      <div class="sc">34 / 43</div>
       <div class="si left">
         <div class="step-n r d1">04</div>
-        <div class="step-a r d2">Generate<br />Wireframe Diagrams</div>
+        <div class="step-a r d2">ワイヤーフレーム<br />を生成する</div>
         <div class="step-s r d3">
-          <div class="step-line">Agent Mode</div>
-          <div class="step-line">Ask for low-fidelity wireframes based on your PRD</div>
-          <div class="step-line">Save as .txt files (one per page)</div>
+          <div class="step-line">エージェントモード</div>
+          <div class="step-line">PRDに基づくローファイワイヤーフレームを依頼</div>
+          <div class="step-line">.txtファイルとして保存（ページごとに1ファイル）</div>
         </div>
         <div
           class="body r d4"
           style="margin-top: clamp(0.75rem, 1.8vh, 1.4rem)"
         >
-          Text-based sketches of your UI. Not pretty — just structure. The AI
-          knows exactly what to build.
+          テキストベースのUIスケッチ。見た目ではなく、構造が大事。AIは何を作るかを正確に把握できる。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 26 — STEP 05: SHOPPINGAPP FOLDER            ║
+     ║  スライド 33 — ステップ05：ShoppingAppフォルダ      ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s23" aria-label="Step 5: ShoppingApp folder">
+    <section class="slide" id="s23" aria-label="ステップ5：ShoppingAppフォルダ">
       <div class="sg"></div>
       <div class="gn">05</div>
-      <div class="sl">Step 05 · Structure</div>
-      <div class="pl">02 · Implementation</div>
-      <div class="sc">33 / 41</div>
+      <div class="sl">ステップ05 · 構造</div>
+      <div class="pl">02 · 実践</div>
+      <div class="sc">35 / 43</div>
       <div class="si left">
         <div class="step-n r d1">05</div>
-        <div class="step-a r d2">Create the<br />ShoppingApp Folder</div>
+        <div class="step-a r d2">ShoppingAppフォルダを<br />作成する</div>
         <div class="step-s r d3">
-          <div class="step-line">Explorer Panel</div>
-          <div class="step-line">New Folder inside VibeCoding-PrototypeApp</div>
-          <div class="step-line">Name it "ShoppingApp"</div>
-          <div class="step-line">Leave it empty</div>
+          <div class="step-line">エクスプローラーパネル</div>
+          <div class="step-line">VibeCoding-PrototypeApp内に新しいフォルダ</div>
+          <div class="step-line">名前を「ShoppingApp」に設定</div>
+          <div class="step-line">空のままにしておく</div>
         </div>
         <div
           class="body r d4"
           style="margin-top: clamp(0.75rem, 1.8vh, 1.4rem)"
         >
-          A dedicated, empty space for the agent. Keeps planning files separate
-          from app files.
+          エージェント専用の空スペース。計画ファイルとアプリファイルを分けておく。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 27 — STEP 06: ADD CONTEXT                   ║
+     ║  スライド 34 — ステップ06：コンテキスト追加         ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s24" aria-label="Step 6: Add context">
+    <section class="slide" id="s24" aria-label="ステップ6：コンテキストの追加">
       <div class="sg"></div>
       <div class="gn">06</div>
-      <div class="sl">Step 06 · Context</div>
-      <div class="pl">02 · Implementation</div>
-      <div class="sc">34 / 41</div>
+      <div class="sl">ステップ06 · コンテキスト</div>
+      <div class="pl">02 · 実践</div>
+      <div class="sc">36 / 43</div>
       <div class="si left">
         <div class="step-n r d1">06</div>
-        <div class="step-a r d2">Add Files to<br />Chat Context</div>
+        <div class="step-a r d2">ファイルをチャット<br />コンテキストに追加</div>
         <div class="step-s r d3">
-          <div class="step-line">Add Context button</div>
-          <div class="step-line">Select PRD + all 5 wireframe .txt files + the ShoppingApp folder</div>
+          <div class="step-line">コンテキスト追加ボタン</div>
+          <div class="step-line">PRD + 5つのワイヤーフレーム.txtファイル + ShoppingAppフォルダを選択</div>
         </div>
         <div
           class="body r d4"
           style="margin-top: clamp(0.75rem, 1.8vh, 1.4rem)"
         >
-          Handing the AI your notes before it starts. Without this, it won't
-          know your requirements.
+          開始前にAIにメモを渡す。これをしないと、AIはあなたの要件を知らない。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 28 — STEP 07: BUILD WITH AGENT              ║
+     ║  スライド 35 — ステップ07：エージェントでアプリ開発 ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s25" aria-label="Step 7: Build with Agent">
+    <section class="slide" id="s25" aria-label="ステップ7：エージェントでアプリを開発">
       <div class="sg"></div>
       <div class="gn">07</div>
-      <div class="sl">Step 07 · Build</div>
-      <div class="pl">02 · Implementation</div>
-      <div class="sc">35 / 41</div>
+      <div class="sl">ステップ07 · 開発</div>
+      <div class="pl">02 · 実践</div>
+      <div class="sc">37 / 43</div>
       <div class="si left">
         <div class="step-n r d1">07</div>
-        <div class="step-a r d2">Build the App<br />with Agent</div>
+        <div class="step-a r d2">エージェントで<br />アプリを開発する</div>
         <div class="step-s r d3">
-          <div class="step-line">Agent Mode</div>
-          <div class="step-line">Prompt: "Create a prototype shopping app in the ShoppingApp folder using my PRD and wireframes"</div>
-          <div class="step-line">Watch</div>
-          <div class="step-line">Click Run if prompted</div>
-          <div class="step-line">Keep</div>
+          <div class="step-line">エージェントモード</div>
+          <div class="step-line">プロンプト：「PRDとワイヤーフレームを使ってShoppingAppフォルダにプロトタイプショッピングアプリを作成してください」</div>
+          <div class="step-line">監視する</div>
+          <div class="step-line">求められたらRunをクリック</div>
+          <div class="step-line">保持</div>
         </div>
         <div
           class="body r d4"
           style="margin-top: clamp(0.75rem, 1.8vh, 1.4rem); color: #4a4a4a"
         >
-          The agent generates index.html, styles.css, app.js, and
-          copilot-instructions.md autonomously.
+          エージェントがindex.html、styles.css、app.js、copilot-instructions.mdを自律的に生成する。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 29 — STEP 08: TEST THE APP                  ║
+     ║  スライド 36 — ステップ08：アプリをテスト           ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s26" aria-label="Step 8: Test the app">
+    <section class="slide" id="s26" aria-label="ステップ8：アプリのテスト">
       <div class="sg"></div>
       <div class="gn">08</div>
-      <div class="sl">Step 08 · Test</div>
-      <div class="pl">02 · Implementation</div>
-      <div class="sc">36 / 41</div>
+      <div class="sl">ステップ08 · テスト</div>
+      <div class="pl">02 · 実践</div>
+      <div class="sc">38 / 43</div>
       <div class="si left">
         <div class="step-n r d1">08</div>
-        <div class="step-a r d2">Run and Test<br />the App</div>
+        <div class="step-a r d2">アプリを実行して<br />テストする</div>
         <div class="step-s r d3">
-          <div class="step-line">Open index.html</div>
-          <div class="step-line">Run</div>
-          <div class="step-line">Run Without Debugging</div>
-          <div class="step-line">Test in browser</div>
+          <div class="step-line">index.htmlを開く</div>
+          <div class="step-line">実行</div>
+          <div class="step-line">デバッグなしで実行</div>
+          <div class="step-line">ブラウザでテスト</div>
         </div>
         <div class="checklist r d4">
           <div class="check">
             <div class="check-mark">✓</div>
             <div class="check-text">
-              Browse 10 fruit products with emojis &amp; prices
+              絵文字と価格付きの10種類の果物商品を閲覧できるか
             </div>
           </div>
           <div class="check">
             <div class="check-mark">✓</div>
             <div class="check-text">
-              View product details · add items to cart
+              商品詳細を表示 · カートに追加できるか
             </div>
           </div>
           <div class="check">
             <div class="check-mark">✓</div>
             <div class="check-text">
-              Navigate all 4 pages using the left nav bar
+              左のナビバーを使って4つのページを移動できるか
             </div>
           </div>
           <div class="check">
             <div class="check-mark">✓</div>
             <div class="check-text">
-              Resize the window — does the layout adapt?
+              ウィンドウのサイズを変更 — レイアウトは適応するか？
             </div>
           </div>
         </div>
@@ -3259,82 +2928,80 @@
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 30 — STEP 09: ITERATE & REFINE              ║
+     ║  スライド 37 — ステップ09：繰り返し改善             ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s27" aria-label="Step 9: Iterate and Refine">
+    <section class="slide" id="s27" aria-label="ステップ9：繰り返し改善">
       <div class="sg"></div>
       <div class="gn">09</div>
-      <div class="sl">Step 09 · Refine</div>
-      <div class="pl">02 · Implementation</div>
-      <div class="sc">37 / 41</div>
+      <div class="sl">ステップ09 · 改善</div>
+      <div class="pl">02 · 実践</div>
+      <div class="sc">39 / 43</div>
       <div class="si left">
         <div class="step-n r d1">09</div>
-        <div class="step-a r d2">Iterate &amp; Refine<br />Your App</div>
+        <div class="step-a r d2">アプリを繰り返し<br />改善する</div>
         <div class="step-s r d3">
-          <div class="step-line">Use the app yourself</div>
-          <div class="step-line">Spot something to improve</div>
-          <div class="step-line">Write a specific prompt in Agent Mode</div>
-          <div class="step-line">Review the result</div>
-          <div class="step-line">Test in browser</div>
-          <div class="step-line">Repeat</div>
+          <div class="step-line">自分でアプリを使う</div>
+          <div class="step-line">改善点を見つける</div>
+          <div class="step-line">エージェントモードで具体的なプロンプトを書く</div>
+          <div class="step-line">結果を確認</div>
+          <div class="step-line">ブラウザでテスト</div>
+          <div class="step-line">繰り返す</div>
         </div>
         <div
           class="body r d4"
           style="margin-top: clamp(0.75rem, 1.8vh, 1.4rem)"
         >
-          The more specific your prompt, the better the fix. Example: "Move the
-          two buttons further apart." You can stack multiple improvements in one
-          request.
+          プロンプトが具体的なほど、修正の精度が上がる。例：「2つのボタンをもっと離して」。
+          1回のリクエストで複数の改善をまとめることもできる。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 31 — STEP 10: SAVE WORKSPACE                ║
+     ║  スライド 38 — ステップ10：ワークスペース保存       ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s28" aria-label="Step 10: Save workspace">
+    <section class="slide" id="s28" aria-label="ステップ10：ワークスペースの保存">
       <div class="sg"></div>
       <div class="gn">10</div>
-      <div class="sl">Step 10 · Save</div>
-      <div class="pl">02 · Implementation</div>
-      <div class="sc">38 / 41</div>
+      <div class="sl">ステップ10 · 保存</div>
+      <div class="pl">02 · 実践</div>
+      <div class="sc">40 / 43</div>
       <div class="si left">
         <div class="step-n r d1">10</div>
-        <div class="step-a r d2">Save Your<br />Workspace</div>
+        <div class="step-a r d2">ワークスペースを<br />保存する</div>
         <div class="step-s r d3">
-          <div class="step-line">File</div>
-          <div class="step-line">Save Workspace As</div>
-          <div class="step-line">"VibeCoding-PrototypeApp.code-workspace" inside the project folder</div>
+          <div class="step-line">ファイル</div>
+          <div class="step-line">ワークスペースに名前を付けて保存</div>
+          <div class="step-line">プロジェクトフォルダ内に「VibeCoding-PrototypeApp.code-workspace」として保存</div>
         </div>
         <div
           class="body r d4"
           style="margin-top: clamp(0.75rem, 1.8vh, 1.4rem)"
         >
-          Reopens with the same folder structure and settings. Your project is
-          now portable.
+          同じフォルダ構造と設定で再度開ける。プロジェクトが持ち運び可能になる。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 31 — THE WORKFLOW PATTERN (SUMMARY)          ║
+     ║  スライド 39 — ワークフローパターン（まとめ）        ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s28aa" aria-label="The Workflow Pattern">
+    <section class="slide" id="s28aa" aria-label="ワークフローパターン">
       <div class="sg"></div>
       <div class="gn">WP</div>
-      <div class="sl">The Workflow Pattern</div>
-      <div class="pl">02 · Implementation</div>
-      <div class="sc">39 / 41</div>
+      <div class="sl">ワークフローパターン</div>
+      <div class="pl">02 · 実践</div>
+      <div class="sc">41 / 43</div>
       <div class="si">
-        <div class="eyebrow r d1">Remember This Pattern</div>
-        <div class="headline r d2">The Workflow<br />Cycle<span class="ac">.</span></div>
+        <div class="eyebrow r d1">このパターンを覚えよう</div>
+        <div class="headline r d2">ワークフロー<br />サイクル<span class="ac">.</span></div>
         <div class="workflow-steps r d3">
           <!-- Step 1: Plan -->
           <div class="workflow-step workflow-step--plan">
             <div class="workflow-number">1</div>
             <div class="workflow-mode">Ask / Plan Mode</div>
-            <div class="workflow-action">Plan the structure</div>
-            <div class="workflow-description">What info does Copilot need?</div>
+            <div class="workflow-action">構造を計画する</div>
+            <div class="workflow-description">Copilotに何が必要？</div>
           </div>
           <div class="workflow-arrow">↓</div>
 
@@ -3342,8 +3009,8 @@
           <div class="workflow-step workflow-step--execute">
             <div class="workflow-number">2</div>
             <div class="workflow-mode">Agent Mode</div>
-            <div class="workflow-action">Create the files</div>
-            <div class="workflow-description">Execute with Copilot</div>
+            <div class="workflow-action">ファイルを作成する</div>
+            <div class="workflow-description">Copilotで実行</div>
           </div>
           <div class="workflow-arrow">↓</div>
 
@@ -3351,8 +3018,8 @@
           <div class="workflow-step workflow-step--plan">
             <div class="workflow-number">3</div>
             <div class="workflow-mode">Ask / Plan Mode</div>
-            <div class="workflow-action">Plan refinements</div>
-            <div class="workflow-description">What needs improvement?</div>
+            <div class="workflow-action">改善を計画する</div>
+            <div class="workflow-description">何を改善する？</div>
           </div>
           <div class="workflow-arrow">↓</div>
 
@@ -3360,48 +3027,48 @@
           <div class="workflow-step workflow-step--execute">
             <div class="workflow-number">4</div>
             <div class="workflow-mode">Agent Mode</div>
-            <div class="workflow-action">Execute & iterate</div>
-            <div class="workflow-description">Keep improving with cycles</div>
+            <div class="workflow-action">実行して改善する</div>
+            <div class="workflow-description">サイクルを繰り返す</div>
           </div>
 
           <!-- Cycle indicator -->
-          <div class="workflow-cycle-arrow">↻ Repeat the cycle</div>
+          <div class="workflow-cycle-arrow">↻ サイクルを繰り返す</div>
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 32 — COLLABORATION ROLES  [NEW]             ║
+     ║  スライド 40 — 協働の役割分担                       ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s28b" aria-label="Collaboration Roles">
+    <section class="slide" id="s28b" aria-label="協働の役割分担">
       <div class="sg"></div>
       <div class="gn">CO</div>
-      <div class="sl">Step 13 · Collaborate</div>
-      <div class="pl">02 · Implementation</div>
-      <div class="sc">40 / 41</div>
+      <div class="sl">ステップ13 · 協働</div>
+      <div class="pl">02 · 実践</div>
+      <div class="sc">42 / 43</div>
       <div class="si left">
-        <div class="eyebrow r d1">Step 13 · Collaborate with Classmates</div>
+        <div class="eyebrow r d1">ステップ13 · クラスメートと協力する</div>
         <div
           class="headline r d2"
           style="margin-bottom: clamp(0.75rem, 1.8vh, 1.5rem)"
         >
-          Two Roles,<br />One App<span class="ac">.</span>
+          2つの役割、<br />1つのアプリ<span class="ac">.</span>
         </div>
         <div class="two-col r d3">
           <div class="cc hi">
-            <span class="cc-tag">Role A · Product Manager</span>
-            <div class="cc-title">SDD Focus</div>
+            <span class="cc-tag">役割A · プロダクトマネージャー</span>
+            <div class="cc-title">SDD重視</div>
             <div class="cc-body">
-              Own the Product Requirements Document. Review every spec and plan
-              the AI produces. Decide what gets built and what gets changed.
+              プロダクト要件定義書を担当する。AIが生成するすべての仕様と計画をレビューする。
+              何を作り、何を変えるかを決める。
             </div>
           </div>
           <div class="cc">
-            <span class="cc-tag">Role B · QA Tester</span>
-            <div class="cc-title">TDD Focus</div>
+            <span class="cc-tag">役割B · QAテスター</span>
+            <div class="cc-title">TDD重視</div>
             <div class="cc-body">
-              Own quality. Explore the app for bugs. Write targeted prompts for
-              the AI to diagnose and fix. Make sure it actually works.
+              品質を担当する。アプリのバグを探す。AIが診断・修正するための的確なプロンプトを書く。
+              実際に動くことを確認する。
             </div>
           </div>
         </div>
@@ -3409,38 +3076,34 @@
           class="body r d4"
           style="margin-top: clamp(0.75rem, 1.8vh, 1.4rem)"
         >
-          One person specs it. One person breaks it. Together you ship something
-          that works.
+          一人が仕様を定め、一人がバグを見つける。二人で、動くものを届ける。
         </div>
       </div>
     </section>
 
     <!-- ╔══════════════════════════════════════════════════════╗
-     ║  SLIDE 33 — SUMMARY / CLOSING                      ║
+     ║  スライド 40 — まとめ / クロージング                ║
      ╚══════════════════════════════════════════════════════╝ -->
-    <section class="slide" id="s29" aria-label="Summary and closing">
+    <section class="slide" id="s29" aria-label="まとめとクロージング">
       <div class="sg"></div>
       <div class="gn">VC</div>
-      <div class="sl">VibeCODE · Seminar</div>
-      <div class="pl">Summary</div>
-      <div class="sc">41 / 41</div>
+      <div class="sl">VibeCODE · セミナー</div>
+      <div class="pl">まとめ</div>
+      <div class="sc">43 / 43</div>
       <div class="si bottom">
-        <div class="eyebrow r d1">Key Takeaway</div>
+        <div class="eyebrow r d1">まとめ</div>
         <div class="display r d2">
-          Your Most<br />Important<br />Skill<span class="ac">.</span>
+          最も<br />大切な<br />スキル<span class="ac">.</span>
         </div>
         <div class="hs r d3" style="margin-top: clamp(0.75rem, 2vh, 1.5rem)">
           <div class="hs-text" style="font-size: clamp(1.5rem, 3.5vw, 3rem)">
-            Write clear, specific prompts — not code.
+            コードではなく、明確で具体的なプロンプトを書く。
           </div>
-          <span class="hs-sub">VibeCODE Seminar · AI × Vibe Coding · 2026</span>
+          <span class="hs-sub">VibeCODE セミナー · AI × バイブコーディング · 2026年</span>
         </div>
       </div>
     </section>
 
-    <!-- =====================================================
-     JAVASCRIPT — Slide Presentation Controller
-     ===================================================== -->
     <script>
       class SlidePresentation {
         constructor() {
@@ -3454,7 +3117,6 @@
 
           this.progressFill = document.getElementById("pf");
 
-          /* Inject the black vertical accent rule + tag SDLC cells with hover handlers */
           this.slides.forEach((s) => {
             if (!s.querySelector(".vrule")) {
               const v = document.createElement("div");
@@ -3463,7 +3125,6 @@
             }
           });
 
-          /* Ghost-number parallax driven by mouse */
           let mx = 0,
             my = 0,
             tx = 0,
@@ -3500,11 +3161,9 @@
           this._touch();
           this._updateProgress(0);
 
-          /* Mark first slide visible immediately */
           this._setActiveSlide(this.slides[0], 0);
         }
 
-        /* === Intersection Observer: .visible triggers CSS animations === */
         _observe() {
           const io = new IntersectionObserver(
             (entries) => {
@@ -3532,21 +3191,15 @@
           this._updateProgress(idx);
         }
 
-        /* === Navigation === */
         goTo(idx) {
           if (idx < 0 || idx >= this.total) return;
           this.current = idx;
           this.slides[idx].scrollIntoView({ behavior: "smooth" });
           this._updateProgress(idx);
         }
-        next() {
-          this.goTo(this.current + 1);
-        }
-        prev() {
-          this.goTo(this.current - 1);
-        }
+        next() { this.goTo(this.current + 1); }
+        prev() { this.goTo(this.current - 1); }
 
-        /* === Keyboard: arrows, space, backspace, page keys === */
         _keyboard() {
           document.addEventListener("keydown", (e) => {
             if (
@@ -3564,7 +3217,6 @@
           });
         }
 
-        /* === Mouse wheel — debounced === */
         _wheel() {
           document.addEventListener(
             "wheel",
@@ -3579,7 +3231,6 @@
           );
         }
 
-        /* === Touch swipe === */
         _touch() {
           document.addEventListener(
             "touchstart",
@@ -3602,7 +3253,6 @@
           );
         }
 
-        /* === Progress bar === */
         _updateProgress(idx) {
           if (!this.progressFill) return;
           const pct = this.total > 1 ? (idx / (this.total - 1)) * 100 : 0;
